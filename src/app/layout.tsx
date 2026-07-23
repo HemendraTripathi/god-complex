@@ -13,9 +13,15 @@ const jet = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Hemendra Tripathi — Technical Lead & Product Engineer",
+  title: "Hemendra Tripathi — Technical Lead · AI Voice Systems",
   description:
-    "Technical Lead architecting AI-powered SaaS end to end — voice AI, multi-LLM orchestration, billing systems, and teams that ship. Answer the call.",
+    "Technical Lead who scaled Callin.io to 1,500+ paying customers. Multi-LLM orchestration, real-time voice AI, usage-based billing, and teams that ship. Case study + live agent demo.",
+  openGraph: {
+    title: "Hemendra Tripathi — Technical Lead · AI Voice Systems",
+    description:
+      "From first commit to paying customers. Architecture, billing, teams, revenue.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

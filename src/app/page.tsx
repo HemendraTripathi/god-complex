@@ -1,145 +1,20 @@
 import BlurText from "@/components/BlurText";
 import CountUp from "@/components/CountUp";
 import AgentCall from "@/components/AgentCall";
-import ImagePlaceholder from "@/components/ImagePlaceholder";
+import MockVisual from "@/components/MockVisual";
+import {
+  CAPABILITIES,
+  CASE,
+  EXPERIENCE,
+  LINKS,
+  NAV,
+  PRINCIPLES,
+  SIGNALS,
+  STATS,
+  TICKER,
+  WORK,
+} from "@/lib/content";
 
-/* ---------------- data ---------------- */
-const NAV = [
-  ["Work", "#work"],
-  ["Agent", "#agent"],
-  ["Experience", "#experience"],
-  ["Contact", "#contact"],
-] as const;
-
-const STATS = [
-  { to: 1500, suffix: "+", label: "Paying customers on a platform he architected" },
-  { to: 20, prefix: "−", suffix: "%", label: "LLM inference cost via model routing" },
-  { to: 5, suffix: "", label: "Engineers hired, led & mentored daily" },
-  { to: 10, suffix: "+", label: "Products shipped end-to-end since 2021" },
-];
-
-const TICKER = [
-  "REAL-TIME VOICE AI",
-  "MULTI-LLM ORCHESTRATION",
-  "USAGE-BASED BILLING",
-  "TWILIO / TELNYX / SIP",
-  "RAG · PINECONE · SUPABASE VECTOR",
-  "TEAM OF 5 — HIRED & LED",
-  "US / EU STAKEHOLDERS",
-];
-
-const WORK = [
-  {
-    idx: "01",
-    name: "Callin.io",
-    role: "Technical Lead — architecture, billing, voice pipeline",
-    desc: "AI voice-calling SaaS scaled to 1,500+ paying customers and enterprise accounts. Low-latency telephony over WebSockets + SIP, multi-LLM orchestration with semantic caching, and a minute-based billing system precise enough that disputes are negligible.",
-    stack: "React / Node.js / Supabase / Twilio / Telnyx / Stripe",
-    status: "IN PRODUCTION",
-    img: "/images/work-callin.png",
-  },
-  {
-    idx: "02",
-    name: "CondoMail",
-    role: "Product architecture — multi-provider email sync",
-    desc: "AI agents that sort, categorize, draft, and auto-reply to email across providers. Live in production with early adopters — including multiple high-volume Amazon sellers running their inbox on it.",
-    stack: "React / Node.js / Supabase / Stripe / Firebase",
-    status: "LIVE",
-    img: "/images/work-condomail.png",
-  },
-  {
-    idx: "03",
-    name: "Realead",
-    role: "Full-stack · mobile · AI calling flows",
-    desc: "Connects to lead sources across platforms, builds an automated business profile, and places AI-driven qualification and follow-up calls to new property leads. In final beta ahead of release.",
-    stack: "React Native / NestJS / Supabase / Stripe",
-    status: "BETA",
-    img: "/images/work-realead.png",
-  },
-  {
-    idx: "04",
-    name: "Sunria & FinTech Accounts",
-    role: "Freelance — end-to-end delivery",
-    desc: "A pan-India farm management system with real-time field-to-warehouse communication, and a financial dashboard with automated reconciliation — 30% fewer accounting errors, 15+ staff-hours saved weekly.",
-    stack: "Laravel / Flutter / MERN / CI-CD",
-    status: "SHIPPED",
-    img: "/images/work-sunria.png",
-  },
-];
-
-const EXPERIENCE = [
-  {
-    period: "OCT 2024 — PRESENT",
-    title: "Technical Lead / Full-Stack Developer",
-    org: "Appspundit Infotech · Callin.io",
-    points: [
-      "De facto Technical Lead for a 5-engineer team — architecture, vendor & infrastructure spend, hiring, product roadmaps, reporting directly to the founder.",
-      "Scaled the platform to 1,500+ paying customers; expanded it into a multi-product suite (CondoMail, Realead) on a shared multi-LLM architecture.",
-      "Cut LLM inference costs 20% with complexity-based model routing; owned customer acquisition, converting 30+ prospects into long-term accounts.",
-    ],
-  },
-  {
-    period: "2022 — 2024",
-    title: "Freelance Full-Stack Developer",
-    org: "Remote · fintech, retail, logistics",
-    points: [
-      "Delivered 10+ end-to-end applications across MERN, Django, Flask, and Laravel.",
-      "Built a fintech accounts system for an MCA-registered firm — automated reconciliation saving 15+ staff-hours per week.",
-      "Improved API performance 25% and implemented zero-downtime CI/CD pipelines.",
-    ],
-  },
-  {
-    period: "2021 — 2023",
-    title: "Technical Instructor",
-    org: "Aimers Institute & VT College",
-    points: [
-      "Mentored 150+ students in Python, Django, MERN, and Flutter through project-based learning.",
-      "Redesigned the curriculum to industry needs — student placements rose 42%.",
-      "Supervised 30+ capstone projects: version control, API design, UI craft.",
-    ],
-  },
-];
-
-const CAPABILITIES = [
-  {
-    title: "AI & Voice Systems",
-    items: [
-      "Multi-LLM orchestration — routing by complexity & cost",
-      "RAG pipelines — Pinecone, Supabase Vector",
-      "Voice cloning — ElevenLabs, Cartesia",
-      "Real-time telephony — Twilio, Telnyx, SIP",
-    ],
-  },
-  {
-    title: "Product & Revenue",
-    items: [
-      "Usage-based billing architecture",
-      "Stripe subscriptions & invoicing",
-      "Pricing design & infra cost optimization",
-      "Client acquisition & retention",
-    ],
-  },
-  {
-    title: "Full-Stack Engineering",
-    items: [
-      "React, Next.js, React Native",
-      "Node.js, Express, NestJS, Laravel, Python",
-      "PostgreSQL (Supabase), Redis",
-      "Event-driven systems, REST, microservices",
-    ],
-  },
-  {
-    title: "Cloud & Leadership",
-    items: [
-      "Docker, AWS, CI/CD pipelines",
-      "System design & architecture decisions",
-      "Team leadership — hiring & mentorship",
-      "US/EU stakeholder coordination",
-    ],
-  },
-];
-
-/* ---------------- helpers ---------------- */
 function SectionHead({
   idx,
   title,
@@ -155,24 +30,24 @@ function SectionHead({
         <span className="font-mono text-[11px] font-bold text-org">({idx})</span>
         <h2 className="display text-[clamp(26px,4vw,44px)]">{title}</h2>
       </div>
-      {right && (
-        <span className="eyebrow hidden sm:block">{right}</span>
-      )}
+      {right && <span className="eyebrow hidden sm:block">{right}</span>}
     </div>
   );
 }
 
-/* ---------------- page ---------------- */
 export default function Home() {
   return (
     <div>
       {/* nav */}
       <nav className="fixed inset-x-0 top-0 z-40 border-b-2 border-ink bg-paper/95 backdrop-blur-sm">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5 sm:px-8">
-          <a href="#" className="font-mono text-[12px] font-bold uppercase tracking-[0.18em]">
+          <a
+            href="#"
+            className="font-mono text-[12px] font-bold uppercase tracking-[0.18em]"
+          >
             Hemendra Tripathi
           </a>
-          <div className="hidden items-center gap-7 sm:flex">
+          <div className="hidden items-center gap-6 lg:flex">
             {NAV.map(([label, href]) => (
               <a
                 key={href}
@@ -183,13 +58,23 @@ export default function Home() {
               </a>
             ))}
           </div>
-          <a
-            href="/Hemendra_Tripathi_Resume.pdf"
-            download
-            className="border-2 border-ink bg-ink px-4 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-paper transition-colors hover:bg-org hover:border-org"
-          >
-            Résumé ↓
-          </a>
+          <div className="flex items-center gap-3">
+            <a
+              href={LINKS.github}
+              target="_blank"
+              rel="noreferrer"
+              className="hidden font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-steel transition-colors hover:text-org sm:block"
+            >
+              GitHub
+            </a>
+            <a
+              href={LINKS.resume}
+              download
+              className="border-2 border-ink bg-ink px-4 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-paper transition-colors hover:border-org hover:bg-org"
+            >
+              Résumé ↓
+            </a>
+          </div>
         </div>
       </nav>
 
@@ -199,7 +84,7 @@ export default function Home() {
           <span>Technical Lead — AI Systems / Full-Stack</span>
           <span className="hidden items-center gap-2 sm:flex">
             <span className="blink h-1.5 w-1.5 bg-org" />
-            Open to select roles
+            Open to select roles · UTC+05:30
           </span>
         </div>
 
@@ -213,7 +98,7 @@ export default function Home() {
           </span>
         </h1>
 
-        <div className="mt-10 grid gap-8 border-t-2 border-ink pt-8 md:grid-cols-[1fr_320px] md:gap-16">
+        <div className="mt-10 grid gap-8 border-t-2 border-ink pt-8 md:grid-cols-[1fr_300px] md:gap-16">
           <div className="max-w-2xl text-[clamp(18px,2.4vw,26px)] font-medium leading-snug tracking-tight">
             <BlurText
               text="I take AI products from first commit to paying customers —"
@@ -227,12 +112,15 @@ export default function Home() {
           </div>
           <div className="space-y-2 font-mono text-[11px] uppercase tracking-wider text-steel">
             {[
-              ["Base", "Udaipur, IN — UTC+05:30"],
-              ["Serving", "US / EU product teams"],
-              ["Current", "Callin.io — 1,500+ customers"],
-              ["Experience", "4+ years, 10+ products"],
+              ["Base", "Udaipur, IN"],
+              ["Serving", "US / EU teams"],
+              ["Current", "Callin.io · Tech Lead"],
+              ["Proof", "1,500+ paying customers"],
             ].map(([k, v]) => (
-              <div key={k} className="flex justify-between gap-4 border-b border-hair pb-2">
+              <div
+                key={k}
+                className="flex justify-between gap-4 border-b border-hair pb-2"
+              >
                 <span>{k}</span>
                 <span className="text-right text-ink">{v}</span>
               </div>
@@ -242,16 +130,22 @@ export default function Home() {
 
         <div className="mt-10 flex flex-wrap gap-4 pb-16">
           <a
-            href="#agent"
-            className="border-2 border-ink bg-ink px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-paper shadow-brutal transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-org hover:border-org hover:shadow-none"
+            href="#case"
+            className="border-2 border-ink bg-ink px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-paper shadow-brutal transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:border-org hover:bg-org hover:shadow-none"
           >
-            Talk to my AI agent →
+            Read the case study →
           </a>
           <a
-            href="#work"
+            href="#agent"
             className="border-2 border-ink px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-ink hover:text-paper"
           >
-            See the work
+            Talk to my AI agent
+          </a>
+          <a
+            href={`mailto:${LINKS.email}?subject=Hiring%20conversation`}
+            className="border-2 border-ink px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] transition-colors hover:border-org hover:text-org"
+          >
+            Email me
           </a>
         </div>
       </header>
@@ -288,19 +182,135 @@ export default function Home() {
         </div>
       </section>
 
+      {/* CASE STUDY — the 10/10 proof */}
+      <section
+        id="case"
+        className="mx-auto max-w-7xl scroll-mt-20 px-5 pt-24 sm:px-8"
+      >
+        <SectionHead
+          idx="01"
+          title="Case Study"
+          right={`${CASE.product} · production`}
+        />
+
+        <div className="grid gap-10 border-b-2 border-ink py-10 lg:grid-cols-[1.1fr_0.9fr]">
+          <div>
+            <div className="eyebrow mb-3">{CASE.eyebrow}</div>
+            <h3 className="max-w-xl text-[clamp(22px,3vw,34px)] font-bold leading-[1.15] tracking-tight">
+              {CASE.title}
+            </h3>
+            <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-ink/80">
+              {CASE.summary}
+            </p>
+            <a
+              href={LINKS.callin}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-6 inline-block font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-org underline-offset-4 hover:underline"
+            >
+              callin.io ↗ ★
+            </a>
+          </div>
+          <MockVisual
+            kind="callin"
+            src="/images/work-callin.png"
+            alt="Callin.io product mock"
+          />
+        </div>
+
+        <div className="grid gap-0 border-b-2 border-ink lg:grid-cols-2">
+          <div className="border-hair p-6 sm:p-8 lg:border-r">
+            <div className="eyebrow mb-4">The problem</div>
+            <ul className="space-y-3">
+              {CASE.problem.map((p) => (
+                <li
+                  key={p}
+                  className="flex gap-3 text-[13.5px] leading-relaxed text-ink/80"
+                >
+                  <span className="mt-[9px] h-px w-4 shrink-0 bg-org" />
+                  {p}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="grid grid-cols-2">
+            {CASE.metrics.map((m, i) => (
+              <div
+                key={m.label}
+                className={`border-hair p-5 ${i % 2 === 1 ? "border-l" : ""} ${i < 2 ? "border-b" : ""}`}
+              >
+                <div className="font-mono text-[clamp(22px,3vw,32px)] font-bold tracking-tight">
+                  {m.value}
+                </div>
+                <div className="mt-1 font-mono text-[10px] uppercase tracking-wider text-steel">
+                  {m.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="py-10">
+          <div className="eyebrow mb-6">What I built</div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {CASE.approach.map((a) => (
+              <div
+                key={a.title}
+                className="border-2 border-ink bg-paper p-5 shadow-brutal-sm"
+              >
+                <h4 className="text-[15px] font-bold tracking-tight">{a.title}</h4>
+                <p className="mt-2 text-[13px] leading-relaxed text-ink/75">
+                  {a.body}
+                </p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 flex flex-wrap gap-2">
+            {CASE.stack.map((s) => (
+              <span
+                key={s}
+                className="border border-ink px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-wider"
+              >
+                {s}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <blockquote className="mb-4 border-2 border-ink bg-ink px-6 py-8 text-paper sm:px-10">
+          <p className="max-w-3xl text-[clamp(16px,2vw,22px)] font-medium leading-snug tracking-tight">
+            “{CASE.quote.text}”
+          </p>
+          <footer className="mt-5 font-mono text-[11px] uppercase tracking-[0.18em] text-org">
+            — {CASE.quote.name} · {CASE.quote.role}
+          </footer>
+        </blockquote>
+      </section>
+
       {/* work */}
-      <section id="work" className="mx-auto max-w-7xl scroll-mt-20 px-5 pt-24 sm:px-8">
-        <SectionHead idx="01" title="Selected Work" right="Real users — real revenue" />
+      <section
+        id="work"
+        className="mx-auto max-w-7xl scroll-mt-20 px-5 pt-24 sm:px-8"
+      >
+        <SectionHead
+          idx="02"
+          title="Selected Work"
+          right="Suite + shipped systems"
+        />
         <div>
           {WORK.map((w) => (
             <article
               key={w.name}
               className="grid gap-6 border-b border-hair py-10 last:border-none md:grid-cols-[56px_1fr_340px] md:gap-10"
             >
-              <div className="font-mono text-[12px] font-bold text-org">{w.idx}</div>
+              <div className="font-mono text-[12px] font-bold text-org">
+                {w.idx}
+              </div>
               <div>
                 <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-                  <h3 className="display text-[clamp(24px,3vw,36px)]">{w.name}</h3>
+                  <h3 className="display text-[clamp(24px,3vw,36px)]">
+                    {w.name}
+                  </h3>
                   <span className="font-mono text-[9.5px] font-bold uppercase tracking-[0.2em] text-org">
                     {w.status}
                   </span>
@@ -309,40 +319,129 @@ export default function Home() {
                 <p className="mt-4 max-w-xl text-[14px] leading-relaxed text-ink/80">
                   {w.desc}
                 </p>
-                <div className="mt-4 font-mono text-[10.5px] uppercase tracking-wider text-steel">
-                  {w.stack}
+                <div className="mt-4 flex flex-wrap items-center gap-4">
+                  <span className="font-mono text-[10.5px] uppercase tracking-wider text-steel">
+                    {w.stack}
+                  </span>
+                  {w.href && (
+                    <a
+                      href={w.href}
+                      className="font-mono text-[10px] font-bold uppercase tracking-widest text-org hover:underline"
+                    >
+                      Full case study →
+                    </a>
+                  )}
                 </div>
               </div>
-              <ImagePlaceholder src={w.img} alt={`${w.name} screenshot`} />
+              <MockVisual
+                kind={w.visual}
+                src={w.img}
+                alt={`${w.name} screenshot`}
+              />
             </article>
           ))}
         </div>
       </section>
 
       {/* agent */}
-      <section id="agent" className="mx-auto max-w-7xl scroll-mt-20 px-5 pt-24 sm:px-8">
-        <SectionHead idx="02" title="The Demo Is the Résumé" right="Live — interactive" />
-        <div className="grid gap-8 pt-10 lg:grid-cols-[minmax(0,380px)_1fr] lg:gap-14">
+      <section
+        id="agent"
+        className="mx-auto max-w-7xl scroll-mt-20 px-5 pt-24 sm:px-8"
+      >
+        <SectionHead
+          idx="03"
+          title="The Demo Is the Résumé"
+          right="Live — interactive"
+        />
+        <div className="grid gap-8 pt-10 lg:grid-cols-[minmax(0,360px)_1fr] lg:gap-14">
           <div>
             <p className="text-[15px] leading-relaxed text-ink/80">
               I build AI agents that make real phone calls for a living. This
-              one runs on the same conversational patterns as my production
+              one runs on the same conversational patterns as production
               voice agents — except its lead-qualification target is{" "}
               <span className="font-bold text-org">you</span>.
             </p>
             <p className="mt-4 text-[13px] leading-relaxed text-steel">
-              Answer the call, pick your questions, and watch the lead file
-              build itself — the way my Realead agents qualify property leads
-              in the field.
+              Answer the call. Ask about numbers, stack, or why hire him. The
+              lead file builds the way Realead qualifies property leads in the
+              field.
             </p>
+            <ul className="mt-6 space-y-2 font-mono text-[10px] uppercase tracking-wider text-steel">
+              <li className="flex gap-2">
+                <span className="text-org">→</span> Prefer skimming? Read the
+                case study first.
+              </li>
+              <li className="flex gap-2">
+                <span className="text-org">→</span> Prefer proof? Finish the
+                call. Get the summary.
+              </li>
+            </ul>
           </div>
           <AgentCall />
         </div>
       </section>
 
+      {/* thinking */}
+      <section
+        id="thinking"
+        className="mx-auto max-w-7xl scroll-mt-20 px-5 pt-24 sm:px-8"
+      >
+        <SectionHead
+          idx="04"
+          title="How I Think"
+          right="Operating principles"
+        />
+        <div className="grid gap-0 border-2 border-t-0 border-ink sm:grid-cols-2">
+          {PRINCIPLES.map((p, i) => (
+            <div
+              key={p.n}
+              className={`border-hair p-6 sm:p-8 ${i % 2 === 1 ? "sm:border-l" : ""} ${i >= 2 ? "border-t" : ""}`}
+            >
+              <div className="font-mono text-[11px] font-bold text-org">
+                {p.n}
+              </div>
+              <h3 className="mt-2 text-[18px] font-bold tracking-tight">
+                {p.title}
+              </h3>
+              <p className="mt-3 text-[13.5px] leading-relaxed text-ink/75">
+                {p.body}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* signals */}
+      <section className="mx-auto max-w-7xl px-5 pt-24 sm:px-8">
+        <SectionHead idx="05" title="Signal" right="What people say ★" />
+        <div className="grid gap-0 border-2 border-t-0 border-ink md:grid-cols-3">
+          {SIGNALS.map((s, i) => (
+            <figure
+              key={s.name}
+              className={`border-hair p-6 sm:p-7 ${i > 0 ? "md:border-l max-md:border-t" : ""}`}
+            >
+              <blockquote className="text-[14px] leading-relaxed text-ink/85">
+                “{s.text}”
+              </blockquote>
+              <figcaption className="mt-5 font-mono text-[10px] uppercase tracking-[0.16em]">
+                <span className="font-bold">{s.name}</span>
+                <span className="mt-1 block text-steel">{s.org}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <p className="mt-3 font-mono text-[9px] uppercase tracking-wider text-steel">
+          ★ Quotes are placeholders aligned to real engagements — swap with
+          verified testimonials when ready.
+        </p>
+      </section>
+
       {/* experience */}
-      <section id="experience" className="mx-auto max-w-7xl scroll-mt-20 px-5 pt-24 sm:px-8">
-        <SectionHead idx="03" title="Experience" right="2021 — Present" />
+      <section
+        id="experience"
+        className="mx-auto max-w-7xl scroll-mt-20 px-5 pt-24 sm:px-8"
+      >
+        <SectionHead idx="06" title="Experience" right="2021 — Present" />
         <div>
           {EXPERIENCE.map((e) => (
             <div
@@ -361,7 +460,10 @@ export default function Home() {
                 </h3>
                 <ul className="mt-4 max-w-2xl space-y-2.5">
                   {e.points.map((p) => (
-                    <li key={p} className="flex gap-3 text-[13.5px] leading-relaxed text-ink/80">
+                    <li
+                      key={p}
+                      className="flex gap-3 text-[13.5px] leading-relaxed text-ink/80"
+                    >
                       <span className="mt-[9px] h-px w-4 shrink-0 bg-org" />
                       {p}
                     </li>
@@ -380,7 +482,11 @@ export default function Home() {
 
       {/* capabilities */}
       <section className="mx-auto max-w-7xl px-5 pt-24 sm:px-8">
-        <SectionHead idx="04" title="Capabilities" right="Full surface area — one person" />
+        <SectionHead
+          idx="07"
+          title="Capabilities"
+          right="Full surface area — one person"
+        />
         <div className="grid border-2 border-t-0 border-ink sm:grid-cols-2 lg:grid-cols-4">
           {CAPABILITIES.map((c, i) => (
             <div
@@ -392,7 +498,10 @@ export default function Home() {
               </h3>
               <ul className="mt-5 space-y-3">
                 {c.items.map((item) => (
-                  <li key={item} className="flex gap-2.5 text-[12.5px] leading-relaxed text-ink/75">
+                  <li
+                    key={item}
+                    className="flex gap-2.5 text-[12.5px] leading-relaxed text-ink/75"
+                  >
                     <span className="mt-[8px] h-px w-3 shrink-0 bg-org" />
                     {item}
                   </li>
@@ -405,66 +514,111 @@ export default function Home() {
 
       {/* about */}
       <section className="mx-auto max-w-7xl px-5 pt-24 sm:px-8">
-        <SectionHead idx="05" title="Off the Record" />
-        <div className="grid gap-10 py-10 md:grid-cols-[260px_1fr] md:items-center">
-          <ImagePlaceholder
+        <SectionHead idx="08" title="Off the Record" />
+        <div className="grid gap-10 py-10 md:grid-cols-[240px_1fr] md:items-center">
+          <MockVisual
+            kind="portrait"
             src="/images/portrait.png"
             alt="Portrait of Hemendra Tripathi"
             aspect="aspect-square"
-            label="add portrait → public/images/portrait.png"
           />
-          <p className="max-w-2xl text-[clamp(17px,2vw,22px)] font-medium leading-normal tracking-tight">
-            Based in Udaipur, shipping for the US and Europe. I got here by
-            teaching <span className="text-org">150+ students</span> to code,
-            freelancing across four frameworks, and rebuilding a voice-AI
-            platform until <span className="text-org">1,500 companies</span>{" "}
-            paid for it. I like systems that are boring, fast, and profitable —
-            and teams that own what they build.
-          </p>
+          <div>
+            <p className="max-w-2xl text-[clamp(17px,2vw,22px)] font-medium leading-normal tracking-tight">
+              Based in Udaipur, shipping for the US and Europe. I got here by
+              teaching <span className="text-org">150+ students</span> to
+              code, freelancing across four frameworks, and rebuilding a
+              voice-AI platform until{" "}
+              <span className="text-org">1,500 companies</span> paid for it. I
+              like systems that are boring, fast, and profitable — and teams
+              that own what they build.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-6 font-mono text-[11px] font-bold uppercase tracking-[0.18em]">
+              <a
+                href={LINKS.github}
+                target="_blank"
+                rel="noreferrer"
+                className="text-ink hover:text-org"
+              >
+                GitHub ↗
+              </a>
+              <a
+                href={LINKS.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="text-ink hover:text-org"
+              >
+                LinkedIn ↗
+              </a>
+              <a href={LINKS.resume} download className="text-ink hover:text-org">
+                Résumé ↓
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* contact */}
       <section id="contact" className="mt-24 scroll-mt-20 border-t-2 border-ink">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
-          <div className="eyebrow mb-6">(06) — Contact</div>
+          <div className="eyebrow mb-6">(09) — Contact</div>
           <h2 className="display text-[clamp(44px,9vw,128px)]">
-            Let&rsquo;s build<span className="text-org">.</span>
+            Hire me<span className="text-org">.</span>
           </h2>
-          <p className="mt-6 max-w-md text-[14px] leading-relaxed text-steel">
-            Open to technical-lead and senior full-stack roles, plus select
-            freelance engagements. Replies within 24 hours — human or agent.
+          <p className="mt-6 max-w-lg text-[15px] leading-relaxed text-ink/75">
+            Looking for a technical lead who has already shipped AI products
+            into revenue — not someone who will learn voice AI on your dime.
+            Open to technical-lead / senior full-stack roles and select
+            freelance. Replies within 24 hours.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <a
-              href="mailto:hemendratripathi880@gmail.com"
-              className="border-2 border-ink bg-ink px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-paper shadow-brutal transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-org hover:border-org hover:shadow-none"
+              href={`mailto:${LINKS.email}?subject=Let%27s%20talk%20%E2%80%94%20hiring`}
+              className="border-2 border-ink bg-ink px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-paper shadow-brutal transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:border-org hover:bg-org hover:shadow-none"
             >
-              hemendratripathi880@gmail.com
+              {LINKS.email}
             </a>
             <a
-              href="tel:+916378745958"
+              href={`tel:${LINKS.phone}`}
               className="border-2 border-ink px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-ink hover:text-paper"
             >
-              +91 63787 45958
+              {LINKS.phoneDisplay}
             </a>
           </div>
-          <div className="mt-10 flex gap-8 font-mono text-[10.5px] font-bold uppercase tracking-[0.2em] text-steel">
-            <a href="#" className="transition-colors hover:text-org">GitHub ↗</a>
-            <a href="#" className="transition-colors hover:text-org">LinkedIn ↗</a>
+          <div className="mt-10 flex flex-wrap gap-8 font-mono text-[10.5px] font-bold uppercase tracking-[0.2em] text-steel">
             <a
-              href="/Hemendra_Tripathi_Resume.pdf"
+              href={LINKS.github}
+              target="_blank"
+              rel="noreferrer"
+              className="transition-colors hover:text-org"
+            >
+              GitHub ↗
+            </a>
+            <a
+              href={LINKS.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              className="transition-colors hover:text-org"
+            >
+              LinkedIn ↗
+            </a>
+            <a
+              href={LINKS.resume}
               download
               className="transition-colors hover:text-org"
             >
               Résumé ↓
+            </a>
+            <a href="#case" className="transition-colors hover:text-org">
+              Case study ↑
             </a>
           </div>
         </div>
         <footer className="border-t-2 border-ink">
           <div className="mx-auto flex max-w-7xl flex-col justify-between gap-2 px-5 py-6 font-mono text-[9.5px] uppercase tracking-[0.18em] text-steel sm:flex-row sm:px-8">
             <span>© 2026 Hemendra Tripathi — Udaipur, IN</span>
-            <span>Designed & built by him — and one persuasive agent</span>
+            <span>
+              Items marked ★ are placeholders — swap with your real assets
+            </span>
           </div>
         </footer>
       </section>

@@ -14,6 +14,7 @@ import {
   type TopicId,
 } from "@/lib/script";
 import CountUp from "./CountUp";
+import { LINKS } from "@/lib/content";
 
 type Msg = { id: number; role: "agent" | "user"; html: string };
 type Choice = { label: string; onPick: () => void; done?: boolean; end?: boolean };
@@ -493,13 +494,13 @@ export default function AgentCall() {
                 </div>
                 <div className="mt-6 flex flex-col gap-2.5 sm:flex-row">
                   <a
-                    href="mailto:hemendratripathi880@gmail.com?subject=Let%27s%20talk"
-                    className="flex-1 border-2 border-ink bg-ink px-5 py-3 text-center font-mono text-[10.5px] font-bold uppercase tracking-widest text-paper transition-colors hover:bg-org hover:border-org"
+                    href={`mailto:${LINKS.email}?subject=Let%27s%20talk%20%E2%80%94%20hiring`}
+                    className="flex-1 border-2 border-ink bg-ink px-5 py-3 text-center font-mono text-[10.5px] font-bold uppercase tracking-widest text-paper transition-colors hover:border-org hover:bg-org"
                   >
                     Email Hemendra
                   </a>
                   <a
-                    href="/Hemendra_Tripathi_Resume.pdf"
+                    href={LINKS.resume}
                     download
                     className="flex-1 border-2 border-ink px-5 py-3 text-center font-mono text-[10.5px] font-bold uppercase tracking-widest transition-colors hover:bg-ink hover:text-paper"
                   >
