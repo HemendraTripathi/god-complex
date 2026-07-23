@@ -1,22 +1,21 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Space_Mono } from "next/font/google";
+import { Archivo, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const grotesk = Space_Grotesk({
+const archivo = Archivo({
   subsets: ["latin"],
-  variable: "--font-grotesk",
+  variable: "--font-archivo",
 });
 
-const mono = Space_Mono({
-  weight: ["400", "700"],
+const jet = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-mono-sp",
+  variable: "--font-jet",
 });
 
 export const metadata: Metadata = {
-  title: "Hemendra Tripathi — Technical Lead, AI Voice Systems",
+  title: "Hemendra Tripathi — Technical Lead & Product Engineer",
   description:
-    "Hemendra Tripathi builds AI voice agents for a living. His portfolio is one: answer the call and get qualified as a hiring lead.",
+    "Technical Lead architecting AI-powered SaaS end to end — voice AI, multi-LLM orchestration, billing systems, and teams that ship. Answer the call.",
 };
 
 export default function RootLayout({
@@ -24,7 +23,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${grotesk.variable} ${mono.variable} antialiased`}>
+      <body className={`${archivo.variable} ${jet.variable} antialiased`}>
         {children}
       </body>
     </html>

@@ -1,18 +1,21 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-paper: #f2efe6;
-  --color-ink: #141414;
-  --color-acid: #d8f34f;
-  --color-alert: #ff4b33;
-  --color-steel: #6e6a5e;
+  --color-paper: #ece9e2;
+  --color-ink: #161616;
+  --color-org: #ff4d00;
+  --color-steel: #6e6a60;
+  --color-hair: rgba(22, 22, 22, 0.16);
 
-  --font-sans: var(--font-grotesk), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-mono-sp), ui-monospace, monospace;
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jet), ui-monospace, monospace;
 
-  --shadow-brutal-sm: 3px 3px 0 0 #141414;
-  --shadow-brutal: 5px 5px 0 0 #141414;
-  --shadow-brutal-lg: 10px 10px 0 0 #141414;
+  --shadow-brutal-sm: 3px 3px 0 0 #161616;
+  --shadow-brutal: 5px 5px 0 0 #161616;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 html,
@@ -21,44 +24,80 @@ body {
 }
 
 body {
-  background-color: var(--color-paper);
-  background-image: radial-gradient(rgba(20, 20, 20, 0.11) 1px, transparent 1px);
-  background-size: 22px 22px;
+  background: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 ::selection {
-  background: var(--color-acid);
-  color: var(--color-ink);
+  background: var(--color-org);
+  color: var(--color-paper);
+}
+
+/* section eyebrow */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-steel);
+}
+
+/* display type */
+.display {
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  line-height: 0.88;
 }
 
 /* rich text inside agent messages */
 .msg-html b {
   font-weight: 700;
+  color: var(--color-ink);
 }
 .msg-html .hl {
-  background: var(--color-acid);
-  padding: 0 4px;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
+  color: var(--color-org);
+  font-weight: 600;
 }
 .msg-html i {
   font-style: italic;
 }
 
-/* blinking status square */
+/* typing indicator squares */
+@keyframes tsq {
+  0%,
+  60%,
+  100% {
+    opacity: 0.2;
+  }
+  30% {
+    opacity: 1;
+  }
+}
+.tsq {
+  animation: tsq 1s steps(1) infinite;
+}
+.tsq:nth-child(2) {
+  animation-delay: 0.18s;
+}
+.tsq:nth-child(3) {
+  animation-delay: 0.36s;
+}
+
+/* status blink */
 @keyframes blink {
   50% {
-    opacity: 0.15;
+    opacity: 0.2;
   }
 }
 .blink {
-  animation: blink 1.2s steps(1) infinite;
+  animation: blink 1.3s steps(1) infinite;
 }
 
-/* equalizer bars while agent "speaks" */
+/* equalizer */
 @keyframes eq {
   0%,
   100% {
@@ -84,11 +123,23 @@ body {
 .eq-on .eq-bar:nth-child(4) {
   animation-delay: 0.08s;
 }
-.eq-on .eq-bar:nth-child(5) {
-  animation-delay: 0.2s;
+
+/* call pulse */
+@keyframes callpulse {
+  from {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  to {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+.callpulse {
+  animation: callpulse 2s ease-out infinite;
 }
 
-/* marquee strip */
+/* marquee */
 @keyframes marquee {
   from {
     transform: translateX(0);
@@ -98,41 +149,22 @@ body {
   }
 }
 .marquee-track {
-  animation: marquee 22s linear infinite;
+  animation: marquee 26s linear infinite;
 }
 
-/* typing indicator squares */
-@keyframes tsq {
-  0%,
-  60%,
-  100% {
-    opacity: 0.2;
-  }
-  30% {
-    opacity: 1;
-  }
-}
-.tsq {
-  animation: tsq 1s steps(1) infinite;
-}
-.tsq:nth-child(2) {
-  animation-delay: 0.18s;
-}
-.tsq:nth-child(3) {
-  animation-delay: 0.36s;
+/* image placeholder stripes */
+.ph-stripes {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(22, 22, 22, 0.05) 0 10px,
+    transparent 10px 20px
+  );
 }
 
-/* incoming-call ring pulse */
-@keyframes ringpulse {
-  from {
-    transform: scale(1);
-    opacity: 0.7;
-  }
-  to {
-    transform: scale(1.8);
-    opacity: 0;
-  }
+/* scrollbars */
+.thin-scroll::-webkit-scrollbar {
+  width: 6px;
 }
-.ringpulse {
-  animation: ringpulse 1.8s ease-out infinite;
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: rgba(22, 22, 22, 0.25);
 }
