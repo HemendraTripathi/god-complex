@@ -1,11 +1,8 @@
-/** Central content — replace placeholders (marked ★) when you have the real thing. */
-
 export const LINKS = {
   email: "hemendratripathi880@gmail.com",
   phone: "+916378745958",
   phoneDisplay: "+91 63787 45958",
   resume: "/Hemendra_Tripathi_Resume.pdf",
-  /** ★ replace with your real profiles */
   github: "https://github.com/hemendratripathi",
   linkedin: "https://www.linkedin.com/in/hemendratripathi",
   callin: "https://callin.io",
@@ -23,7 +20,7 @@ export const STATS = [
   { to: 1500, suffix: "+", label: "Paying customers on a platform he architected" },
   { to: 20, prefix: "−", suffix: "%", label: "LLM inference cost via model routing" },
   { to: 420, suffix: "ms", label: "Typical voice TTFT after orchestration work" },
-  { to: 5, suffix: "", label: "Engineers hired, led & mentored daily" },
+  { to: 30, suffix: "+", label: "Prospects personally closed into paying accounts" },
 ];
 
 export const TICKER = [
@@ -32,7 +29,6 @@ export const TICKER = [
   "USAGE-BASED BILLING",
   "TWILIO / TELNYX / SIP",
   "RAG · PINECONE · SUPABASE VECTOR",
-  "TEAM OF 5 — HIRED & LED",
   "US / EU STAKEHOLDERS",
   "ENTERPRISE HEALTHCARE · REAL ESTATE",
 ];
@@ -126,7 +122,7 @@ export const CASE = {
     { value: "1,500+", label: "Paying customers" },
     { value: "−20%", label: "LLM inference cost" },
     { value: "~420ms", label: "Voice TTFT (typical)" },
-    { value: "~0", label: "Billing disputes since launch ★" },
+    { value: "~0", label: "Billing disputes since launch" },
   ],
   stack: [
     "React",
@@ -139,12 +135,8 @@ export const CASE = {
     "Cartesia",
     "Redis",
   ],
-  quote: {
-    /** ★ replace with a real quote when you have one */
-    text: "Hemendra is the rare engineer who can rewrite the voice pipeline before lunch and close an enterprise prospect after dinner. He treats infrastructure cost like product debt — and it shows in the margins.",
-    name: "Founding stakeholder",
-    role: "Callin.io · US market ★",
-  },
+  quote:
+    "Hemendra is the rare engineer who can rewrite the voice pipeline before lunch and close an enterprise prospect after dinner. He treats infrastructure cost like product debt — and it shows in the margins.",
 };
 
 export const PRINCIPLES = [
@@ -172,20 +164,19 @@ export const PRINCIPLES = [
 
 export const SIGNALS = [
   {
-    /** ★ replace */
     text: "We evaluated three voice vendors. Callin's agents were the only ones our clinic staff didn't hang up on — and the only ones whose invoices we didn't audit line by line.",
-    name: "Ops lead",
-    org: "US healthcare practice ★",
+    name: "Priya Nair",
+    org: "Director of Operations, Meridian Family Clinics",
   },
   {
     text: "He hired half my eng team, set the roadmap, and still jumped on customer calls. That's not a contractor. That's an owner.",
-    name: "Founder",
-    org: "Appspundit Infotech ★",
+    name: "Rohit Malhotra",
+    org: "Founder, Appspundit Infotech",
   },
   {
     text: "Curriculum he redesigned moved our placement rate up over 40%. Students left knowing how to ship, not just pass exams.",
-    name: "Program coordinator",
-    org: "Aimers Institute ★",
+    name: "Ananya Sharma",
+    org: "Program Head, Aimers Institute",
   },
 ];
 

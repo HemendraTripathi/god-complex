@@ -40,9 +40,6 @@ export default function MockVisual({
       {kind === "realead" && <RealeadMock />}
       {kind === "sunria" && <SunriaMock />}
       {kind === "portrait" && <PortraitMock />}
-      <div className="absolute bottom-0 left-0 right-0 border-t border-ink/20 bg-paper/90 px-2 py-1 font-mono text-[8px] uppercase tracking-wider text-steel">
-        ★ replace → public{src}
-      </div>
     </div>
   );
 }
@@ -218,9 +215,6 @@ function PortraitMock() {
     <div className="flex h-full flex-col items-center justify-center bg-ink text-paper">
       <div className="flex h-28 w-28 items-center justify-center border-2 border-org font-mono text-4xl font-bold tracking-tighter text-org">
         HT
-      </div>
-      <div className="mt-4 font-mono text-[9px] uppercase tracking-[0.25em] text-paper/50">
-        Portrait pending
       </div>
     </div>
   );

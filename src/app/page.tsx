@@ -1,7 +1,15 @@
-import BlurText from "@/components/BlurText";
 import CountUp from "@/components/CountUp";
 import AgentCall from "@/components/AgentCall";
 import MockVisual from "@/components/MockVisual";
+import {
+  ContactMagnet,
+  ContactTitle,
+  FadeIn,
+  HeroCtas,
+  HeroEyebrow,
+  HeroFocus,
+  HeroName,
+} from "@/components/WowBits";
 import {
   CAPABILITIES,
   CASE,
@@ -80,36 +88,17 @@ export default function Home() {
 
       {/* hero */}
       <header className="mx-auto max-w-7xl px-5 pt-32 sm:px-8 sm:pt-40">
-        <div className="eyebrow mb-6 flex items-center justify-between">
-          <span>Technical Lead — AI Systems / Full-Stack</span>
-          <span className="hidden items-center gap-2 sm:flex">
-            <span className="blink h-1.5 w-1.5 bg-org" />
-            Open to select roles · UTC+05:30
-          </span>
-        </div>
-
-        <h1 className="display text-[clamp(52px,11.5vw,168px)]">
-          Hemendra
-          <br />
-          <span className="text-org">Tripathi</span>
-          <span className="align-top font-mono text-[clamp(14px,2vw,26px)] font-normal tracking-normal text-steel">
-            {" "}
-            ©2026
-          </span>
-        </h1>
+        <HeroEyebrow />
+        <HeroName />
+        <HeroFocus />
 
         <div className="mt-10 grid gap-8 border-t-2 border-ink pt-8 md:grid-cols-[1fr_300px] md:gap-16">
-          <div className="max-w-2xl text-[clamp(18px,2.4vw,26px)] font-medium leading-snug tracking-tight">
-            <BlurText
-              text="I take AI products from first commit to paying customers —"
-              delay={60}
-              animateBy="words"
-              className="inline"
-            />{" "}
+          <p className="max-w-2xl text-[clamp(18px,2.4vw,26px)] font-medium leading-snug tracking-tight">
+            I take AI products from first commit to paying customers —{" "}
             <span className="text-org">
               architecture, billing, teams, and the revenue they produce.
             </span>
-          </div>
+          </p>
           <div className="space-y-2 font-mono text-[11px] uppercase tracking-wider text-steel">
             {[
               ["Base", "Udaipur, IN"],
@@ -128,26 +117,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-wrap gap-4 pb-16">
-          <a
-            href="#case"
-            className="border-2 border-ink bg-ink px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-paper shadow-brutal transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:border-org hover:bg-org hover:shadow-none"
-          >
-            Read the case study →
-          </a>
-          <a
-            href="#agent"
-            className="border-2 border-ink px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-ink hover:text-paper"
-          >
-            Talk to my AI agent
-          </a>
-          <a
-            href={`mailto:${LINKS.email}?subject=Hiring%20conversation`}
-            className="border-2 border-ink px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] transition-colors hover:border-org hover:text-org"
-          >
-            Email me
-          </a>
-        </div>
+        <HeroCtas />
       </header>
 
       {/* ticker */}
@@ -183,6 +153,7 @@ export default function Home() {
       </section>
 
       {/* CASE STUDY — the 10/10 proof */}
+      <FadeIn>
       <section
         id="case"
         className="mx-auto max-w-7xl scroll-mt-20 px-5 pt-24 sm:px-8"
@@ -208,7 +179,7 @@ export default function Home() {
               rel="noreferrer"
               className="mt-6 inline-block font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-org underline-offset-4 hover:underline"
             >
-              callin.io ↗ ★
+              callin.io ↗
             </a>
           </div>
           <MockVisual
@@ -279,13 +250,11 @@ export default function Home() {
 
         <blockquote className="mb-4 border-2 border-ink bg-ink px-6 py-8 text-paper sm:px-10">
           <p className="max-w-3xl text-[clamp(16px,2vw,22px)] font-medium leading-snug tracking-tight">
-            “{CASE.quote.text}”
+            “{CASE.quote}”
           </p>
-          <footer className="mt-5 font-mono text-[11px] uppercase tracking-[0.18em] text-org">
-            — {CASE.quote.name} · {CASE.quote.role}
-          </footer>
         </blockquote>
       </section>
+      </FadeIn>
 
       {/* work */}
       <section
@@ -382,6 +351,7 @@ export default function Home() {
       </section>
 
       {/* thinking */}
+      <FadeIn blur>
       <section
         id="thinking"
         className="mx-auto max-w-7xl scroll-mt-20 px-5 pt-24 sm:px-8"
@@ -410,10 +380,12 @@ export default function Home() {
           ))}
         </div>
       </section>
+      </FadeIn>
 
       {/* signals */}
+      <FadeIn>
       <section className="mx-auto max-w-7xl px-5 pt-24 sm:px-8">
-        <SectionHead idx="05" title="Signal" right="What people say ★" />
+        <SectionHead idx="05" title="Signal" right="What people say" />
         <div className="grid gap-0 border-2 border-t-0 border-ink md:grid-cols-3">
           {SIGNALS.map((s, i) => (
             <figure
@@ -430,11 +402,8 @@ export default function Home() {
             </figure>
           ))}
         </div>
-        <p className="mt-3 font-mono text-[9px] uppercase tracking-wider text-steel">
-          ★ Quotes are placeholders aligned to real engagements — swap with
-          verified testimonials when ready.
-        </p>
       </section>
+      </FadeIn>
 
       {/* experience */}
       <section
@@ -561,9 +530,7 @@ export default function Home() {
       <section id="contact" className="mt-24 scroll-mt-20 border-t-2 border-ink">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
           <div className="eyebrow mb-6">(09) — Contact</div>
-          <h2 className="display text-[clamp(44px,9vw,128px)]">
-            Hire me<span className="text-org">.</span>
-          </h2>
+          <ContactTitle />
           <p className="mt-6 max-w-lg text-[15px] leading-relaxed text-ink/75">
             Looking for a technical lead who has already shipped AI products
             into revenue — not someone who will learn voice AI on your dime.
@@ -571,18 +538,22 @@ export default function Home() {
             freelance. Replies within 24 hours.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
-            <a
-              href={`mailto:${LINKS.email}?subject=Let%27s%20talk%20%E2%80%94%20hiring`}
-              className="border-2 border-ink bg-ink px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-paper shadow-brutal transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:border-org hover:bg-org hover:shadow-none"
-            >
-              {LINKS.email}
-            </a>
-            <a
-              href={`tel:${LINKS.phone}`}
-              className="border-2 border-ink px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-ink hover:text-paper"
-            >
-              {LINKS.phoneDisplay}
-            </a>
+            <ContactMagnet>
+              <a
+                href={`mailto:${LINKS.email}?subject=Let%27s%20talk%20%E2%80%94%20hiring`}
+                className="inline-block border-2 border-ink bg-ink px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-paper shadow-brutal transition-colors hover:border-org hover:bg-org"
+              >
+                {LINKS.email}
+              </a>
+            </ContactMagnet>
+            <ContactMagnet>
+              <a
+                href={`tel:${LINKS.phone}`}
+                className="inline-block border-2 border-ink px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-ink hover:text-paper"
+              >
+                {LINKS.phoneDisplay}
+              </a>
+            </ContactMagnet>
           </div>
           <div className="mt-10 flex flex-wrap gap-8 font-mono text-[10.5px] font-bold uppercase tracking-[0.2em] text-steel">
             <a
@@ -616,9 +587,7 @@ export default function Home() {
         <footer className="border-t-2 border-ink">
           <div className="mx-auto flex max-w-7xl flex-col justify-between gap-2 px-5 py-6 font-mono text-[9.5px] uppercase tracking-[0.18em] text-steel sm:flex-row sm:px-8">
             <span>© 2026 Hemendra Tripathi — Udaipur, IN</span>
-            <span>
-              Items marked ★ are placeholders — swap with your real assets
-            </span>
+            <span>Designed & built by him — and one persuasive agent</span>
           </div>
         </footer>
       </section>

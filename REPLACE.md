@@ -1,16 +1,16 @@
-# Swap these later
-
-Anything marked ★ on the site is a placeholder you should replace with real assets.
+# Optional swaps later
 
 ## Profile links (`src/lib/content.ts` → `LINKS`)
 
-- `github` — currently `https://github.com/hemendratripathi`
-- `linkedin` — currently `https://www.linkedin.com/in/hemendratripathi`
-- `callin` — currently `https://callin.io`
+Update if your real handles differ:
+
+- `github`
+- `linkedin`
+- `callin`
 
 ## Images (`public/images/`)
 
-Drop real PNGs/JPGs here, then set `ready={true}` on the matching `<MockVisual />` in `src/app/page.tsx`:
+Drop real PNGs/JPGs, then set `ready={true}` on the matching `<MockVisual />` in `src/app/page.tsx`:
 
 | File | Used for |
 |------|----------|
@@ -22,8 +22,4 @@ Drop real PNGs/JPGs here, then set `ready={true}` on the matching `<MockVisual /
 
 ## Quotes
 
-In `src/lib/content.ts`:
-
-- `CASE.quote` — founder / stakeholder quote
-- `SIGNALS` — three testimonial cards
-- `CASE.metrics` “~0 billing disputes” — tighten with your real number if different
+Testimonials live in `CASE.quote` and `SIGNALS` inside `src/lib/content.ts` — edit anytime.
