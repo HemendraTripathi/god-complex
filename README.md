@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# hire-hemendra
 
-## Getting Started
+> Portfolio of **Hemendra Tripathi** — Technical Lead · AI Voice Systems · Full-Stack.
 
-First, run the development server:
+Not a scroll of pastel cards. A **premium brutalist** site that proves the product: case study, live AI recruiting agent, and numbers that hire.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+HEMENDRA
+TRIPATHI ©2026
+ARCHITECTURE · BILLING · TEAMS · REVENUE
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## What’s inside
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Section | Flex |
+|--------|------|
+| **Case study** | Callin.io — 1,500+ customers, −20% LLM cost, ~420ms TTFT |
+| **Agent demo** | Interactive voice-agent console that qualifies *you* as a hiring lead |
+| **Selected work** | Callin · CondoMail · Realead · Sunria / FinTech |
+| **How I think** | Latency, routing, billing, P&L ownership |
+| **Signal** | What people say |
 
-## Learn More
+Built with **Next.js 16**, **Tailwind CSS v4**, **Motion / GSAP**, and [React Bits](https://reactbits.dev) (`SplitText`, `DecryptedText`, `TrueFocus`, `Magnet`, `FadeContent`, `CountUp`).
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Run locally
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm install
+npm run dev
+```
 
-## Deploy on Vercel
+Open [http://localhost:3000](http://localhost:3000).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run build   # production build
+npm start       # serve production
+npm run lint
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Stack
+
+- Next.js (App Router) + TypeScript
+- Tailwind CSS v4
+- Motion + GSAP (+ `@gsap/react`)
+- React Bits via `@react-bits` registry
+
+Content lives in `src/lib/content.ts`. Product mocks in `src/components/MockVisual.tsx`. Optional asset swaps: see `REPLACE.md`.
+
+---
+
+## Contact
+
+- **Email:** [hemendratripathi880@gmail.com](mailto:hemendratripathi880@gmail.com)
+- **Phone:** +91 63787 45958
+- **Location:** Udaipur, IN · shipping for US / EU
+
+If you’re hiring a technical lead who already shipped AI into revenue — answer the call.
+
+---
+
+© 2026 Hemendra Tripathi
