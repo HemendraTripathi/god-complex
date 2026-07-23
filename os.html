@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CarterOS — Portfolio of Alex Carter</title>
+<meta name="description" content="The portfolio of Alex Carter, reimagined as an operating system. Boot it up." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --desk-1: #1a1040;
+    --desk-2: #0b2a4a;
+    --desk-3: #0e3b3a;
+    --win-bg: rgba(18, 22, 34, 0.92);
+    --win-border: rgba(255, 255, 255, 0.14);
+    --titlebar: rgba(255, 255, 255, 0.06);
+    --text: #e8edf6;
+    --muted: #9aa7bd;
+    --green: #34d399;
+    --amber: #fbbf24;
+    --red: #f87171;
+    --accent: #7dd3fc;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; overflow: hidden; }
+  body {
+    font-family: var(--sans);
+    color: var(--text);
+    background: #000;
+    user-select: none;
+  }
+
+  /* ============ BOOT SCREEN ============ */
+  #boot {
+    position: fixed; inset: 0; z-index: 9999;
+    background: #000;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: #9ece8f;
+    padding: 32px;
+    overflow: hidden;
+  }
+  #boot .line { white-space: pre-wrap; line-height: 1.7; }
+  #boot .ok { color: var(--green); }
+  #boot .dim { color: #4a5568; }
+  #boot.fade { animation: bootFade 0.8s forwards; }
+  @keyframes bootFade { to { opacity: 0; visibility: hidden; } }
+
+  /* ============ DESKTOP ============ */
+  #desktop {
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(1000px 600px at 85% 90%, rgba(52, 211, 153, 0.18), transparent 55%),
+      radial-gradient(900px 700px at 10% 10%, rgba(125, 211, 252, 0.14), transparent 55%),
+      linear-gradient(140deg, var(--desk-1), var(--desk-2) 55%, var(--desk-3));
+    opacity: 0;
+    transition: opacity 1s;
+  }
+  #desktop.on { opacity: 1; }
+
+  /* ============ MENU BAR ============ */
+  #menubar {
+    position: fixed; top: 0; left: 0; right: 0;
+    height: 32px;
+    z-index: 5000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    font-size: 12.5px;
+    font-weight: 500;
+  }
+  #menubar .left, #menubar .right { display: flex; align-items: center; gap: 18px; }
+  #menubar .brand { font-weight: 700; }
+  #menubar .brand span { color: var(--green); }
+  #menubar .mitem { color: var(--muted); cursor: default; }
+  #menubar .mitem:hover { color: var(--text); }
+  #clock { font-family: var(--mono); font-size: 12px; }
+
+  /* ============ DESKTOP ICONS ============ */
+  .icons {
+    position: absolute;
+    top: 56px; left: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .dicon {
+    width: 92px;
+    padding: 10px 6px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+  .dicon:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12); }
+  .dicon .glyph { font-size: 34px; display: block; margin-bottom: 6px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4)); }
+  .dicon .name { font-size: 11.5px; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.7); line-height: 1.3; }
+
+  /* ============ WINDOWS ============ */
+  .window {
+    position: absolute;
+    min-width: 320px;
+    background: var(--win-bg);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--win-border);
+    border-radius: 12px;
+    box-shadow: 0 24px 70px rgba(0,0,0,0.55);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    animation: winPop 0.22s ease;
+  }
+  .window.open { display: flex; }
+  @keyframes winPop {
+    from { transform: scale(0.92) translateY(12px); opacity: 0; }
+    to { transform: scale(1) translateY(0); opacity: 1; }
+  }
+  .titlebar {
+    height: 36px;
+    background: var(--titlebar);
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    cursor: grab;
+    flex-shrink: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .titlebar:active { cursor: grabbing; }
+  .lights { display: flex; gap: 8px; margin-right: 12px; }
+  .light { width: 12px; height: 12px; border-radius: 50%; cursor: pointer; border: none; }
+  .light.close { background: var(--red); }
+  .light.min { background: var(--amber); }
+  .light.max { background: var(--green); }
+  .light:hover { filter: brightness(1.25); }
+  .titlebar .title {
+    flex: 1;
+    text-align: center;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--muted);
+    margin-right: 56px; /* balance the lights */
+    pointer-events: none;
+  }
+  .win-body {
+    flex: 1;
+    overflow-y: auto;
+    user-select: text;
+  }
+  .win-body::-webkit-scrollbar { width: 8px; }
+  .win-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 4px; }
+
+  /* ---- About window ---- */
+  .about-body { padding: 28px; font-size: 14px; line-height: 1.7; }
+  .about-body .avatar {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #34d399, #7dd3fc);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+  .about-body h2 { font-size: 20px; margin-bottom: 2px; }
+  .about-body .role { color: var(--accent); font-size: 13px; margin-bottom: 16px; font-family: var(--mono); }
+  .about-body p { color: var(--muted); margin-bottom: 12px; }
+  .about-body p strong { color: var(--text); }
+
+  /* ---- Projects window ---- */
+  .proj-body { padding: 16px; display: grid; gap: 12px; }
+  .proj-row {
+    display: flex; gap: 14px;
+    padding: 14px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    transition: background 0.15s;
+  }
+  .proj-row:hover { background: rgba(255,255,255,0.08); }
+  .proj-row .pglyph { font-size: 26px; }
+  .proj-row h3 { font-size: 14px; margin-bottom: 3px; }
+  .proj-row h3 em { font-style: normal; font-family: var(--mono); font-size: 10.5px; color: var(--green); background: rgba(52,211,153,0.12); padding: 2px 8px; border-radius: 99px; margin-left: 8px; vertical-align: 1px; }
+  .proj-row p { font-size: 12.5px; color: var(--muted); line-height: 1.55; }
+
+  /* ---- Skills window (fake JSON) ---- */
+  .json-body { padding: 20px 24px; font-family: var(--mono); font-size: 12.5px; line-height: 1.8; white-space: pre; }
+  .j-key { color: #7dd3fc; }
+  .j-str { color: #9ece8f; }
+  .j-num { color: #fbbf24; }
+  .j-pun { color: #6b7a94; }
+
+  /* ---- Mail window ---- */
+  .mail-body { padding: 24px; }
+  .mail-body .field { margin-bottom: 14px; }
+  .mail-body label { display: block; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+  .mail-body input, .mail-body textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 13.5px;
+    resize: vertical;
+  }
+  .mail-body input:focus, .mail-body textarea:focus { outline: none; border-color: var(--accent); }
+  .send-btn {
+    background: linear-gradient(135deg, #34d399, #10b981);
+    color: #04281a;
+    border: none;
+    font-weight: 700;
+    font-size: 13.5px;
+    padding: 10px 26px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .send-btn:hover { filter: brightness(1.1); }
+  .sent-note { color: var(--green); font-size: 13px; margin-top: 12px; display: none; }
+
+  /* ---- Terminal window ---- */
+  .term-body {
+    background: rgba(4, 8, 14, 0.85);
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.65;
+    padding: 14px 16px;
+    cursor: text;
+  }
+  .term-body .out { white-space: pre-wrap; word-break: break-word; }
+  .term-body .prompt-line { display: flex; }
+  .term-body .ps1 { color: var(--green); white-space: nowrap; margin-right: 8px; }
+  .term-body input {
+    flex: 1;
+    background: none; border: none; outline: none;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    caret-color: var(--green);
+  }
+  .t-green { color: var(--green); }
+  .t-cyan { color: var(--accent); }
+  .t-amber { color: var(--amber); }
+  .t-red { color: var(--red); }
+  .t-dim { color: #5b6b84; }
+
+  /* ============ DOCK ============ */
+  #dock {
+    position: fixed;
+    bottom: 14px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 5000;
+    display: flex;
+    gap: 6px;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 20px;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+  .dock-item {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.18s cubic-bezier(.34,1.56,.64,1);
+    background: rgba(255,255,255,0.04);
+  }
+  .dock-item:hover { transform: translateY(-10px) scale(1.18); background: rgba(255,255,255,0.1); }
+  .dock-item::after {
+    content: attr(data-label);
+    position: absolute;
+    top: -34px; left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.8);
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-family: var(--sans);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s;
+  }
+  .dock-item:hover::after { opacity: 1; }
+  .dock-item .dot {
+    position: absolute;
+    bottom: -6px; left: 50%;
+    transform: translateX(-50%);
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--text);
+    opacity: 0;
+  }
+  .dock-item.running .dot { opacity: 0.9; }
+
+  /* ============ TOAST ============ */
+  #toast {
+    position: fixed;
+    top: 44px; right: 16px;
+    z-index: 6000;
+    background: rgba(20, 26, 40, 0.95);
+    border: 1px solid var(--win-border);
+    border-radius: 12px;
+    padding: 14px 18px;
+    max-width: 320px;
+    font-size: 13px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    transform: translateX(120%);
+    transition: transform 0.4s cubic-bezier(.22,1,.36,1);
+  }
+  #toast.show { transform: translateX(0); }
+  #toast .t-title { font-weight: 700; margin-bottom: 3px; }
+  #toast .t-msg { color: var(--muted); font-size: 12.5px; }
+
+  @media (max-width: 700px) {
+    .window { left: 4vw !important; top: 48px !important; width: 92vw !important; max-height: 70vh; }
+    .icons { flex-direction: row; flex-wrap: wrap; top: 44px; }
+    #menubar .mitem { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ BOOT ============ -->
+<div id="boot"></div>
+
+<!-- ============ DESKTOP ============ -->
+<div id="desktop">
+  <div id="menubar">
+    <div class="left">
+      <div class="brand"><span>◈</span> CarterOS</div>
+      <div class="mitem">File</div>
+      <div class="mitem">Edit</div>
+      <div class="mitem">View</div>
+      <div class="mitem">Hire</div>
+    </div>
+    <div class="right">
+      <div class="mitem">⌁ 100%</div>
+      <div id="clock">--:--</div>
+    </div>
+  </div>
+
+  <div class="icons">
+    <div class="dicon" data-app="about"><span class="glyph">📄</span><span class="name">About_Me.txt</span></div>
+    <div class="dicon" data-app="projects"><span class="glyph">📁</span><span class="name">Projects</span></div>
+    <div class="dicon" data-app="skills"><span class="glyph">🧬</span><span class="name">skills.json</span></div>
+    <div class="dicon" data-app="terminal"><span class="glyph">🖥️</span><span class="name">Terminal</span></div>
+    <div class="dicon" data-app="mail"><span class="glyph">✉️</span><span class="name">Contact</span></div>
+  </div>
+
+  <!-- ---- About window ---- -->
+  <div class="window" id="win-about" style="width: 460px; top: 90px; left: 180px; height: 420px;">
+    <div class="titlebar">
+      <div class="lights">
+        <button class="light close" data-close="about" aria-label="Close"></button>
+        <button class="light min" data-close="about" aria-label="Minimize"></button>
+        <button class="light max" aria-label="Maximize"></button>
+      </div>
+      <div class="title">About_Me.txt — TextEdit</div>
+    </div>
+    <div class="win-body about-body">
+      <div class="avatar">👨‍💻</div>
+      <h2>Alex Carter</h2>
+      <div class="role">senior full-stack developer @ Nimbus Labs</div>
+      <p>Hey, you found my computer. Make yourself at home — just don't look in <strong>~/secrets</strong>.</p>
+      <p>I'm a developer from <strong>Austin, TX</strong> with 6+ years of experience building web products people actually enjoy using. I care about fast load times, honest UX, and code that the next person can read.</p>
+      <p>Off the clock: bouldering, over-engineered espresso, and open source (120+ merged PRs, mostly React performance and CLI tooling).</p>
+      <p class="t-dim" style="font-family: var(--mono); font-size: 12px; color: #5b6b84;">tip: open the Terminal and type <strong style="color:#34d399">help</strong></p>
+    </div>
+  </div>
+
+  <!-- ---- Projects window ---- -->
+  <div class="window" id="win-projects" style="width: 540px; top: 70px; left: 300px; height: 480px;">
+    <div class="titlebar">
+      <div class="lights">
+        <button class="light close" data-close="projects"></button>
+        <button class="light min" data-close="projects"></button>
+        <button class="light max"></button>
+      </div>
+      <div class="title">~/Projects — Finder</div>
+    </div>
+    <div class="win-body proj-body">
+      <div class="proj-row">
+        <div class="pglyph">⚡</div>
+        <div>
+          <h3>Voltdash <em>Next.js · Go · ClickHouse</em></h3>
+          <p>Real-time analytics dashboard for SaaS teams. 50k+ events/sec over WebSockets, sub-100ms chart updates, 200+ companies onboard.</p>
+        </div>
+      </div>
+      <div class="proj-row">
+        <div class="pglyph">🧾</div>
+        <div>
+          <h3>InvoiceKit <em>Node · Postgres · Stripe</em></h3>
+          <p>Open-source invoicing API for freelancers — recurring billing, multi-currency, PDF generation. 4.2k GitHub stars.</p>
+        </div>
+      </div>
+      <div class="proj-row">
+        <div class="pglyph">🗺️</div>
+        <div>
+          <h3>TrailBuddy <em>React Native · MapLibre</em></h3>
+          <p>Offline topo maps and live group tracking for hikers. 30k downloads, 4.8★ on both app stores.</p>
+        </div>
+      </div>
+      <div class="proj-row">
+        <div class="pglyph">🔍</div>
+        <div>
+          <h3>greptile-cli <em>Go · SQLite · Embeddings</em></h3>
+          <p>Semantic code search CLI that indexes a million-line repo in under 10 seconds. Front page of Hacker News.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ---- Skills window ---- -->
+  <div class="window" id="win-skills" style="width: 470px; top: 110px; left: 420px; height: 440px;">
+    <div class="titlebar">
+      <div class="lights">
+        <button class="light close" data-close="skills"></button>
+        <button class="light min" data-close="skills"></button>
+        <button class="light max"></button>
+      </div>
+      <div class="title">skills.json — Code</div>
+    </div>
+    <div class="win-body json-body"><span class="j-pun">{</span>
+  <span class="j-key">"frontend"</span><span class="j-pun">:</span>  <span class="j-pun">[</span><span class="j-str">"React", "TypeScript", "Next.js", "Tailwind"</span><span class="j-pun">],</span>
+  <span class="j-key">"backend"</span><span class="j-pun">:</span>   <span class="j-pun">[</span><span class="j-str">"Node.js", "Go", "PostgreSQL", "Redis"</span><span class="j-pun">],</span>
+  <span class="j-key">"cloud"</span><span class="j-pun">:</span>     <span class="j-pun">[</span><span class="j-str">"AWS", "Docker", "Kubernetes", "Terraform"</span><span class="j-pun">],</span>
+  <span class="j-key">"mobile"</span><span class="j-pun">:</span>    <span class="j-pun">[</span><span class="j-str">"React Native", "Expo"</span><span class="j-pun">],</span>
+  <span class="j-key">"ai"</span><span class="j-pun">:</span>        <span class="j-pun">[</span><span class="j-str">"OpenAI API", "LangChain", "pgvector"</span><span class="j-pun">],</span>
+  <span class="j-key">"testing"</span><span class="j-pun">:</span>   <span class="j-pun">[</span><span class="j-str">"Vitest", "Playwright", "Storybook"</span><span class="j-pun">],</span>
+  <span class="j-key">"years_exp"</span><span class="j-pun">:</span> <span class="j-num">6</span><span class="j-pun">,</span>
+  <span class="j-key">"coffee_dependency"</span><span class="j-pun">:</span> <span class="j-str">"critical"</span><span class="j-pun">,</span>
+  <span class="j-key">"open_to_work"</span><span class="j-pun">:</span> <span class="j-num">true</span>
+<span class="j-pun">}</span></div>
+  </div>
+
+  <!-- ---- Mail window ---- -->
+  <div class="window" id="win-mail" style="width: 440px; top: 130px; left: 520px; height: 430px;">
+    <div class="titlebar">
+      <div class="lights">
+        <button class="light close" data-close="mail"></button>
+        <button class="light min" data-close="mail"></button>
+        <button class="light max"></button>
+      </div>
+      <div class="title">New Message — Mail</div>
+    </div>
+    <div class="win-body mail-body">
+      <div class="field">
+        <label>To</label>
+        <input type="text" value="hello@alexcarter.dev" readonly />
+      </div>
+      <div class="field">
+        <label>Subject</label>
+        <input type="text" placeholder="Let's work together" />
+      </div>
+      <div class="field">
+        <label>Message</label>
+        <textarea rows="5" placeholder="Hi Alex, I saw your OS-shaped portfolio and..."></textarea>
+      </div>
+      <button class="send-btn" id="sendBtn">Send ➤</button>
+      <div class="sent-note" id="sentNote">✓ Message sent! (Not really — this is a demo. Email hello@alexcarter.dev)</div>
+    </div>
+  </div>
+
+  <!-- ---- Terminal window ---- -->
+  <div class="window" id="win-terminal" style="width: 640px; top: 80px; left: 240px; height: 460px;">
+    <div class="titlebar">
+      <div class="lights">
+        <button class="light close" data-close="terminal"></button>
+        <button class="light min" data-close="terminal"></button>
+        <button class="light max"></button>
+      </div>
+      <div class="title">alex@carteros: ~ — zsh</div>
+    </div>
+    <div class="win-body term-body" id="termBody">
+      <div class="out" id="termOut"></div>
+      <div class="prompt-line">
+        <span class="ps1">alex@carteros&nbsp;~&nbsp;%</span>
+        <input type="text" id="termInput" autocomplete="off" spellcheck="false" />
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ DOCK ============ -->
+  <div id="dock">
+    <div class="dock-item" data-app="about" data-label="About Me"><span>📄</span><span class="dot"></span></div>
+    <div class="dock-item" data-app="projects" data-label="Projects"><span>📁</span><span class="dot"></span></div>
+    <div class="dock-item" data-app="skills" data-label="Skills"><span>🧬</span><span class="dot"></span></div>
+    <div class="dock-item" data-app="terminal" data-label="Terminal"><span>🖥️</span><span class="dot"></span></div>
+    <div class="dock-item" data-app="mail" data-label="Contact"><span>✉️</span><span class="dot"></span></div>
+    <div class="dock-item" data-app="reboot" data-label="Reboot"><span>🔄</span><span class="dot"></span></div>
+  </div>
+
+  <div id="toast">
+    <div class="t-title" id="toastTitle"></div>
+    <div class="t-msg" id="toastMsg"></div>
+  </div>
+</div>
+
+<script>
+/* ================= BOOT SEQUENCE ================= */
+const bootLines = [
+  ['CarterOS BIOS v6.2.0 — (c) 2026 Alex Carter Industries', 0],
+  ['Memory check: 6 years of experience ............ <span class="ok">OK</span>', 180],
+  ['Loading kernel: caffeine.sys ................... <span class="ok">OK</span>', 160],
+  ['Mounting /dev/skills ........................... <span class="ok">OK</span>', 150],
+  ['Mounting /dev/projects ......................... <span class="ok">OK</span>', 150],
+  ['Starting service: imposter-syndrome.service .... <span class="dim">masked</span>', 200],
+  ['Starting service: hire-me.daemon ............... <span class="ok">ACTIVE</span>', 180],
+  ['Fetching dark mode ............................. <span class="ok">ALWAYS</span>', 160],
+  ['', 120],
+  ['Welcome to <b>CarterOS</b>. Booting desktop...', 300],
+];
+const bootEl = document.getElementById('boot');
+let bi = 0;
+function nextBootLine() {
+  if (bi >= bootLines.length) {
+    setTimeout(() => {
+      bootEl.classList.add('fade');
+      document.getElementById('desktop').classList.add('on');
+      setTimeout(() => {
+        openApp('about');
+        toast('Welcome to CarterOS', 'Double-click icons, drag windows, try the Terminal.');
+      }, 700);
+    }, 500);
+    return;
+  }
+  const [text, delay] = bootLines[bi++];
+  const div = document.createElement('div');
+  div.className = 'line';
+  div.innerHTML = text || '&nbsp;';
+  bootEl.appendChild(div);
+  setTimeout(nextBootLine, delay);
+}
+setTimeout(nextBootLine, 350);
+
+/* ================= CLOCK ================= */
+const clockEl = document.getElementById('clock');
+function tickClock() {
+  const d = new Date();
+  clockEl.textContent = d.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })
+    + '  ' + d.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' });
+}
+tickClock(); setInterval(tickClock, 10000);
+
+/* ================= WINDOW MANAGER ================= */
+let zTop = 100;
+const apps = ['about', 'projects', 'skills', 'terminal', 'mail'];
+
+function winEl(app) { return document.getElementById('win-' + app); }
+function dockEl(app) { return document.querySelector(`.dock-item[data-app="${app}"]`); }
+
+function focusWin(el) { el.style.zIndex = ++zTop; }
+
+function openApp(app) {
+  if (app === 'reboot') { location.reload(); return; }
+  const w = winEl(app);
+  w.classList.add('open');
+  focusWin(w);
+  dockEl(app)?.classList.add('running');
+  if (app === 'terminal') {
+    setTimeout(() => document.getElementById('termInput').focus(), 60);
+    if (!termBooted) { termGreet(); termBooted = true; }
+  }
+}
+function closeApp(app) {
+  winEl(app).classList.remove('open');
+  dockEl(app)?.classList.remove('running');
+}
+
+document.querySelectorAll('.dicon, .dock-item').forEach(el =>
+  el.addEventListener('click', () => openApp(el.dataset.app))
+);
+document.querySelectorAll('[data-close]').forEach(btn =>
+  btn.addEventListener('click', e => { e.stopPropagation(); closeApp(btn.dataset.close); })
+);
+document.querySelectorAll('.window').forEach(w =>
+  w.addEventListener('mousedown', () => focusWin(w))
+);
+
+/* Dragging */
+document.querySelectorAll('.titlebar').forEach(bar => {
+  bar.addEventListener('mousedown', e => {
+    if (e.target.classList.contains('light')) return;
+    const win = bar.parentElement;
+    focusWin(win);
+    const startX = e.clientX, startY = e.clientY;
+    const rect = win.getBoundingClientRect();
+    function move(ev) {
+      win.style.left = Math.max(0, rect.left + ev.clientX - startX) + 'px';
+      win.style.top = Math.max(32, rect.top + ev.clientY - startY) + 'px';
+    }
+    function up() {
+      document.removeEventListener('mousemove', move);
+      document.removeEventListener('mouseup', up);
+    }
+    document.addEventListener('mousemove', move);
+    document.addEventListener('mouseup', up);
+  });
+});
+
+/* ================= TOAST ================= */
+const toastEl = document.getElementById('toast');
+let toastTimer;
+function toast(title, msg) {
+  document.getElementById('toastTitle').textContent = title;
+  document.getElementById('toastMsg').textContent = msg;
+  toastEl.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toastEl.classList.remove('show'), 4200);
+}
+
+/* ================= MAIL ================= */
+document.getElementById('sendBtn').addEventListener('click', () => {
+  document.getElementById('sentNote').style.display = 'block';
+  toast('Mail', 'Draft saved to ~/Outbox (demo). Real inbox: hello@alexcarter.dev');
+});
+
+/* ================= TERMINAL ================= */
+const termOut = document.getElementById('termOut');
+const termInput = document.getElementById('termInput');
+const termBody = document.getElementById('termBody');
+let termBooted = false;
+const history = [];
+let histIdx = -1;
+
+const FILES = {
+  'about.txt': 'Alex Carter — senior full-stack developer @ Nimbus Labs.\n6+ years building web products in Austin, TX.\nLoves: fast UIs, boring reliable infra, espresso.',
+  'projects': 'voltdash/      real-time analytics (Next.js, Go, ClickHouse)\ninvoicekit/    OSS invoicing API — 4.2k ★ (Node, Postgres)\ntrailbuddy/    hiking app, 30k downloads (React Native)\ngreptile-cli/  semantic code search in Go — HN front page',
+  'contact.txt': 'email:    hello@alexcarter.dev\ngithub:   github.com/alexcarter-dev\nlinkedin: linkedin.com/in/alexcarter-dev\nstatus:   open to freelance & interesting full-time roles',
+  'secrets': null, // special-cased
+};
+
+const NEOFETCH = `<span class="t-cyan">            ▄▄▄▄▄▄▄            </span>  <span class="t-green">alex</span>@<span class="t-green">carteros</span>
+<span class="t-cyan">        ▄█████████████▄        </span>  ─────────────────
+<span class="t-cyan">      ▄████▀▀▀▀▀▀▀████▄       </span>  <span class="t-cyan">OS:</span>       CarterOS 6.2 "Espresso"
+<span class="t-cyan">     ████▀  ◉   ◉  ▀████      </span>  <span class="t-cyan">Host:</span>     Portfolio (single HTML file)
+<span class="t-cyan">     ████▄    ▽    ▄████      </span>  <span class="t-cyan">Kernel:</span>   caffeine 6.0.0-lts
+<span class="t-cyan">      ▀████▄▄▄▄▄▄████▀        </span>  <span class="t-cyan">Uptime:</span>   6+ years in production
+<span class="t-cyan">        ▀█████████▀           </span>  <span class="t-cyan">Shell:</span>    zsh (vanilla JS cosplay)
+<span class="t-cyan">      ▄▄▀▀       ▀▀▄▄         </span>  <span class="t-cyan">Stack:</span>    TS · React · Go · Postgres
+<span class="t-cyan">                               </span>  <span class="t-cyan">Memory:</span>   3 side projects / 4 slots`;
+
+const COMMANDS = {
+  help: () => `<span class="t-cyan">Available commands:</span>
+  <span class="t-green">about</span>       who is this guy
+  <span class="t-green">projects</span>    what has he built
+  <span class="t-green">skills</span>      open skills.json
+  <span class="t-green">contact</span>     how to reach him
+  <span class="t-green">ls</span>          list files
+  <span class="t-green">cat</span> &lt;file&gt;  read a file
+  <span class="t-green">neofetch</span>    system info, obviously
+  <span class="t-green">open</span> &lt;app&gt;  open a window (about/projects/skills/mail)
+  <span class="t-green">sudo hire-me</span> ...try it
+  <span class="t-green">clear</span>       clear terminal`,
+  about: () => FILES['about.txt'],
+  projects: () => FILES['projects'],
+  contact: () => FILES['contact.txt'],
+  skills: () => { openApp('skills'); return 'Opening skills.json ...'; },
+  whoami: () => 'guest (visitor with excellent taste in portfolios)',
+  pwd: () => '/Users/alex',
+  ls: () => Object.keys(FILES).join('   '),
+  date: () => new Date().toString(),
+  neofetch: () => NEOFETCH,
+  echo: (args) => args.join(' '),
+  clear: () => { termOut.innerHTML = ''; return null; },
+  exit: () => { closeApp('terminal'); return null; },
+  reboot: () => { location.reload(); return null; },
+  vim: () => `<span class="t-amber">Opening vim...</span> just kidding. Nobody escapes vim; I won't do that to you.`,
+  rm: () => `<span class="t-red">rm: permission denied.</span> Nice try though.`,
+  coffee: () => 'Brewing... ☕ done. Productivity +37%.',
+};
+
+function termPrint(html, cls = '') {
+  const div = document.createElement('div');
+  div.className = 'out ' + cls;
+  div.innerHTML = html;
+  termOut.appendChild(div);
+  termBody.scrollTop = termBody.scrollHeight;
+}
+
+function termGreet() {
+  termPrint(`Last login: ${new Date().toDateString()} on ttys001
+<span class="t-cyan">Welcome to CarterOS Terminal.</span> Type <span class="t-green">help</span> to get started.`);
+}
+
+function runCommand(raw) {
+  const line = raw.trim();
+  termPrint(`<span class="t-green">alex@carteros ~ %</span> ${line.replace(/</g, '&lt;')}`);
+  if (!line) return;
+  history.unshift(line);
+  histIdx = -1;
+
+  const [cmd, ...args] = line.split(/\s+/);
+
+  if (cmd === 'sudo') {
+    if (args.join(' ') === 'hire-me') {
+      termPrint(`<span class="t-green">[sudo] permission granted instantly.</span>
+Initiating hiring sequence...
+  ✓ Résumé transmitted
+  ✓ Coffee meeting scheduled
+  ✓ Standing desk reserved
+<span class="t-amber">Next step:</span> email <span class="t-cyan">hello@alexcarter.dev</span> — he responds within 24h.`);
+      toast('hire-me.daemon', 'Hiring sequence initiated. Check the Mail app!');
+      setTimeout(() => openApp('mail'), 1200);
+    } else {
+      termPrint(`<span class="t-red">guest is not in the sudoers file. This incident will be reported (to no one).</span>`);
+    }
+    return;
+  }
+
+  if (cmd === 'cat') {
+    const f = args[0];
+    if (!f) { termPrint('usage: cat &lt;file&gt;'); return; }
+    if (f === 'secrets' || f === '~/secrets') {
+      termPrint(`<span class="t-red">cat: secrets: I said don't look in there.</span>`);
+      return;
+    }
+    const content = FILES[f];
+    termPrint(content !== undefined && content !== null ? content.replace(/</g, '&lt;') : `cat: ${f}: No such file or directory`);
+    return;
+  }
+
+  if (cmd === 'open') {
+    const app = args[0];
+    if (apps.includes(app)) { openApp(app); termPrint(`Opening ${app}...`); }
+    else termPrint(`open: unknown app '${app || ''}'. Try: about, projects, skills, mail`);
+    return;
+  }
+
+  const fn = COMMANDS[cmd];
+  if (fn) {
+    const result = fn(args);
+    if (result !== null && result !== undefined) termPrint(result);
+  } else {
+    termPrint(`zsh: command not found: ${cmd.replace(/</g, '&lt;')} — try <span class="t-green">help</span>`);
+  }
+}
+
+termInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    runCommand(termInput.value);
+    termInput.value = '';
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    if (histIdx < history.length - 1) termInput.value = history[++histIdx] || '';
+  } else if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    if (histIdx > 0) termInput.value = history[--histIdx];
+    else { histIdx = -1; termInput.value = ''; }
+  }
+});
+termBody.addEventListener('click', () => termInput.focus());
+</script>
+</body>
+</html>
