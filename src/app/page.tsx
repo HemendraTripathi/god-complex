@@ -398,16 +398,12 @@ export default function Home() {
         <div className="grid gap-0 border-2 border-t-0 border-ink md:grid-cols-3">
           {SIGNALS.map((s, i) => (
             <figure
-              key={s.name}
+              key={s.text.slice(0, 32)}
               className={`border-hair p-6 sm:p-7 ${i > 0 ? "md:border-l max-md:border-t" : ""}`}
             >
               <blockquote className="text-[14px] leading-relaxed text-ink/85">
                 “{s.text}”
               </blockquote>
-              <figcaption className="mt-5 font-mono text-[10px] uppercase tracking-[0.16em]">
-                <span className="font-bold">{s.name}</span>
-                <span className="mt-1 block text-steel">{s.org}</span>
-              </figcaption>
             </figure>
           ))}
         </div>
