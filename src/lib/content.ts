@@ -186,7 +186,7 @@ export const EXPERIENCE = [
     title: "Technical Lead / Full-Stack Developer",
     org: "Appspundit Infotech · Callin.io",
     points: [
-      "De facto Technical Lead for a 5-engineer team — architecture, vendor & infrastructure spend, hiring, product roadmaps, reporting directly to the founder.",
+      "Technical Lead for a 5-engineer team — architecture, vendor & infrastructure spend, hiring, product roadmaps, reporting directly to the founder.",
       "Scaled the platform to 1,500+ paying customers; expanded into CondoMail and Realead on a shared multi-LLM architecture.",
       "Cut LLM inference costs 20%; personally converted 30+ prospects into long-term paying accounts across healthcare and real estate.",
     ],
