@@ -344,12 +344,14 @@ export default function AgentCall() {
           </p>
           <div className="mt-9 flex items-center gap-3">
             <button
+              type="button"
               onClick={() => setDeclineIdx((i) => Math.min(i + 1, DECLINE_LINES.length - 1))}
               className="border-2 border-ink px-6 py-3 font-mono text-[11px] font-bold uppercase tracking-widest transition-colors hover:border-org hover:text-org"
             >
               ✕ Decline
             </button>
             <button
+              type="button"
               onClick={answer}
               className="border-2 border-ink bg-ink px-6 py-3 font-mono text-[11px] font-bold uppercase tracking-widest text-paper shadow-brutal transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-org hover:shadow-none"
             >
@@ -406,9 +408,18 @@ export default function AgentCall() {
                 ),
               )}
               {typing && (
-                <div className="flex w-max items-center gap-1.5 border-l-2 border-ink py-1 pl-4">
+                <div
+                  role="status"
+                  aria-live="polite"
+                  className="flex w-max items-center gap-1.5 border-l-2 border-ink py-1 pl-4"
+                >
+                  <span className="sr-only">Agent is typing</span>
                   {[0, 1, 2].map((i) => (
-                    <span key={i} className="tsq h-1.5 w-1.5 bg-ink" />
+                    <span
+                      key={i}
+                      aria-hidden="true"
+                      className="tsq h-1.5 w-1.5 bg-ink"
+                    />
                   ))}
                 </div>
               )}
@@ -420,10 +431,15 @@ export default function AgentCall() {
                   {visitedCount}/5 topics — the summary improves as you ask
                 </div>
               )}
-              <div className="flex flex-wrap gap-2">
+              <div
+                role="group"
+                aria-label="Conversation choices"
+                className="flex flex-wrap gap-2"
+              >
                 {choices.map((c) => (
                   <button
                     key={c.label}
+                    type="button"
                     onClick={c.onPick}
                     className={`border px-3.5 py-2 font-mono text-[10.5px] font-bold uppercase tracking-wider transition-colors ${
                       c.end
@@ -460,6 +476,9 @@ export default function AgentCall() {
             className="absolute inset-0 z-10 flex items-center justify-center overflow-y-auto bg-ink/40 p-5 backdrop-blur-[2px]"
           >
             <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="call-summary-title"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ type: "spring", stiffness: 280, damping: 26 }}
@@ -472,7 +491,9 @@ export default function AgentCall() {
                 Call summary — auto-generated
               </div>
               <div className="p-6">
-                <h3 className="display text-[30px]">Lead qualified.</h3>
+                <h3 id="call-summary-title" className="display text-[30px]">
+                  Lead qualified.
+                </h3>
                 <div className="mt-4 space-y-0 border-t border-hair text-[12.5px]">
                   {[
                     ["Candidate", "Hemendra Tripathi"],
@@ -508,6 +529,7 @@ export default function AgentCall() {
                   </a>
                 </div>
                 <button
+                  type="button"
                   onClick={() => location.reload()}
                   className="mt-4 w-full text-center font-mono text-[9.5px] uppercase tracking-widest text-steel underline-offset-2 hover:text-ink hover:underline"
                 >

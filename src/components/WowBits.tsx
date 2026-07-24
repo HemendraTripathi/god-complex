@@ -29,11 +29,11 @@ export function HeroEyebrow() {
 
 export function HeroName() {
   return (
-    <div className="display text-[clamp(52px,11.5vw,168px)]">
+    <h1 className="display text-[clamp(52px,11.5vw,168px)]">
       <SplitText
         text="HEMENDRA"
-        tag="h1"
-        className="display !m-0 text-[clamp(52px,11.5vw,168px)]"
+        tag="span"
+        className="display !m-0 block text-[clamp(52px,11.5vw,168px)]"
         textAlign="left"
         delay={30}
         duration={0.7}
@@ -43,7 +43,7 @@ export function HeroName() {
         threshold={0.01}
         rootMargin="0px"
       />
-      <div className="flex flex-wrap items-start gap-x-3">
+      <span className="flex flex-wrap items-start gap-x-3">
         <SplitText
           text="TRIPATHI"
           tag="span"
@@ -57,11 +57,14 @@ export function HeroName() {
           threshold={0.01}
           rootMargin="0px"
         />
-        <span className="mt-3 align-top font-mono text-[clamp(14px,2vw,26px)] font-normal tracking-normal text-steel">
+        <span
+          aria-hidden="true"
+          className="mt-3 align-top font-mono text-[clamp(14px,2vw,26px)] font-normal tracking-normal text-steel"
+        >
           ©2026
         </span>
-      </div>
-    </div>
+      </span>
+    </h1>
   );
 }
 

@@ -46,11 +46,18 @@ function SectionHead({
 export default function Home() {
   return (
     <div>
+      <a href="#main" className="skip-link">
+        Skip to content
+      </a>
+
       {/* nav */}
-      <nav className="fixed inset-x-0 top-0 z-40 border-b-2 border-ink bg-paper/95 backdrop-blur-sm">
+      <nav
+        aria-label="Primary"
+        className="fixed inset-x-0 top-0 z-40 border-b-2 border-ink bg-paper/95 backdrop-blur-sm"
+      >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5 sm:px-8">
           <a
-            href="#"
+            href="/"
             className="font-mono text-[12px] font-bold uppercase tracking-[0.18em]"
           >
             Hemendra Tripathi
@@ -87,6 +94,7 @@ export default function Home() {
       </nav>
 
       {/* hero */}
+      <main id="main">
       <header className="mx-auto max-w-7xl px-5 pt-32 sm:px-8 sm:pt-40">
         <HeroEyebrow />
         <HeroName />
@@ -94,7 +102,8 @@ export default function Home() {
 
         <div className="mt-10 grid gap-8 border-t-2 border-ink pt-8 md:grid-cols-[1fr_300px] md:gap-16">
           <p className="max-w-2xl text-[clamp(18px,2.4vw,26px)] font-medium leading-snug tracking-tight">
-            I take AI products from first commit to paying customers —{" "}
+            Hemendra Tripathi is a technical lead for AI voice systems who takes
+            products from first commit to paying customers —{" "}
             <span className="text-org">
               architecture, billing, teams, and the revenue they produce.
             </span>
@@ -591,6 +600,7 @@ export default function Home() {
           </div>
         </footer>
       </section>
+      </main>
     </div>
   );
 }

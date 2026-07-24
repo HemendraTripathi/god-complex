@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Archivo, JetBrains_Mono } from "next/font/google";
+import { LINKS } from "@/lib/content";
+import { SITE, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -13,14 +15,102 @@ const jet = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Hemendra Tripathi — Technical Lead · AI Voice Systems",
-  description:
-    "Technical Lead who scaled Callin.io to 1,500+ paying customers. Multi-LLM orchestration, real-time voice AI, usage-based billing, and teams that ship. Case study + live agent demo.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE.title,
+    template: `%s · ${SITE.name}`,
+  },
+  description: SITE.description,
+  keywords: [...SITE.keywords],
+  authors: [{ name: SITE.name, url: SITE_URL }],
+  creator: SITE.name,
+  publisher: SITE.name,
+  applicationName: SITE.name,
+  category: "technology",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Hemendra Tripathi — Technical Lead · AI Voice Systems",
-    description:
-      "From first commit to paying customers. Architecture, billing, teams, revenue.",
+    title: SITE.title,
+    description: SITE.shortDescription,
+    url: SITE_URL,
+    siteName: SITE.name,
+    locale: SITE.locale,
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE.title,
+    description: SITE.shortDescription,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  formatDetection: {
+    email: false,
+    telephone: false,
+    address: false,
+  },
+};
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: SITE.name,
+  url: SITE_URL,
+  jobTitle: SITE.jobTitle,
+  description: SITE.description,
+  email: `mailto:${SITE.email}`,
+  telephone: SITE.phone,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Udaipur",
+    addressCountry: "IN",
+  },
+  sameAs: [LINKS.github, LINKS.linkedin, LINKS.callin],
+  knowsAbout: [
+    "AI voice systems",
+    "Multi-LLM orchestration",
+    "Usage-based billing",
+    "Full-stack engineering",
+    "Technical leadership",
+    "Real-time telephony",
+  ],
+  alumniOf: [
+    {
+      "@type": "CollegeOrUniversity",
+      name: "Rajasthan Vidyapeeth",
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      name: "Mohanlal Sukhadia University",
+    },
+  ],
+  worksFor: {
+    "@type": "Organization",
+    name: "Appspundit Infotech",
+    url: LINKS.callin,
+  },
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: SITE.name,
+  url: SITE_URL,
+  description: SITE.description,
+  inLanguage: "en",
+  publisher: {
+    "@type": "Person",
+    name: SITE.name,
   },
 };
 
@@ -30,6 +120,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${archivo.variable} ${jet.variable} antialiased`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([personJsonLd, websiteJsonLd]),
+          }}
+        />
         {children}
       </body>
     </html>
