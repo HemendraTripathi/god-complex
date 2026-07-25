@@ -101,7 +101,7 @@ function LeadFile({
               <div>
                 <div className="text-[14px] font-bold">Hemendra Tripathi</div>
                 <div className="text-[11.5px] text-steel">
-                  Technical Lead · Full-Stack · AI Systems
+                  Technical Lead · AI Engineer · Voice Systems
                 </div>
                 <div className="font-mono text-[9.5px] uppercase tracking-wide text-steel">
                   Udaipur, IN · US/EU timezones
@@ -115,8 +115,8 @@ function LeadFile({
           <FileSection title="Current engagement">
             {[
               ["Product", "Callin.io — AI voice SaaS"],
-              ["Role", "Technical Lead, reports to founder"],
-              ["Team", "5 engineers — hired & led"],
+              ["Role", "Technical Lead · AI Engineer"],
+              ["Team", "Hired & led engineering"],
               ["Owns", "Architecture · spend · roadmap"],
               ["Suite", "+ CondoMail · + Realead"],
             ].map(([k, v]) => (
@@ -196,7 +196,7 @@ function LeadFile({
         {has("note") && (
           <FileSection title="Agent's note">
             <p className="border-l-2 border-org pl-3 text-[11.5px] leading-relaxed">
-              Rare profile — a technical lead who also owns billing, vendor
+              Rare profile — a technical lead and AI engineer who also owns billing, vendor
               costs, hiring, and customers. Ships revenue, not just code.
               Recommend contact before competitors.
             </p>
@@ -497,7 +497,7 @@ export default function AgentCall() {
                 <div className="mt-4 space-y-0 border-t border-hair text-[12.5px]">
                   {[
                     ["Candidate", "Hemendra Tripathi"],
-                    ["Role fit", "Technical Lead · AI & Full-Stack"],
+                    ["Role fit", "Technical Lead · AI Engineer"],
                     ["Duration", `${fmt(seconds)} — worth every second`],
                     ["Sentiment", "Extremely interested"],
                     ["Risk of waiting", "He joins your competitor"],

@@ -1,7 +1,5 @@
 export const LINKS = {
   email: "hemendratripathi880@gmail.com",
-  phone: "+916378745958",
-  phoneDisplay: "+91 63787 45958",
   resume: "/Hemendra_Tripathi_Resume.pdf",
   github: "https://github.com/hemendratripathi",
   linkedin: "https://www.linkedin.com/in/hemendratripathi",
@@ -183,10 +181,10 @@ export const SIGNALS = [
 export const EXPERIENCE = [
   {
     period: "OCT 2024 — PRESENT",
-    title: "Technical Lead / Full-Stack Developer",
+    title: "Technical Lead / AI Engineer / Full-Stack",
     org: "Appspundit Infotech · Callin.io",
     points: [
-      "Technical Lead for a 5-engineer team — architecture, vendor & infrastructure spend, hiring, product roadmaps, reporting directly to the founder.",
+      "Technical Lead — architecture, vendor & infrastructure spend, hiring, product roadmaps, reporting directly to the founder.",
       "Scaled the platform to 1,500+ paying customers; expanded into CondoMail and Realead on a shared multi-LLM architecture.",
       "Cut LLM inference costs 20%; personally converted 30+ prospects into long-term paying accounts across healthcare and real estate.",
     ],

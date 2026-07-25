@@ -57,7 +57,6 @@ Content lives in `src/lib/content.ts`. Product mocks in `src/components/MockVisu
 ## Contact
 
 - **Email:** [hemendratripathi880@gmail.com](mailto:hemendratripathi880@gmail.com)
-- **Phone:** +91 63787 45958
 - **Location:** Udaipur, IN · shipping for US / EU
 
 If you’re hiring a technical lead who already shipped AI into revenue — answer the call.

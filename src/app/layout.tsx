@@ -69,7 +69,6 @@ const personJsonLd = {
   jobTitle: SITE.jobTitle,
   description: SITE.description,
   email: `mailto:${SITE.email}`,
-  telephone: SITE.phone,
   address: {
     "@type": "PostalAddress",
     addressLocality: "Udaipur",

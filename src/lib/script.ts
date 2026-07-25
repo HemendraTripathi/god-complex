@@ -25,7 +25,7 @@ export const PERSONA_OPENERS: Record<Persona, string> = {
 };
 
 export const BRIEF: string[] = [
-  "The ten-second version: <b>Hemendra Tripathi</b>. Technical Lead and full-stack engineer, <b>4+ years</b>. Runs engineering for an AI voice SaaS from design to production — real-time voice agents, multi-LLM orchestration, billing systems that make money.",
+  "The ten-second version: <b>Hemendra Tripathi</b>. Technical Lead and AI engineer, <b>4+ years</b>. Runs engineering for an AI voice SaaS from design to production — real-time voice agents, multi-LLM orchestration, billing systems that make money.",
   "His full file is loaded. What do you want to know?",
 ];
 
@@ -38,7 +38,7 @@ export const TOPICS: Record<
     crm: "role",
     lines: [
       "He leads engineering on <b>Callin.io</b> — AI voice agents that make real phone calls: multilingual, voice-cloned, and wired into Google Calendar so they book meetings <i>mid-conversation</i>.",
-      "He runs a <b>5-engineer team</b> he helped hire, and owns the architecture, the infrastructure bill, vendor decisions, and the roadmap — reporting directly to the founder.",
+      "He leads the engineering team he helped hire, and owns the architecture, the infrastructure bill, vendor decisions, and the roadmap — reporting directly to the founder.",
       "Same engine, two more products: <span class='hl'>CondoMail</span> — AI email management, live with high-volume Amazon sellers — and <span class='hl'>Realead</span> — AI qualification calls for real-estate leads. Which is, incidentally, my day job.",
     ],
   },
@@ -101,7 +101,7 @@ export const MARQUEE_ITEMS: string[] = [
   "−20% LLM INFERENCE COST",
   "MULTI-LLM ORCHESTRATION",
   "TWILIO / TELNYX / SIP",
-  "5-ENGINEER TEAM LEAD",
+  "ENGINEERING TEAM LEAD",
   "STRIPE USAGE-BASED BILLING",
   "RAG · PINECONE · SUPABASE VECTOR",
 ];

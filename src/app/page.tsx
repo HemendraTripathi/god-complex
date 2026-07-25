@@ -102,8 +102,9 @@ export default function Home() {
 
         <div className="mt-10 grid gap-8 border-t-2 border-ink pt-8 md:grid-cols-[1fr_300px] md:gap-16">
           <p className="max-w-2xl text-[clamp(18px,2.4vw,26px)] font-medium leading-snug tracking-tight">
-            Hemendra Tripathi is a technical lead for AI voice systems who takes
-            products from first commit to paying customers —{" "}
+            Hemendra Tripathi is a technical lead and AI engineer — primarily
+            voice systems, plus broader AI product work — who takes products from
+            first commit to paying customers —{" "}
             <span className="text-org">
               architecture, billing, teams, and the revenue they produce.
             </span>
@@ -537,10 +538,10 @@ export default function Home() {
           <div className="eyebrow mb-6">(09) — Contact</div>
           <ContactTitle />
           <p className="mt-6 max-w-lg text-[15px] leading-relaxed text-ink/75">
-            Looking for a technical lead who has already shipped AI products
-            into revenue — not someone who will learn voice AI on your dime.
-            Open to technical-lead / senior full-stack roles and select
-            freelance. Replies within 24 hours.
+            Looking for a technical lead and AI engineer who has already shipped
+            voice AI into revenue — and can stretch into other AI product work.
+            Open to technical-lead / AI engineer / senior full-stack roles and
+            select freelance. Replies within 24 hours.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <ContactMagnet>
@@ -549,14 +550,6 @@ export default function Home() {
                 className="inline-block border-2 border-ink bg-ink px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-paper shadow-brutal transition-colors hover:border-org hover:bg-org"
               >
                 {LINKS.email}
-              </a>
-            </ContactMagnet>
-            <ContactMagnet>
-              <a
-                href={`tel:${LINKS.phone}`}
-                className="inline-block border-2 border-ink px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-ink hover:text-paper"
-              >
-                {LINKS.phoneDisplay}
               </a>
             </ContactMagnet>
           </div>
