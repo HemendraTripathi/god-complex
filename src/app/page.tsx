@@ -496,6 +496,7 @@ export default function Home() {
             src="/images/portrait.png"
             alt="Portrait of Hemendra Tripathi"
             aspect="aspect-square"
+            ready
           />
           <div>
             <p className="max-w-2xl text-[clamp(17px,2vw,22px)] font-medium leading-normal tracking-tight">
