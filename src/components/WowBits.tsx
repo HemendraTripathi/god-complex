@@ -80,7 +80,7 @@ export function HeroFocus() {
         animationDuration={0.45}
         pauseBetweenAnimations={0.85}
         className="justify-start gap-3 sm:gap-5"
-        wordClassName="relative cursor-pointer font-mono text-[clamp(14px,2.2vw,22px)] font-bold uppercase tracking-[0.12em]"
+        wordClassName="relative font-mono text-[clamp(14px,2.2vw,22px)] font-bold uppercase tracking-[0.12em]"
       />
     </div>
   );
@@ -88,31 +88,24 @@ export function HeroFocus() {
 
 export function HeroCtas() {
   return (
-    <div className="mt-10 flex flex-wrap items-center gap-4 pb-16">
-      <Magnet padding={60} magnetStrength={2.4} wrapperClassName="inline-block">
-        <a
-          href="#case"
-          className="inline-block border-2 border-ink bg-ink px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-paper shadow-brutal transition-colors hover:border-org hover:bg-org"
-        >
-          Read the case study →
-        </a>
-      </Magnet>
-      <Magnet padding={50} magnetStrength={2.8} wrapperClassName="inline-block">
-        <a
-          href="#agent"
-          className="inline-block border-2 border-ink px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-ink hover:text-paper"
-        >
+    <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 pb-16">
+      <a
+        href="#case"
+        className="inline-block border-2 border-ink bg-ink px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-paper shadow-brutal transition-colors hover:border-org hover:bg-org"
+      >
+        Read the case study →
+      </a>
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em]">
+        <a href="#agent" className="text-ink underline-offset-4 hover:text-org hover:underline">
           Talk to my AI agent
         </a>
-      </Magnet>
-      <Magnet padding={50} magnetStrength={3} wrapperClassName="inline-block">
         <a
           href={`mailto:${LINKS.email}?subject=Hiring%20conversation`}
-          className="inline-block border-2 border-ink px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] transition-colors hover:border-org hover:text-org"
+          className="text-steel underline-offset-4 hover:text-org hover:underline"
         >
           Email me
         </a>
-      </Magnet>
+      </div>
     </div>
   );
 }

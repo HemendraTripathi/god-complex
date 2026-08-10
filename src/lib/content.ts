@@ -7,10 +7,10 @@ export const LINKS = {
 };
 
 export const NAV = [
+  ["Case", "#case"],
   ["Work", "#work"],
-  ["Case study", "#case"],
+  ["Experience", "#experience"],
   ["Agent", "#agent"],
-  ["Thinking", "#thinking"],
   ["Contact", "#contact"],
 ] as const;
 
@@ -43,45 +43,36 @@ export type WorkItem = {
   href?: string;
 };
 
+/** Supporting work only — Callin.io lives in the featured CASE object. */
 export const WORK: WorkItem[] = [
   {
     idx: "01",
-    name: "Callin.io",
-    role: "Technical Lead — architecture, billing, voice pipeline",
-    desc: "AI voice-calling SaaS scaled to 1,500+ paying customers and enterprise accounts. Low-latency telephony, multi-LLM orchestration, and minute-based billing with negligible disputes since launch.",
-    stack: "React / Node.js / Supabase / Twilio / Telnyx / Stripe",
-    status: "IN PRODUCTION",
-    img: "/images/work-callin.png",
-    visual: "callin",
-    href: "#case",
-  },
-  {
-    idx: "02",
     name: "CondoMail",
     role: "Product architecture — multi-provider email sync",
     desc: "AI agents that sort, draft, and auto-reply across providers. Live with early adopters — including high-volume Amazon sellers running inbox workflows on it.",
     stack: "React / Node.js / Supabase / Stripe / Firebase",
-    status: "LIVE",
+    status: "Production",
     img: "/images/work-condomail.png",
     visual: "condo",
   },
   {
-    idx: "03",
+    idx: "02",
     name: "Realead",
     role: "Full-stack · mobile · AI calling flows",
-    desc: "Connects lead sources, builds a business profile, and places AI qualification + follow-up calls for property leads. Final beta ahead of release — the conversational model behind the demo below.",
+    desc: "Connects lead sources, builds a business profile, and places AI qualification + follow-up calls for property leads. Final beta ahead of release — the conversational model behind the agent demo.",
     stack: "React Native / NestJS / Supabase / Stripe",
-    status: "BETA",
+    status: "Beta",
     img: "/images/work-realead.png",
     visual: "realead",
+    href: "#agent",
   },
   {
-    idx: "04",
+    idx: "03",
     name: "Sunria & FinTech Accounts",
     role: "Freelance — end-to-end delivery",
     desc: "Pan-India farm management with field-to-warehouse sync, plus a financial dashboard with automated reconciliation — 30% fewer accounting errors, 15+ staff-hours saved weekly.",
     stack: "Laravel / Flutter / MERN / CI-CD",
-    status: "SHIPPED",
+    status: "Shipped",
     img: "/images/work-sunria.png",
     visual: "sunria",
   },
@@ -135,6 +126,9 @@ export const CASE = {
   ],
   quote:
     "Hemendra is the rare engineer who can rewrite the voice pipeline before lunch and close an enterprise prospect after dinner. He treats infrastructure cost like product debt — and it shows in the margins.",
+  /** Add after approval — omit until then so the quote stays anonymous. */
+  quoteName: "",
+  quoteOrg: "",
 };
 
 export const PRINCIPLES = [
@@ -160,21 +154,22 @@ export const PRINCIPLES = [
   },
 ];
 
+/** Attribution optional — leave name/org empty until you have written approval. */
 export const SIGNALS = [
   {
     text: "We evaluated three voice vendors. Callin's agents were the only ones our clinic staff didn't hang up on — and the only ones whose invoices we didn't audit line by line.",
-    name: "Priya Nair",
-    org: "Director of Operations, Meridian Family Clinics",
+    name: "",
+    org: "",
   },
   {
     text: "He hired half my eng team, set the roadmap, and still jumped on customer calls. That's not a contractor. That's an owner.",
-    name: "Rohit Malhotra",
-    org: "Founder, Appspundit Infotech",
+    name: "",
+    org: "",
   },
   {
     text: "Curriculum he redesigned moved our placement rate up over 40%. Students left knowing how to ship, not just pass exams.",
-    name: "Ananya Sharma",
-    org: "Program Head, Aimers Institute",
+    name: "",
+    org: "",
   },
 ];
 

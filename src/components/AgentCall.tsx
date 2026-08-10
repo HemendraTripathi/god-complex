@@ -77,7 +77,7 @@ function LeadFile({
   const has = (s: CrmSection) => revealed.includes(s);
 
   return (
-    <div className="flex min-h-0 flex-col">
+    <div className="flex h-full min-h-0 flex-col">
       <div className="flex shrink-0 items-center justify-between border-b border-ink px-5 py-3">
         <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em]">
           Lead file — #0001
@@ -207,6 +207,9 @@ function LeadFile({
   );
 }
 
+const FOCUSABLE =
+  'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
+
 /* ---------------- main component ---------------- */
 export default function AgentCall() {
   const [stage, setStage] = useState<"ring" | "call">("ring");
@@ -224,6 +227,24 @@ export default function AgentCall() {
   const msgId = useRef(0);
   const secondsRef = useRef(0);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const previouslyFocused = useRef<HTMLElement | null>(null);
+
+  function resetCall() {
+    setStage("ring");
+    setDeclineIdx(-1);
+    setMessages([]);
+    setTyping(false);
+    setChoices([]);
+    setRevealed([]);
+    setQualified(false);
+    setShowSummary(false);
+    setSeconds(0);
+    setVisitedCount(0);
+    visitedRef.current = new Set();
+    msgId.current = 0;
+    secondsRef.current = 0;
+  }
 
   useEffect(() => {
     if (stage !== "call" || qualified) return;
@@ -238,6 +259,43 @@ export default function AgentCall() {
     const el = scrollRef.current;
     if (el) el.scrollTop = el.scrollHeight;
   }, [messages, typing, choices]);
+
+  useEffect(() => {
+    if (!showSummary) return;
+
+    previouslyFocused.current = document.activeElement as HTMLElement | null;
+    const dialog = dialogRef.current;
+    const focusables = dialog
+      ? Array.from(dialog.querySelectorAll<HTMLElement>(FOCUSABLE))
+      : [];
+    focusables[0]?.focus();
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        resetCall();
+        return;
+      }
+      if (e.key !== "Tab" || !dialog) return;
+      const nodes = Array.from(dialog.querySelectorAll<HTMLElement>(FOCUSABLE));
+      if (nodes.length === 0) return;
+      const first = nodes[0];
+      const last = nodes[nodes.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      previouslyFocused.current?.focus();
+    };
+  }, [showSummary]);
 
   const push = (role: Msg["role"], html: string) =>
     setMessages((m) => [...m, { id: ++msgId.current, role, html }]);
@@ -373,10 +431,10 @@ export default function AgentCall() {
         </div>
       )}
 
-      {/* call */}
+      {/* call — transcript + lead file (stacked below xl) */}
       {stage === "call" && (
-        <div className="grid h-[600px] grid-cols-1 xl:grid-cols-[1fr_340px]">
-          <div className="flex min-h-0 flex-col xl:border-r-2 xl:border-ink">
+        <div className="grid grid-cols-1 xl:h-[600px] xl:grid-cols-[1fr_340px]">
+          <div className="flex h-[480px] min-h-0 flex-col border-b-2 border-ink xl:h-auto xl:border-b-0 xl:border-r-2 xl:border-ink">
             <div ref={scrollRef} className="thin-scroll min-h-0 flex-1 space-y-5 overflow-y-auto p-5 sm:p-6">
               {messages.map((m) =>
                 m.role === "agent" ? (
@@ -441,7 +499,7 @@ export default function AgentCall() {
                     key={c.label}
                     type="button"
                     onClick={c.onPick}
-                    className={`border px-3.5 py-2 font-mono text-[10.5px] font-bold uppercase tracking-wider transition-colors ${
+                    className={`min-h-11 border px-3.5 py-2.5 font-mono text-[10.5px] font-bold uppercase tracking-wider transition-colors ${
                       c.end
                         ? "border-org text-org hover:bg-org hover:text-paper"
                         : c.done
@@ -461,7 +519,7 @@ export default function AgentCall() {
             </div>
           </div>
 
-          <div className="hidden min-h-0 xl:block">
+          <div className="min-h-0 max-h-[360px] xl:max-h-none xl:h-full">
             <LeadFile revealed={revealed} qualified={qualified} />
           </div>
         </div>
@@ -474,8 +532,12 @@ export default function AgentCall() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="absolute inset-0 z-10 flex items-center justify-center overflow-y-auto bg-ink/40 p-5 backdrop-blur-[2px]"
+            onClick={(e) => {
+              if (e.target === e.currentTarget) resetCall();
+            }}
           >
             <motion.div
+              ref={dialogRef}
               role="dialog"
               aria-modal="true"
               aria-labelledby="call-summary-title"
@@ -487,8 +549,18 @@ export default function AgentCall() {
               <div className="pointer-events-none absolute -right-3 -top-4 rotate-[7deg] border-[3px] border-org bg-paper px-3 py-1 font-mono text-[13px] font-bold uppercase tracking-[0.14em] text-org">
                 Strong hire ✓
               </div>
-              <div className="border-b-2 border-ink bg-ink px-6 py-2.5 font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-paper">
-                Call summary — auto-generated
+              <div className="flex items-center justify-between border-b-2 border-ink bg-ink px-6 py-2.5">
+                <span className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-paper">
+                  Call summary — auto-generated
+                </span>
+                <button
+                  type="button"
+                  onClick={resetCall}
+                  className="font-mono text-[10px] font-bold uppercase tracking-widest text-paper/70 hover:text-paper"
+                  aria-label="Close summary and reset call"
+                >
+                  ✕
+                </button>
               </div>
               <div className="p-6">
                 <h3 id="call-summary-title" className="display text-[30px]">
@@ -530,7 +602,7 @@ export default function AgentCall() {
                 </div>
                 <button
                   type="button"
-                  onClick={() => location.reload()}
+                  onClick={resetCall}
                   className="mt-4 w-full text-center font-mono text-[9.5px] uppercase tracking-widest text-steel underline-offset-2 hover:text-ink hover:underline"
                 >
                   ↺ Replay call

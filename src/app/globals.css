@@ -84,6 +84,15 @@ body {
   color: var(--color-paper);
 }
 
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-org);
+  outline-offset: 3px;
+}
+
 /* section eyebrow */
 .eyebrow {
   font-family: var(--font-mono);

@@ -1,6 +1,7 @@
 import CountUp from "@/components/CountUp";
 import AgentCall from "@/components/AgentCall";
 import MockVisual from "@/components/MockVisual";
+import SiteNav from "@/components/SiteNav";
 import {
   ContactMagnet,
   ContactTitle,
@@ -15,7 +16,6 @@ import {
   CASE,
   EXPERIENCE,
   LINKS,
-  NAV,
   PRINCIPLES,
   SIGNALS,
   STATS,
@@ -50,52 +50,11 @@ export default function Home() {
         Skip to content
       </a>
 
-      {/* nav */}
-      <nav
-        aria-label="Primary"
-        className="fixed inset-x-0 top-0 z-40 border-b-2 border-ink bg-paper/95 backdrop-blur-sm"
-      >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5 sm:px-8">
-          <a
-            href="/"
-            className="font-mono text-[12px] font-bold uppercase tracking-[0.18em]"
-          >
-            Hemendra Tripathi
-          </a>
-          <div className="hidden items-center gap-6 lg:flex">
-            {NAV.map(([label, href]) => (
-              <a
-                key={href}
-                href={href}
-                className="font-mono text-[10.5px] font-bold uppercase tracking-[0.18em] text-steel transition-colors hover:text-org"
-              >
-                {label}
-              </a>
-            ))}
-          </div>
-          <div className="flex items-center gap-3">
-            <a
-              href={LINKS.github}
-              target="_blank"
-              rel="noreferrer"
-              className="hidden font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-steel transition-colors hover:text-org sm:block"
-            >
-              GitHub
-            </a>
-            <a
-              href={LINKS.resume}
-              download
-              className="border-2 border-ink bg-ink px-4 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-paper transition-colors hover:border-org hover:bg-org"
-            >
-              Résumé ↓
-            </a>
-          </div>
-        </div>
-      </nav>
+      <SiteNav />
 
       {/* hero */}
       <main id="main">
-      <header className="mx-auto max-w-7xl px-5 pt-32 sm:px-8 sm:pt-40">
+      <header className="mx-auto max-w-7xl px-5 pt-28 sm:px-8 sm:pt-36">
         <HeroEyebrow />
         <HeroName />
         <HeroFocus />
@@ -262,32 +221,47 @@ export default function Home() {
           <p className="max-w-3xl text-[clamp(16px,2vw,22px)] font-medium leading-snug tracking-tight">
             “{CASE.quote}”
           </p>
+          {(CASE.quoteName || CASE.quoteOrg) && (
+            <footer className="mt-5 font-mono text-[10px] uppercase tracking-[0.18em] text-paper/55">
+              {CASE.quoteName && <>— {CASE.quoteName}</>}
+              {CASE.quoteOrg && (
+                <span className="text-paper/35">
+                  {CASE.quoteName ? " · " : "— "}
+                  {CASE.quoteOrg}
+                </span>
+              )}
+            </footer>
+          )}
         </blockquote>
       </section>
       </FadeIn>
 
-      {/* work */}
+      {/* supporting work */}
       <section
         id="work"
         className="mx-auto max-w-7xl scroll-mt-20 px-5 pt-24 sm:px-8"
       >
         <SectionHead
           idx="02"
-          title="Selected Work"
-          right="Suite + shipped systems"
+          title="More Work"
+          right="Supporting systems — not full case studies"
         />
+        <p className="mt-4 max-w-2xl text-[14px] leading-relaxed text-ink/70">
+          Callin.io is the deep dive above. These are related suite products and
+          earlier shipped work — shorter notes, same bar for outcomes.
+        </p>
         <div>
           {WORK.map((w) => (
             <article
               key={w.name}
-              className="grid gap-6 border-b border-hair py-10 last:border-none md:grid-cols-[56px_1fr_340px] md:gap-10"
+              className="grid gap-6 border-b border-hair py-10 last:border-none md:grid-cols-[56px_1fr_280px] md:gap-10"
             >
               <div className="font-mono text-[12px] font-bold text-org">
                 {w.idx}
               </div>
               <div>
                 <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-                  <h3 className="display text-[clamp(24px,3vw,36px)]">
+                  <h3 className="display text-[clamp(22px,2.8vw,30px)]">
                     {w.name}
                   </h3>
                   <span className="font-mono text-[9.5px] font-bold uppercase tracking-[0.2em] text-org">
@@ -307,7 +281,7 @@ export default function Home() {
                       href={w.href}
                       className="font-mono text-[10px] font-bold uppercase tracking-widest text-org hover:underline"
                     >
-                      Full case study →
+                      {w.href === "#agent" ? "See the demo →" : "Learn more →"}
                     </a>
                   )}
                 </div>
@@ -322,101 +296,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* agent */}
-      <section
-        id="agent"
-        className="mx-auto max-w-7xl scroll-mt-20 px-5 pt-24 sm:px-8"
-      >
-        <SectionHead
-          idx="03"
-          title="The Demo Is the Résumé"
-          right="Live — interactive"
-        />
-        <div className="grid gap-8 pt-10 lg:grid-cols-[minmax(0,360px)_1fr] lg:gap-14">
-          <div>
-            <p className="text-[15px] leading-relaxed text-ink/80">
-              I build AI agents that make real phone calls for a living. This
-              one runs on the same conversational patterns as production
-              voice agents — except its lead-qualification target is{" "}
-              <span className="font-bold text-org">you</span>.
-            </p>
-            <p className="mt-4 text-[13px] leading-relaxed text-steel">
-              Answer the call. Ask about numbers, stack, or why hire him. The
-              lead file builds the way Realead qualifies property leads in the
-              field.
-            </p>
-            <ul className="mt-6 space-y-2 font-mono text-[10px] uppercase tracking-wider text-steel">
-              <li className="flex gap-2">
-                <span className="text-org">→</span> Prefer skimming? Read the
-                case study first.
-              </li>
-              <li className="flex gap-2">
-                <span className="text-org">→</span> Prefer proof? Finish the
-                call. Get the summary.
-              </li>
-            </ul>
-          </div>
-          <AgentCall />
-        </div>
-      </section>
-
-      {/* thinking */}
-      <FadeIn blur>
-      <section
-        id="thinking"
-        className="mx-auto max-w-7xl scroll-mt-20 px-5 pt-24 sm:px-8"
-      >
-        <SectionHead
-          idx="04"
-          title="How I Think"
-          right="Operating principles"
-        />
-        <div className="grid gap-0 border-2 border-t-0 border-ink sm:grid-cols-2">
-          {PRINCIPLES.map((p, i) => (
-            <div
-              key={p.n}
-              className={`border-hair p-6 sm:p-8 ${i % 2 === 1 ? "sm:border-l" : ""} ${i >= 2 ? "border-t" : ""}`}
-            >
-              <div className="font-mono text-[11px] font-bold text-org">
-                {p.n}
-              </div>
-              <h3 className="mt-2 text-[18px] font-bold tracking-tight">
-                {p.title}
-              </h3>
-              <p className="mt-3 text-[13.5px] leading-relaxed text-ink/75">
-                {p.body}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-      </FadeIn>
-
-      {/* signals */}
-      <FadeIn>
-      <section className="mx-auto max-w-7xl px-5 pt-24 sm:px-8">
-        <SectionHead idx="05" title="Signal" right="What people say" />
-        <div className="grid gap-0 border-2 border-t-0 border-ink md:grid-cols-3">
-          {SIGNALS.map((s, i) => (
-            <figure
-              key={s.text.slice(0, 32)}
-              className={`border-hair p-6 sm:p-7 ${i > 0 ? "md:border-l max-md:border-t" : ""}`}
-            >
-              <blockquote className="text-[14px] leading-relaxed text-ink/85">
-                “{s.text}”
-              </blockquote>
-            </figure>
-          ))}
-        </div>
-      </section>
-      </FadeIn>
-
-      {/* experience */}
+      {/* experience — early for recruiter scan */}
       <section
         id="experience"
         className="mx-auto max-w-7xl scroll-mt-20 px-5 pt-24 sm:px-8"
       >
-        <SectionHead idx="06" title="Experience" right="2021 — Present" />
+        <SectionHead idx="03" title="Experience" right="2021 — Present" />
         <div>
           {EXPERIENCE.map((e) => (
             <div
@@ -454,6 +339,114 @@ export default function Home() {
           <span>English — fluent · Hindi — native</span>
         </div>
       </section>
+
+      {/* agent */}
+      <section
+        id="agent"
+        className="mx-auto max-w-7xl scroll-mt-20 px-5 pt-24 sm:px-8"
+      >
+        <SectionHead
+          idx="04"
+          title="The Demo Is the Résumé"
+          right="Live — interactive"
+        />
+        <div className="grid gap-8 pt-10 lg:grid-cols-[minmax(0,360px)_1fr] lg:gap-14">
+          <div>
+            <p className="text-[15px] leading-relaxed text-ink/80">
+              I build AI agents that make real phone calls for a living. This
+              one runs on the same conversational patterns as production
+              voice agents — except its lead-qualification target is{" "}
+              <span className="font-bold text-org">you</span>.
+            </p>
+            <p className="mt-4 text-[13px] leading-relaxed text-steel">
+              Prefer the short path?{" "}
+              <a href="#case" className="font-semibold text-ink underline-offset-2 hover:underline">
+                Read the case study
+              </a>
+              . Prefer proof? Answer the call — the lead file builds as you ask.
+            </p>
+            <ul className="mt-6 space-y-2 font-mono text-[10px] uppercase tracking-wider text-steel">
+              <li className="flex gap-2">
+                <span className="text-org">→</span> Same patterns as production
+                qualification agents
+              </li>
+              <li className="flex gap-2">
+                <span className="text-org">→</span> Finish the call. Get the
+                summary. Email if it lands.
+              </li>
+            </ul>
+          </div>
+          <AgentCall />
+        </div>
+      </section>
+
+      {/* thinking */}
+      <FadeIn blur>
+      <section
+        id="thinking"
+        className="mx-auto max-w-7xl scroll-mt-20 px-5 pt-24 sm:px-8"
+      >
+        <SectionHead
+          idx="05"
+          title="How I Think"
+          right="Operating principles"
+        />
+        <div className="grid gap-0 border-2 border-t-0 border-ink sm:grid-cols-2">
+          {PRINCIPLES.map((p, i) => (
+            <div
+              key={p.n}
+              className={`border-hair p-6 sm:p-8 ${i % 2 === 1 ? "sm:border-l" : ""} ${i >= 2 ? "border-t" : ""}`}
+            >
+              <div className="font-mono text-[11px] font-bold text-org">
+                {p.n}
+              </div>
+              <h3 className="mt-2 text-[18px] font-bold tracking-tight">
+                {p.title}
+              </h3>
+              <p className="mt-3 text-[13.5px] leading-relaxed text-ink/75">
+                {p.body}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+      </FadeIn>
+
+      {/* signals */}
+      <FadeIn>
+      <section
+        id="signal"
+        className="mx-auto max-w-7xl scroll-mt-20 px-5 pt-24 sm:px-8"
+      >
+        <SectionHead idx="06" title="Signal" right="What people say" />
+        <div className="grid gap-0 border-2 border-t-0 border-ink md:grid-cols-3">
+          {SIGNALS.map((s, i) => (
+            <figure
+              key={s.text.slice(0, 32)}
+              className={`border-hair p-6 sm:p-7 ${i > 0 ? "md:border-l max-md:border-t" : ""}`}
+            >
+              <blockquote className="text-[14px] leading-relaxed text-ink/85">
+                “{s.text}”
+              </blockquote>
+              {(s.name || s.org) && (
+                <figcaption className="mt-5 border-t border-hair pt-4">
+                  {s.name && (
+                    <div className="text-[13px] font-bold tracking-tight">
+                      {s.name}
+                    </div>
+                  )}
+                  {s.org && (
+                    <div className="mt-0.5 font-mono text-[10px] uppercase tracking-wider text-steel">
+                      {s.org}
+                    </div>
+                  )}
+                </figcaption>
+              )}
+            </figure>
+          ))}
+        </div>
+      </section>
+      </FadeIn>
 
       {/* capabilities */}
       <section className="mx-auto max-w-7xl px-5 pt-24 sm:px-8">
