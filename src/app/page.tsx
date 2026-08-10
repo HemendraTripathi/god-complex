@@ -15,6 +15,7 @@ import {
   CAPABILITIES,
   CASE,
   EXPERIENCE,
+  FAQS,
   LINKS,
   PRINCIPLES,
   SIGNALS,
@@ -129,7 +130,7 @@ export default function Home() {
       >
         <SectionHead
           idx="01"
-          title="Case Study"
+          title="Voice AI Case Study"
           right={`${CASE.product} · production`}
         />
 
@@ -154,7 +155,7 @@ export default function Home() {
           <MockVisual
             kind="callin"
             src="/images/work-callin.png"
-            alt="Callin.io product mock"
+            alt="Callin.io voice AI agent — live medical intake call with multi-LLM routing"
           />
         </div>
 
@@ -243,7 +244,7 @@ export default function Home() {
       >
         <SectionHead
           idx="02"
-          title="More Work"
+          title="More AI Product Work"
           right="Supporting systems — not full case studies"
         />
         <p className="mt-4 max-w-2xl text-[14px] leading-relaxed text-ink/70">
@@ -289,7 +290,7 @@ export default function Home() {
               <MockVisual
                 kind={w.visual}
                 src={w.img}
-                alt={`${w.name} screenshot`}
+                alt={`${w.name} — ${w.role}`}
               />
             </article>
           ))}
@@ -388,7 +389,7 @@ export default function Home() {
       >
         <SectionHead
           idx="05"
-          title="How I Think"
+          title="How I Think About Voice AI"
           right="Operating principles"
         />
         <div className="grid gap-0 border-2 border-t-0 border-ink sm:grid-cols-2">
@@ -452,7 +453,7 @@ export default function Home() {
       <section className="mx-auto max-w-7xl px-5 pt-24 sm:px-8">
         <SectionHead
           idx="07"
-          title="Capabilities"
+          title="AI & Engineering Capabilities"
           right="Full surface area — one person"
         />
         <div className="grid border-2 border-t-0 border-ink sm:grid-cols-2 lg:grid-cols-4">
@@ -487,7 +488,7 @@ export default function Home() {
           <MockVisual
             kind="portrait"
             src="/images/portrait.png"
-            alt="Portrait of Hemendra Tripathi"
+            alt="Hemendra Tripathi — technical lead and voice AI engineer"
             aspect="aspect-square"
             ready
           />
@@ -526,10 +527,49 @@ export default function Home() {
         </div>
       </section>
 
+      {/* FAQ — hire-intent + expertise answers */}
+      <FadeIn>
+      <section
+        id="faq"
+        className="mx-auto max-w-7xl scroll-mt-20 px-5 pt-24 sm:px-8"
+      >
+        <SectionHead
+          idx="09"
+          title="FAQ"
+          right="Hire a voice AI technical lead"
+        />
+        <div className="divide-y-2 divide-ink border-2 border-t-0 border-ink">
+          {FAQS.map((item) => (
+            <details
+              key={item.question}
+              className="group border-hair px-5 py-5 open:bg-paper sm:px-7"
+            >
+              <summary className="cursor-pointer list-none font-bold tracking-tight text-[clamp(15px,1.8vw,18px)] marker:content-none [&::-webkit-details-marker]:hidden">
+                <span className="flex items-start justify-between gap-4">
+                  <h3 className="pr-2 text-[clamp(15px,1.8vw,18px)] font-bold tracking-tight">
+                    {item.question}
+                  </h3>
+                  <span
+                    aria-hidden
+                    className="mt-1 shrink-0 font-mono text-[12px] font-bold text-org transition-transform group-open:rotate-45"
+                  >
+                    +
+                  </span>
+                </span>
+              </summary>
+              <p className="mt-3 max-w-3xl text-[14px] leading-relaxed text-ink/75">
+                {item.answer}
+              </p>
+            </details>
+          ))}
+        </div>
+      </section>
+      </FadeIn>
+
       {/* contact */}
       <section id="contact" className="mt-24 scroll-mt-20 border-t-2 border-ink">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
-          <div className="eyebrow mb-6">(09) — Contact</div>
+          <div className="eyebrow mb-6">(10) — Contact</div>
           <ContactTitle />
           <p className="mt-6 max-w-lg text-[15px] leading-relaxed text-ink/75">
             Looking for a technical lead and AI engineer who has already shipped

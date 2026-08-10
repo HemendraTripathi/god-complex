@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { Archivo, JetBrains_Mono } from "next/font/google";
-import { LINKS } from "@/lib/content";
+import { FAQS, LINKS } from "@/lib/content";
 import { SITE, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
@@ -67,6 +67,7 @@ const personJsonLd = {
   "@type": "Person",
   name: SITE.name,
   url: SITE_URL,
+  image: `${SITE_URL}/images/portrait.png`,
   jobTitle: SITE.jobTitle,
   description: SITE.description,
   email: `mailto:${SITE.email}`,
@@ -78,6 +79,7 @@ const personJsonLd = {
   sameAs: [LINKS.github, LINKS.linkedin, LINKS.callin],
   knowsAbout: [
     "AI voice systems",
+    "voice AI technical lead",
     "Multi-LLM orchestration",
     "Usage-based billing",
     "Full-stack engineering",
@@ -114,6 +116,19 @@ const websiteJsonLd = {
   },
 };
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQS.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -123,7 +138,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify([personJsonLd, websiteJsonLd]),
+            __html: JSON.stringify([personJsonLd, websiteJsonLd, faqJsonLd]),
           }}
         />
         {children}

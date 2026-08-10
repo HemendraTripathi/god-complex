@@ -11,7 +11,7 @@ export function HeroEyebrow() {
   return (
     <div className="eyebrow mb-6 flex items-center justify-between">
       <DecryptedText
-        text="Technical Lead · AI Engineer — Voice Systems"
+        text="Technical Lead · Voice AI Engineer"
         animateOn="view"
         sequential
         speed={28}

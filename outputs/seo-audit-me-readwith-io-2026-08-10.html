@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>me.readwith.io — SEO / GEO / AEO Quick Audit</title>
+<style>
+  @page { size: Letter; margin: 0.75in; }
+  * { box-sizing: border-box; }
+  body { font-family: Arial, Helvetica, sans-serif; color: #1E293B; font-size: 11pt; line-height: 1.45; margin: 0; }
+  .cover { page-break-after: always; background: #1B2A4A; color: #fff; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2in 1in; }
+  .cover h1 { font-size: 36pt; margin: 0 0 12px; }
+  .cover .sub { color: #93C5FD; font-size: 18pt; margin-bottom: 18px; }
+  .cover .badge { font-size: 11pt; margin-bottom: 28px; letter-spacing: 0.08em; }
+  .scores { display: flex; gap: 12px; width: 100%; max-width: 640px; }
+  .score { flex: 1; padding: 18px 10px; border-radius: 4px; }
+  .score .l { font-size: 10pt; font-weight: 700; }
+  .score .n { font-size: 36pt; font-weight: 700; margin: 6px 0; }
+  .score .s { font-size: 9pt; font-style: italic; }
+  .green { background: #16A34A; } .amber { background: #D97706; } .red { background: #DC2626; }
+  .meta { margin-top: 48px; color: #94A3B8; font-size: 9pt; }
+  h1 { color: #1B2A4A; font-size: 20pt; margin: 28px 0 12px; page-break-after: avoid; }
+  h2 { color: #1B2A4A; font-size: 14pt; margin: 20px 0 8px; page-break-after: avoid; }
+  .box { background: #EFF6FF; padding: 14px 16px; border-radius: 4px; margin-bottom: 16px; }
+  .okbox { background: #F0FDF4; padding: 14px 16px; border-radius: 4px; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 18px; font-size: 9.5pt; }
+  th { background: #1B2A4A; color: #fff; text-align: left; padding: 8px; }
+  td { border: 1px solid #E2E8F0; padding: 7px 8px; vertical-align: top; }
+  tr:nth-child(even) td { background: #F8F9FA; }
+  .st { color: #fff; font-weight: 700; text-align: center; white-space: nowrap; }
+  .st-g { background: #16A34A; } .st-a { background: #D97706; } .st-r { background: #DC2626; } .st-o { background: #EA580C; }
+  ul { margin: 8px 0 8px 18px; padding: 0; }
+  li { margin-bottom: 6px; }
+  .small { color: #64748B; font-size: 9pt; }
+</style>
+</head>
+<body>
+  <section class="cover">
+    <h1>me.readwith.io</h1>
+    <div class="sub">SEO / GEO / AEO Audit Report</div>
+    <div class="badge">QUICK AUDIT</div>
+    <div class="scores">
+      <div class="score amber"><div class="l">SEO</div><div class="n">7</div><div class="s">On Track</div></div>
+      <div class="score amber"><div class="l">GEO</div><div class="n">7</div><div class="s">On Track</div></div>
+      <div class="score red"><div class="l">AEO</div><div class="n">4</div><div class="s">Needs Work</div></div>
+    </div>
+    <div class="meta">2026-08-10<br/>Claude Skill and Plugin by Alex Labat</div>
+  </section>
+
+  <h1>Executive Summary</h1>
+  <div class="box">
+    me.readwith.io is a strong personal-brand portfolio for Hemendra Tripathi (Technical Lead / AI Engineer). Technical on-page basics are largely in place: solid title, Person + WebSite JSON-LD, Open Graph, canonical, robots, and dense outcome-driven case-study copy (~1,400 words). The urgent keyword-boost gap is Answer Engine readiness — almost no question-shaped headings, no FAQ schema, and hire-intent long-tails are under-targeted. Meta description is slightly long (172 chars), OG description is keyword-thin versus the main description, and product visuals ship as CSS mocks (<code>ready=false</code>) so image search/alt equity is weak. Biggest opportunity: add a hire-intent FAQ + tighten title/description/H2 keyword targeting around “voice AI technical lead” and “hire AI engineer.”
+  </div>
+  <table>
+    <tr><th>Dimension</th><th>Score</th><th>Status</th><th>Key Takeaway</th></tr>
+    <tr><td>SEO</td><td class="st st-a">7</td><td class="st st-a">On Track</td><td>Solid foundation; keyword placement &amp; image SEO are the levers.</td></tr>
+    <tr><td>GEO</td><td class="st st-a">7</td><td class="st st-a">On Track</td><td>High factual density + Person schema; anonymous quotes weaken trust.</td></tr>
+    <tr><td>AEO</td><td class="st st-r">4</td><td class="st st-r">Needs Work</td><td>No FAQ/HowTo schema; headings are not question-shaped.</td></tr>
+    <tr><td><strong>Combined</strong></td><td class="st" style="background:#1B2A4A">18</td><td class="st" style="background:#1B2A4A">/30</td><td><strong>Keyword boost = SEO polish + AEO FAQ layer.</strong></td></tr>
+  </table>
+
+  <h1>Pages Audited</h1>
+  <table>
+    <tr><th>URL</th><th>Page Type</th><th>Notes</th></tr>
+    <tr><td>https://me.readwith.io</td><td>Homepage (SPA)</td><td>Single-page portfolio; all sections audited</td></tr>
+    <tr><td>https://me.readwith.io/robots.txt</td><td>Robots</td><td>Allow:/; Disallow:/legacy/; sitemap pointed</td></tr>
+    <tr><td>https://me.readwith.io/sitemap.xml</td><td>Sitemap</td><td>Valid; single homepage URL</td></tr>
+    <tr><td>https://me.readwith.io/manifest.webmanifest</td><td>PWA manifest</td><td>Present; uses SITE description</td></tr>
+    <tr><td>https://me.readwith.io/opengraph-image.jpg</td><td>OG image</td><td>200; 1200×630 JPEG</td></tr>
+    <tr><td>https://me.readwith.io/twitter-image.jpg</td><td>Twitter image</td><td>200; mirrors OG asset</td></tr>
+    <tr><td>https://me.readwith.io/Hemendra_Tripathi_Resume.pdf</td><td>Resume PDF</td><td>200; linked from nav/CTAs</td></tr>
+  </table>
+
+  <h1>SEO Analysis — 7/10</h1>
+  <h2>Technical On-Page</h2>
+  <table>
+    <tr><th>Signal</th><th>Finding</th><th>Status</th></tr>
+    <tr><td>Title tag</td><td>“Hemendra Tripathi — Technical Lead · AI Engineer” (48 chars). Clean, brand-first. Missing stronger hire/voice modifiers for keyword boost.</td><td class="st st-g">Good</td></tr>
+    <tr><td>Meta description</td><td>172 chars — strong proof points but over ideal 150–160; risk of SERP truncation.</td><td class="st st-a">Needs Attention</td></tr>
+    <tr><td>Heading hierarchy</td><td>Single H1 = name only. Role keywords live in body/eyebrow more than H2s.</td><td class="st st-a">Needs Attention</td></tr>
+    <tr><td>URL / canonical</td><td>HTTPS self-canonical https://me.readwith.io. Hash-section SPA.</td><td class="st st-g">Good</td></tr>
+    <tr><td>Robots / indexability</td><td>index, follow; /legacy/ disallowed; sitemap listed.</td><td class="st st-g">Good</td></tr>
+    <tr><td>Image alt text</td><td>Work mocks default ready=false (CSS frames). Weak image SEO surface.</td><td class="st st-a">Needs Attention</td></tr>
+    <tr><td>Open Graph / Twitter</td><td>Complete with 1200×630. og:description thinner than main meta description.</td><td class="st st-a">Needs Attention</td></tr>
+    <tr><td>Keywords meta</td><td>Includes hire AI engineer, voice AI engineer, Callin.io, Twilio — useful as intent map.</td><td class="st st-g">Good</td></tr>
+  </table>
+  <h2>Content Quality</h2>
+  <table>
+    <tr><th>Signal</th><th>Finding</th><th>Status</th></tr>
+    <tr><td>Word count / depth</td><td>~1,400 words: case study, metrics, experience, capabilities.</td><td class="st st-g">Good</td></tr>
+    <tr><td>Primary keyword clarity</td><td>Entity + role clear; secondary hire/voice terms not systematically reinforced in title/H2/FAQ.</td><td class="st st-a">Needs Attention</td></tr>
+    <tr><td>Semantic coverage</td><td>Twilio, Telnyx, SIP, RAG, Pinecone, Supabase, Stripe, healthcare/real estate.</td><td class="st st-g">Good</td></tr>
+    <tr><td>Freshness</td><td>Job dates present; no page last-updated stamp.</td><td class="st st-a">Needs Attention</td></tr>
+  </table>
+  <h2>Structured Data</h2>
+  <table>
+    <tr><th>Signal</th><th>Finding</th><th>Status</th></tr>
+    <tr><td>Person schema</td><td>name, jobTitle, email, address, sameAs, knowsAbout, alumniOf, worksFor.</td><td class="st st-g">Good</td></tr>
+    <tr><td>WebSite schema</td><td>Present with publisher Person.</td><td class="st st-g">Good</td></tr>
+    <tr><td>Schema gaps</td><td>No Person.image; no FAQPage; no ProfilePage.</td><td class="st st-a">Needs Attention</td></tr>
+  </table>
+
+  <h1>GEO Analysis — 7/10</h1>
+  <h2>E-E-A-T</h2>
+  <table>
+    <tr><th>Signal</th><th>Finding</th><th>Status</th></tr>
+    <tr><td>Author / entity</td><td>Named person, location, education, current role at Appspundit Infotech · Callin.io.</td><td class="st st-g">Good</td></tr>
+    <tr><td>About / bio</td><td>“Off the Record” narrates teaching → freelance → 1,500-customer voice platform.</td><td class="st st-g">Good</td></tr>
+    <tr><td>Testimonials</td><td>Strong quotes but name/org empty — anonymous social proof weakens AI citation trust.</td><td class="st st-a">Needs Attention</td></tr>
+    <tr><td>sameAs graph</td><td>GitHub + LinkedIn + Callin.io in schema and UI.</td><td class="st st-g">Good</td></tr>
+  </table>
+  <h2>AI Synthesis</h2>
+  <table>
+    <tr><th>Signal</th><th>Finding</th><th>Status</th></tr>
+    <tr><td>Factual density</td><td>1,500+ customers; −20% LLM cost; ~420ms TTFT; 30+ closed prospects; 42% placement lift.</td><td class="st st-g">Good</td></tr>
+    <tr><td>Clear claims</td><td>Hero definitional sentence is citable.</td><td class="st st-g">Good</td></tr>
+    <tr><td>Comprehensiveness</td><td>Answers who/what well; hire/engagement FAQs unanswered in extractable form.</td><td class="st st-a">Needs Attention</td></tr>
+  </table>
+
+  <h1>AEO Analysis — 4/10</h1>
+  <table>
+    <tr><th>Signal</th><th>Finding</th><th>Status</th></tr>
+    <tr><td>Direct answer blocks</td><td>Hero is definitional but not under a question H2.</td><td class="st st-a">Needs Attention</td></tr>
+    <tr><td>FAQ schema</td><td>Not present.</td><td class="st st-r">Missing</td></tr>
+    <tr><td>HowTo schema</td><td>Not present.</td><td class="st st-r">Missing</td></tr>
+    <tr><td>Question headings</td><td>H2/H3 are labels, not natural-language questions.</td><td class="st st-r">Missing</td></tr>
+    <tr><td>Long-tail questions</td><td>No coverage for hire-intent / “how does routing work” queries.</td><td class="st st-r">Missing</td></tr>
+    <tr><td>Conversational copy</td><td>Strong in case study + demo sections.</td><td class="st st-g">Good</td></tr>
+  </table>
+
+  <h1>Priority Recommendations</h1>
+  <table>
+    <tr><th>Priority</th><th>Issue</th><th>Dimension</th><th>Effort</th><th>Impact</th></tr>
+    <tr><td class="st st-r">Critical</td><td>Add FAQ section + FAQPage JSON-LD for hire/voice-AI questions (40–60 word answers).</td><td>AEO</td><td>Medium</td><td>Snippets + AI citations</td></tr>
+    <tr><td class="st st-o">High</td><td>Tighten meta description to ≤160 chars; enrich og:description with voice AI / hire keywords.</td><td>SEO</td><td>Low</td><td>Immediate SERP/share lift</td></tr>
+    <tr><td class="st st-o">High</td><td>Reinforce keywords in H2/eyebrow (e.g. “Voice AI Case Study”) without diluting brand H1.</td><td>SEO</td><td>Low</td><td>Role-query relevance</td></tr>
+    <tr><td class="st st-a">Medium</td><td>Attribute Signal quotes; add Person.image (portrait) to JSON-LD.</td><td>GEO</td><td>Low–Med</td><td>E-E-A-T / trust</td></tr>
+    <tr><td class="st st-g">Quick Win</td><td>Ship real PNGs with keyword-rich alts (MockVisual ready=true) for product frames.</td><td>SEO</td><td>Low</td><td>Image/alt equity</td></tr>
+    <tr><td class="st st-a">Medium</td><td>Optional pillar note on multi-LLM voice routing to expand beyond one URL.</td><td>SEO/AEO</td><td>High</td><td>Long-tail rankings</td></tr>
+  </table>
+
+  <h1>What's Working Well</h1>
+  <div class="okbox">
+    <ul>
+      <li>Person + WebSite JSON-LD with sameAs, knowsAbout, education, and worksFor — unusual quality for a personal site.</li>
+      <li>Outcome-dense Callin.io case study is highly citable for GEO.</li>
+      <li>Title, canonical, robots, sitemap, OG/Twitter large image, and HTTPS correctly wired.</li>
+      <li>Clear entity + hire CTA with live agent demo as differentiator.</li>
+      <li>Semantic keyword coverage across voice AI, billing, telephony, and enterprise verticals already rich in body copy.</li>
+    </ul>
+  </div>
+
+  <h1>Recommended Keyword Targets</h1>
+  <ol>
+    <li><strong>Primary:</strong> Hemendra Tripathi — Technical Lead AI Engineer</li>
+    <li><strong>Commercial:</strong> hire AI engineer / hire technical lead / voice AI technical lead</li>
+    <li><strong>Expertise:</strong> multi-LLM orchestration, voice AI engineer, usage-based billing, Twilio Telnyx SIP</li>
+    <li><strong>Brand/product:</strong> Callin.io case study, AI voice agents</li>
+  </ol>
+  <p class="small">Core Web Vitals, mobile rendering lab data, and backlink/domain authority were not measured in this Quick Audit — use PageSpeed Insights and Search Console for those.</p>
+</body>
+</html>

@@ -11,6 +11,7 @@ export const NAV = [
   ["Work", "#work"],
   ["Experience", "#experience"],
   ["Agent", "#agent"],
+  ["FAQ", "#faq"],
   ["Contact", "#contact"],
 ] as const;
 
@@ -80,7 +81,7 @@ export const WORK: WorkItem[] = [
 
 export const CASE = {
   product: "Callin.io",
-  eyebrow: "Featured case study",
+  eyebrow: "Featured voice AI case study",
   title: "How we made voice agents cheap enough to scale — and fast enough that humans stayed on the line.",
   summary:
     "As Technical Lead I owned the architecture, vendor spend, and billing system for an AI voice platform that grew past 1,500 paying customers — including medical and real-estate enterprise accounts — while cutting LLM cost 20% and keeping billing disputes near zero.",
@@ -244,3 +245,37 @@ export const CAPABILITIES = [
     ],
   },
 ];
+
+/** Hire-intent + expertise FAQs — keep answers ~40–60 words for snippet eligibility. */
+export const FAQS = [
+  {
+    question: "Who is Hemendra Tripathi?",
+    answer:
+      "Hemendra Tripathi is a technical lead and voice AI engineer based in Udaipur, shipping for US and EU teams. As Technical Lead on Callin.io he scaled multi-LLM voice agents past 1,500 paying customers, cut inference cost about 20%, and owns architecture, billing, and hiring.",
+  },
+  {
+    question: "How do I hire a voice AI technical lead like Hemendra?",
+    answer:
+      "Email hemendratripathi880@gmail.com or use the live agent demo on this site. He is open to technical-lead, AI engineer, and senior full-stack roles, plus select freelance. Expect a reply within 24 hours — and a case study covering latency, cost, and revenue outcomes.",
+  },
+  {
+    question: "What is complexity-aware multi-LLM orchestration?",
+    answer:
+      "It classifies each voice-agent turn — greeting, FAQ, scheduling, objection — and routes to the smallest model that can finish the job. Large models handle hard reasoning only. Paired with semantic cache and concurrent prompts, this cuts LLM spend while keeping time-to-first-token low enough callers stay on the line.",
+  },
+  {
+    question: "What voice AI stack does Hemendra ship with?",
+    answer:
+      "Production systems use React and Node.js with Twilio, Telnyx, and SIP failover, plus ElevenLabs or Cartesia for voice, Supabase or Redis for state and cache, and Stripe for usage-based billing. RAG paths use Pinecone or Supabase Vector when retrieval is required.",
+  },
+  {
+    question: "What results did the Callin.io voice AI platform achieve?",
+    answer:
+      "Under Hemendra’s technical leadership the platform grew past 1,500 paying customers, including healthcare and real-estate accounts. Model routing cut LLM inference cost about 20%, typical voice TTFT landed near 420ms, and precise minute ledgers kept billing disputes near zero after launch.",
+  },
+  {
+    question: "Is Hemendra available for freelance or full-time AI engineering roles?",
+    answer:
+      "Yes — he is open to technical-lead, AI engineer, and senior full-stack roles, and select freelance engagements focused on voice AI, multi-LLM products, or usage-based billing. Reach out by email; he typically replies within 24 hours and can share the Callin.io case study and résumé.",
+  },
+] as const;

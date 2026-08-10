@@ -6,11 +6,11 @@ export const SITE_URL =
 export const SITE = {
   url: SITE_URL,
   name: "Hemendra Tripathi",
-  title: "Hemendra Tripathi — Technical Lead · AI Engineer",
+  title: "Hemendra Tripathi — Technical Lead · Voice AI Engineer",
   description:
-    "Technical Lead and AI engineer who scaled Callin.io to 1,500+ paying customers. Multi-LLM voice AI, usage-based billing, and teams that ship — case study + live agent demo.",
+    "Technical lead & AI engineer who scaled Callin.io voice AI to 1,500+ customers. Multi-LLM routing, usage billing — open to hire for tech lead roles.",
   shortDescription:
-    "From first commit to paying customers. Architecture, billing, teams, revenue.",
+    "Hire a voice AI technical lead — 1,500+ customers, multi-LLM orchestration, usage-based billing.",
   locale: "en_US",
   email: "hemendratripathi880@gmail.com",
   location: "Udaipur, IN",
@@ -19,6 +19,7 @@ export const SITE = {
     "Hemendra Tripathi",
     "Technical Lead",
     "AI Engineer",
+    "voice AI technical lead",
     "AI voice systems",
     "voice AI engineer",
     "Callin.io",
@@ -26,6 +27,7 @@ export const SITE = {
     "multi-LLM orchestration",
     "usage-based billing",
     "Twilio",
+    "Telnyx",
     "hire technical lead",
     "hire AI engineer",
   ],
