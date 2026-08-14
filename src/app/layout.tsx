@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { Archivo, JetBrains_Mono } from "next/font/google";
-import { FAQS, LINKS } from "@/lib/content";
+import JsonLd from "@/components/JsonLd";
+import { LINKS } from "@/lib/content";
+import { jsonLdGraph, personJsonLd, websiteJsonLd } from "@/lib/seo";
 import { SITE, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
@@ -14,6 +16,8 @@ const jet = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jet",
 });
+
+const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -28,9 +32,6 @@ export const metadata: Metadata = {
   publisher: SITE.name,
   applicationName: SITE.name,
   category: "technology",
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     title: SITE.title,
     description: SITE.shortDescription,
@@ -69,73 +70,12 @@ export const metadata: Metadata = {
     ],
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
-};
-
-const personJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: SITE.name,
-  url: SITE_URL,
-  image: `${SITE_URL}/images/hemendra-tripathi-technical-lead.png`,
-  jobTitle: SITE.jobTitle,
-  description: SITE.description,
-  email: `mailto:${SITE.email}`,
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Udaipur",
-    addressCountry: "IN",
+  ...(googleVerification
+    ? { verification: { google: googleVerification } }
+    : {}),
+  other: {
+    me: [LINKS.github, LINKS.linkedin, `mailto:${SITE.email}`],
   },
-  sameAs: [LINKS.github, LINKS.linkedin, LINKS.callin],
-  knowsAbout: [
-    "AI voice systems",
-    "voice AI technical lead",
-    "Multi-LLM orchestration",
-    "Usage-based billing",
-    "Full-stack engineering",
-    "Technical leadership",
-    "Real-time telephony",
-  ],
-  alumniOf: [
-    {
-      "@type": "CollegeOrUniversity",
-      name: "Rajasthan Vidyapeeth",
-    },
-    {
-      "@type": "CollegeOrUniversity",
-      name: "Mohanlal Sukhadia University",
-    },
-  ],
-  worksFor: {
-    "@type": "Organization",
-    name: "Appspundit Infotech",
-    url: LINKS.callin,
-  },
-};
-
-const websiteJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: SITE.name,
-  url: SITE_URL,
-  description: SITE.description,
-  inLanguage: "en",
-  publisher: {
-    "@type": "Person",
-    name: SITE.name,
-  },
-};
-
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: FAQS.map((item) => ({
-    "@type": "Question",
-    name: item.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: item.answer,
-    },
-  })),
 };
 
 export default function RootLayout({
@@ -144,12 +84,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${archivo.variable} ${jet.variable} antialiased`}>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify([personJsonLd, websiteJsonLd, faqJsonLd]),
-          }}
-        />
+        <JsonLd data={jsonLdGraph([personJsonLd(), websiteJsonLd()])} />
         {children}
         <Analytics />
       </body>

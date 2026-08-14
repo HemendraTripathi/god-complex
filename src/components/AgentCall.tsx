@@ -32,9 +32,9 @@ const METRICS = [
 ];
 
 const FILE_PROJECTS = [
-  { n: "Callin.io", t: "PROD", d: "Voice pipeline — WebSockets + SIP, multi-LLM orchestration" },
+  { n: "Callin.io", t: "PROD", d: "Voice pipeline: WebSockets + SIP, multi-LLM orchestration" },
   { n: "CondoMail", t: "LIVE", d: "AI email agents for high-volume Amazon sellers" },
-  { n: "Realead", t: "BETA", d: "AI qualification calls — the tech behind this demo" },
+  { n: "Realead", t: "BETA", d: "AI qualification calls, the tech behind this demo" },
   { n: "Sunria · FinTech", t: "SHIPPED", d: "Farm management · accounts automation, −30% errors" },
 ];
 
@@ -80,7 +80,7 @@ function LeadFile({
     <div className="flex h-full min-h-0 flex-col">
       <div className="flex shrink-0 items-center justify-between border-b border-ink px-5 py-3">
         <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em]">
-          Lead file — #0001
+          Lead file #0001
         </span>
         <span
           className={`px-2 py-0.5 font-mono text-[9.5px] font-bold uppercase tracking-widest ${
@@ -114,7 +114,7 @@ function LeadFile({
         {has("role") && (
           <FileSection title="Current engagement">
             {[
-              ["Product", "Callin.io — AI voice SaaS"],
+              ["Product", "Callin.io: AI voice SaaS"],
               ["Role", "Technical Lead · AI Engineer"],
               ["Team", "Hired & led engineering"],
               ["Owns", "Architecture · spend · roadmap"],
@@ -196,7 +196,7 @@ function LeadFile({
         {has("note") && (
           <FileSection title="Agent's note">
             <p className="border-l-2 border-org pl-3 text-[11.5px] leading-relaxed">
-              Rare profile — a technical lead and AI engineer who also owns billing, vendor
+              Rare profile: a technical lead and AI engineer who also owns billing, vendor
               costs, hiring, and customers. Ships revenue, not just code.
               Recommend contact before competitors.
             </p>
@@ -331,10 +331,10 @@ export default function AgentCall() {
       },
     }));
     list.push({
-      label: "End call — summarize",
+      label: "End call, summarize",
       end: true,
       onPick: async () => {
-        push("user", "End call — summarize");
+        push("user", "End call, summarize");
         await say(OUTRO);
         setQualified(true);
         await sleep(600);
@@ -373,7 +373,7 @@ export default function AgentCall() {
         <div className="flex items-center gap-3">
           <span className="blink h-2 w-2 bg-org" />
           <span className="font-mono text-[10px] font-bold uppercase tracking-[0.22em]">
-            Live demo — Recruiting-qualification line
+            Live demo: recruiting-qualification line
           </span>
         </div>
         {stage === "call" && (
@@ -498,7 +498,7 @@ export default function AgentCall() {
             <div className="shrink-0 border-t-2 border-ink p-4">
               {visitedCount > 0 && choices.length > 0 && (
                 <div className="eyebrow mb-2.5 !text-[9px]">
-                  {visitedCount}/5 topics — the summary improves as you ask
+                  {visitedCount}/5 topics. The summary improves as you ask
                 </div>
               )}
               <div
@@ -563,7 +563,7 @@ export default function AgentCall() {
               </div>
               <div className="flex items-center justify-between border-b-2 border-ink bg-ink px-6 py-2.5">
                 <span className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-paper">
-                  Call summary — auto-generated
+                  Call summary (auto-generated)
                 </span>
                 <button
                   type="button"
@@ -582,7 +582,7 @@ export default function AgentCall() {
                   {[
                     ["Candidate", "Hemendra Tripathi"],
                     ["Role fit", "Technical Lead · AI Engineer"],
-                    ["Duration", `${fmt(seconds)} — worth every second`],
+                    ["Duration", `${fmt(seconds)}, worth every second`],
                     ["Sentiment", "Extremely interested"],
                     ["Risk of waiting", "He joins your competitor"],
                   ].map(([k, v]) => (

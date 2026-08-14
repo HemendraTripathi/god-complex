@@ -51,7 +51,7 @@ export default function SiteNav() {
           <a
             href={LINKS.github}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="me"
             className="hidden font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-steel transition-colors hover:text-org sm:block"
           >
             GitHub

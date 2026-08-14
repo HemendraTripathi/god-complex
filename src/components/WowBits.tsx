@@ -31,6 +31,8 @@ export function HeroEyebrow() {
 export function HeroName() {
   return (
     <h1 className="display text-[clamp(52px,11.5vw,168px)]">
+      <span className="sr-only">Hemendra Tripathi</span>
+      <span aria-hidden="true">
       <SplitText
         text="HEMENDRA"
         tag="span"
@@ -64,6 +66,7 @@ export function HeroName() {
         >
           ©2026
         </span>
+      </span>
       </span>
     </h1>
   );

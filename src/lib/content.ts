@@ -7,12 +7,12 @@ export const LINKS = {
 };
 
 export const NAV = [
-  ["Case", "#case"],
-  ["Work", "#work"],
-  ["Experience", "#experience"],
-  ["Agent", "#agent"],
-  ["FAQ", "#faq"],
-  ["Contact", "#contact"],
+  ["About", "/hemendra-tripathi"],
+  ["Case", "/#case"],
+  ["Work", "/#work"],
+  ["Experience", "/#experience"],
+  ["FAQ", "/#faq"],
+  ["Contact", "/#contact"],
 ] as const;
 
 export const TICKER = [
@@ -42,8 +42,8 @@ export const WORK: WorkItem[] = [
   {
     idx: "01",
     name: "CondoMail",
-    role: "Product architecture — multi-provider email sync",
-    desc: "AI agents that sort, draft, and auto-reply across providers. Live with early adopters — including high-volume Amazon sellers running inbox workflows on it.",
+    role: "Product architecture: multi-provider email sync",
+    desc: "AI agents that sort, draft, and auto-reply across providers. Live with early adopters, including high-volume Amazon sellers running inbox workflows on it.",
     stack: "React / Node.js / Supabase / Stripe / Firebase",
     status: "Production",
     img: "/images/work-condomail.png",
@@ -53,7 +53,7 @@ export const WORK: WorkItem[] = [
     idx: "02",
     name: "Realead",
     role: "Full-stack · mobile · AI calling flows",
-    desc: "Connects lead sources, builds a business profile, and places AI qualification + follow-up calls for property leads. Final beta ahead of release — the conversational model behind the agent demo.",
+    desc: "Connects lead sources, builds a business profile, and places AI qualification + follow-up calls for property leads. Final beta ahead of release, and the conversational model behind the agent demo.",
     stack: "React Native / NestJS / Supabase / Stripe",
     status: "Beta",
     img: "/images/work-realead.png",
@@ -63,8 +63,8 @@ export const WORK: WorkItem[] = [
   {
     idx: "03",
     name: "Sunria & FinTech Accounts",
-    role: "Freelance — end-to-end delivery",
-    desc: "Pan-India farm management with field-to-warehouse sync, plus a financial dashboard with automated reconciliation — 30% fewer accounting errors, 15+ staff-hours saved weekly.",
+    role: "Freelance, end-to-end delivery",
+    desc: "Pan-India farm management with field-to-warehouse sync, plus a financial dashboard with automated reconciliation: 30% fewer accounting errors, 15+ staff-hours saved weekly.",
     stack: "Laravel / Flutter / MERN / CI-CD",
     status: "Shipped",
     img: "/images/work-sunria.png",
@@ -75,18 +75,18 @@ export const WORK: WorkItem[] = [
 export const CASE = {
   product: "Callin.io",
   eyebrow: "Featured voice AI case study",
-  title: "How we made voice agents cheap enough to scale — and fast enough that humans stayed on the line.",
+  title: "How we made voice agents cheap enough to scale, and fast enough that humans stayed on the line.",
   summary:
-    "As Technical Lead I owned the architecture, vendor spend, and billing system for an AI voice platform that grew past 1,500 paying customers — including medical and real-estate enterprise accounts — while cutting LLM cost 20% and keeping billing disputes near zero.",
+    "As Technical Lead I owned the architecture, vendor spend, and billing system for an AI voice platform that grew past 1,500 paying customers, including medical and real-estate enterprise accounts, while cutting LLM cost 20% and keeping billing disputes near zero.",
   problem: [
     "Every turn of a voice agent is a race: if the model thinks too long, the caller hangs up.",
     "Using one large model for every utterance burned margin on greetings and confirmations.",
-    "Minute-based billing with rollovers was creating support tickets — and eroding trust with the accounts that mattered most.",
+    "Minute-based billing with rollovers was creating support tickets, and eroding trust with the accounts that mattered most.",
   ],
   approach: [
     {
       title: "Complexity-aware model routing",
-      body: "Classify each turn — greeting, FAQ, scheduling, objection — and route to the smallest model that can finish the job. Large models only for hard reasoning.",
+      body: "Classify each turn (greeting, FAQ, scheduling, objection) and route to the smallest model that can finish the job. Large models only for hard reasoning.",
     },
     {
       title: "Semantic cache + concurrent prompts",
@@ -127,7 +127,7 @@ export const CASE = {
     "Redis",
   ],
   quote:
-    "Hemendra is the rare engineer who can rewrite the voice pipeline before lunch and close an enterprise prospect after dinner. He treats infrastructure cost like product debt — and it shows in the margins.",
+    "Hemendra is the rare engineer who can rewrite the voice pipeline before lunch and close an enterprise prospect after dinner. He treats infrastructure cost like product debt, and it shows in the margins.",
   /** Add after approval — omit until then so the quote stays anonymous. */
   quoteName: "",
   quoteOrg: "",
@@ -137,7 +137,7 @@ export const PRINCIPLES = [
   {
     n: "01",
     title: "Latency is the product",
-    body: "In voice AI, silence is a bug. Every architectural choice — caching, routing, carrier failover — exists to keep the human from hanging up.",
+    body: "In voice AI, silence is a bug. Every architectural choice (caching, routing, carrier failover) exists to keep the human from hanging up.",
   },
   {
     n: "02",
@@ -159,7 +159,7 @@ export const PRINCIPLES = [
 /** Attribution optional — leave name/org empty until you have written approval. */
 export const SIGNALS = [
   {
-    text: "We evaluated three voice vendors. Callin's agents were the only ones our clinic staff didn't hang up on — and the only ones whose invoices we didn't audit line by line.",
+    text: "We evaluated three voice vendors. Callin's agents were the only ones our clinic staff didn't hang up on, and the only ones whose invoices we didn't audit line by line.",
     name: "",
     org: "",
   },
@@ -177,32 +177,32 @@ export const SIGNALS = [
 
 export const EXPERIENCE = [
   {
-    period: "OCT 2024 — PRESENT",
+    period: "OCT 2024 to PRESENT",
     title: "Technical Lead / AI Engineer / Full-Stack",
     org: "Appspundit Infotech · Callin.io",
     points: [
-      "Technical Lead — architecture, vendor & infrastructure spend, hiring, product roadmaps, reporting directly to the founder.",
+      "Technical Lead: architecture, vendor and infrastructure spend, hiring, product roadmaps, reporting directly to the founder.",
       "Scaled the platform to 1,500+ paying customers; expanded into CondoMail and Realead on a shared multi-LLM architecture.",
       "Cut LLM inference costs 20%; personally converted 30+ prospects into long-term paying accounts across healthcare and real estate.",
     ],
   },
   {
-    period: "2022 — 2024",
+    period: "2022 to 2024",
     title: "Freelance Full-Stack Developer",
     org: "Remote · fintech, retail, logistics",
     points: [
       "Delivered 10+ end-to-end applications across MERN, Django, Flask, and Laravel.",
-      "Built a fintech accounts system for an MCA-registered firm — automated reconciliation saving 15+ staff-hours per week.",
+      "Built a fintech accounts system for an MCA-registered firm, with automated reconciliation saving 15+ staff-hours per week.",
       "Improved API performance 25% and implemented zero-downtime CI/CD pipelines.",
     ],
   },
   {
-    period: "2021 — 2023",
+    period: "2021 to 2023",
     title: "Technical Instructor",
     org: "Aimers Institute & VT College",
     points: [
       "Mentored 150+ students in Python, Django, MERN, and Flutter through project-based learning.",
-      "Redesigned the curriculum to industry needs — student placements rose 42%.",
+      "Redesigned the curriculum to industry needs. Student placements rose 42%.",
       "Supervised 30+ capstone projects: version control, API design, UI craft.",
     ],
   },
@@ -212,10 +212,10 @@ export const CAPABILITIES = [
   {
     title: "AI & Voice Systems",
     items: [
-      "Multi-LLM orchestration — routing by complexity & cost",
-      "RAG pipelines — Pinecone, Supabase Vector",
-      "Voice cloning — ElevenLabs, Cartesia",
-      "Real-time telephony — Twilio, Telnyx, SIP",
+      "Multi-LLM orchestration: routing by complexity and cost",
+      "RAG pipelines: Pinecone, Supabase Vector",
+      "Voice cloning: ElevenLabs, Cartesia",
+      "Real-time telephony: Twilio, Telnyx, SIP",
     ],
   },
   {
@@ -241,7 +241,7 @@ export const CAPABILITIES = [
     items: [
       "Docker, AWS, CI/CD pipelines",
       "System design & architecture decisions",
-      "Team leadership — hiring & mentorship",
+      "Team leadership: hiring and mentorship",
       "US/EU stakeholder coordination",
     ],
   },
@@ -255,14 +255,19 @@ export const FAQS = [
       "Hemendra Tripathi is a technical lead and voice AI engineer based in Udaipur, shipping for US and EU teams. As Technical Lead on Callin.io he scaled multi-LLM voice agents past 1,500 paying customers, cut inference cost about 20%, and owns architecture, billing, and hiring.",
   },
   {
+    question: "Which Hemendra Tripathi is the Callin.io technical lead?",
+    answer:
+      "Hemendra Tripathi of Udaipur, Rajasthan is the technical lead at Appspundit Infotech behind Callin.io. His official site is https://me.readwith.io. He is not the Newstrack journalist or other professionals who share the same name.",
+  },
+  {
     question: "How do I hire a voice AI technical lead like Hemendra?",
     answer:
-      "Email hemendratripathi880@gmail.com or use the live agent demo on this site. He is open to technical-lead, AI engineer, and senior full-stack roles, plus select freelance. Expect a reply within 24 hours — and a case study covering latency, cost, and revenue outcomes.",
+      "Email hemendratripathi880@gmail.com or use the live agent demo on this site. He is open to technical-lead, AI engineer, and senior full-stack roles, plus select freelance. Expect a reply within 24 hours, plus a case study covering latency, cost, and revenue outcomes.",
   },
   {
     question: "What is complexity-aware multi-LLM orchestration?",
     answer:
-      "It classifies each voice-agent turn — greeting, FAQ, scheduling, objection — and routes to the smallest model that can finish the job. Large models handle hard reasoning only. Paired with semantic cache and concurrent prompts, this cuts LLM spend while keeping time-to-first-token low enough callers stay on the line.",
+      "It classifies each voice-agent turn (greeting, FAQ, scheduling, objection) and routes to the smallest model that can finish the job. Large models handle hard reasoning only. Paired with semantic cache and concurrent prompts, this cuts LLM spend while keeping time-to-first-token low enough callers stay on the line.",
   },
   {
     question: "What voice AI stack does Hemendra ship with?",
@@ -277,6 +282,25 @@ export const FAQS = [
   {
     question: "Is Hemendra available for freelance or full-time AI engineering roles?",
     answer:
-      "Yes — he is open to technical-lead, AI engineer, and senior full-stack roles, and select freelance engagements focused on voice AI, multi-LLM products, or usage-based billing. Reach out by email; he typically replies within 24 hours and can share the Callin.io case study and résumé.",
+      "Yes. He is open to technical-lead, AI engineer, and senior full-stack roles, and select freelance engagements focused on voice AI, multi-LLM products, or usage-based billing. Reach out by email; he typically replies within 24 hours and can share the Callin.io case study and résumé.",
   },
 ] as const;
+
+/** Unique copy for /hemendra-tripathi — do not paste the homepage verbatim. */
+export const PROFILE = {
+  definition:
+    "Hemendra Tripathi is a technical lead and voice AI engineer based in Udaipur, Rajasthan. He leads engineering on Callin.io at Appspundit Infotech: multi-LLM voice agents used by 1,500+ paying customers across US and EU teams.",
+  paragraphs: [
+    "Hemendra Tripathi builds systems that talk, bill, and stay up. As Technical Lead he owns architecture, vendor spend, hiring, and product roadmaps, reporting directly to the founder. The work that defines him is Callin.io: complexity-aware model routing, dual-carrier telephony, and usage ledgers precise enough that billing disputes stayed near zero after launch.",
+    "Before leading the voice platform he shipped 10+ freelance products across MERN, Django, Flask, and Laravel, including a fintech accounts system that saved 15+ staff-hours a week, and taught 150+ students at Aimers Institute and VT College. That mix of shipping, teaching, and P&L ownership is why teams hire him as a technical lead, not only as a specialist.",
+    "This page is the canonical profile for Hemendra Tripathi of Udaipur, the Callin.io / Appspundit Infotech technical lead. Other people share the name. If you are looking for the voice AI engineer, this is the official site: me.readwith.io.",
+  ],
+  facts: [
+    { label: "Based", value: "Udaipur, Rajasthan, India" },
+    { label: "Role", value: "Technical Lead · AI Engineer" },
+    { label: "Company", value: "Appspundit Infotech · Callin.io" },
+    { label: "Focus", value: "Voice AI, multi-LLM routing, usage billing" },
+    { label: "Languages", value: "English (fluent) · Hindi (native)" },
+    { label: "Education", value: "MCA, Rajasthan Vidyapeeth · BCA, MLSU" },
+  ],
+} as const;

@@ -1,6 +1,9 @@
+import type { Metadata } from "next";
 import AgentCall from "@/components/AgentCall";
 import ArchitectureFlow from "@/components/ArchitectureFlow";
+import JsonLd from "@/components/JsonLd";
 import MockVisual from "@/components/MockVisual";
+import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
 import {
   ContactMagnet,
@@ -22,6 +25,14 @@ import {
   TICKER,
   WORK,
 } from "@/lib/content";
+import { faqJsonLd, jsonLdGraph, PROFILE_PATH, profilePageJsonLd } from "@/lib/seo";
+import { SITE_URL } from "@/lib/site";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
 
 function SectionHead({
   idx,
@@ -51,6 +62,12 @@ export default function Home() {
       </a>
 
       <SiteNav />
+      <JsonLd
+        data={jsonLdGraph([
+          faqJsonLd(),
+          profilePageJsonLd(SITE_URL, `${SITE_URL}/#profile`),
+        ])}
+      />
 
       {/* hero */}
       <main id="main">
@@ -62,9 +79,9 @@ export default function Home() {
         <div className="mt-10 grid gap-8 border-t-2 border-ink pt-8 md:grid-cols-[1.15fr_0.85fr] md:gap-12 lg:gap-16">
           <div>
             <p className="max-w-2xl text-[clamp(18px,2.4vw,26px)] font-medium leading-snug tracking-tight">
-              Hemendra Tripathi is a technical lead and AI engineer — primarily
-              voice systems, plus broader AI product work — who takes products from
-              first commit to paying customers —{" "}
+              Hemendra Tripathi is a technical lead and AI engineer, primarily
+              voice systems plus broader AI product work. He takes products from
+              first commit to paying customers:{" "}
               <span className="text-org">
                 architecture, billing, teams, and the revenue they produce.
               </span>
@@ -143,7 +160,7 @@ export default function Home() {
           <MockVisual
             kind="callin"
             src="/images/work-callin.png"
-            alt="Callin.io voice AI agent — live medical intake call with multi-LLM routing"
+            alt="Callin.io voice AI agent, live medical intake call with multi-LLM routing"
           />
         </div>
 
@@ -200,10 +217,10 @@ export default function Home() {
           </p>
           {(CASE.quoteName || CASE.quoteOrg) && (
             <footer className="mt-5 font-mono text-[10px] uppercase tracking-[0.18em] text-paper/55">
-              {CASE.quoteName && <>— {CASE.quoteName}</>}
+              {CASE.quoteName && <>– {CASE.quoteName}</>}
               {CASE.quoteOrg && (
                 <span className="text-paper/35">
-                  {CASE.quoteName ? " · " : "— "}
+                  {CASE.quoteName ? " · " : "– "}
                   {CASE.quoteOrg}
                 </span>
               )}
@@ -221,11 +238,11 @@ export default function Home() {
         <SectionHead
           idx="02"
           title="More AI Product Work"
-          right="Supporting systems — not full case studies"
+          right="Supporting systems, not full case studies"
         />
         <p className="mt-4 max-w-2xl text-[14px] leading-relaxed text-ink/70">
           Callin.io is the deep dive above. These are related suite products and
-          earlier shipped work — shorter notes, same bar for outcomes.
+          earlier shipped work. Shorter notes, same bar for outcomes.
         </p>
         <div>
           {WORK.map((w) => (
@@ -266,7 +283,7 @@ export default function Home() {
               <MockVisual
                 kind={w.visual}
                 src={w.img}
-                alt={`${w.name} — ${w.role}`}
+                alt={`${w.name}: ${w.role}`}
               />
             </article>
           ))}
@@ -278,7 +295,7 @@ export default function Home() {
         id="experience"
         className="mx-auto max-w-7xl scroll-mt-20 px-5 pt-24 sm:px-8"
       >
-        <SectionHead idx="03" title="Experience" right="2021 — Present" />
+        <SectionHead idx="03" title="Experience" right="2021 to Present" />
         <div>
           {EXPERIENCE.map((e) => (
             <div
@@ -311,9 +328,9 @@ export default function Home() {
           ))}
         </div>
         <div className="flex flex-wrap gap-x-10 gap-y-2 border-t-2 border-ink pt-5 font-mono text-[10px] uppercase tracking-wider text-steel">
-          <span>MCA — Rajasthan Vidyapeeth (exp. 2026)</span>
-          <span>BCA — Mohanlal Sukhadia University (2022)</span>
-          <span>English — fluent · Hindi — native</span>
+          <span>MCA, Rajasthan Vidyapeeth (exp. 2026)</span>
+          <span>BCA, Mohanlal Sukhadia University (2022)</span>
+          <span>English: fluent · Hindi: native</span>
         </div>
       </section>
 
@@ -325,14 +342,14 @@ export default function Home() {
         <SectionHead
           idx="04"
           title="The Demo Is the Résumé"
-          right="Live — interactive"
+          right="Live, interactive"
         />
         <div className="grid gap-8 pt-10 lg:grid-cols-[minmax(0,360px)_1fr] lg:gap-14">
           <div>
             <p className="text-[15px] leading-relaxed text-ink/80">
               I build AI agents that make real phone calls for a living. This
               one runs on the same conversational patterns as production
-              voice agents — except its lead-qualification target is{" "}
+              voice agents, except its lead-qualification target is{" "}
               <span className="font-bold text-org">you</span>.
             </p>
             <p className="mt-4 text-[13px] leading-relaxed text-steel">
@@ -340,7 +357,7 @@ export default function Home() {
               <a href="#case" className="font-semibold text-ink underline-offset-2 hover:underline">
                 Read the case study
               </a>
-              . Prefer proof? Answer the call — the lead file builds as you ask.
+              . Prefer proof? Answer the call. The lead file builds as you ask.
             </p>
             <ul className="mt-6 space-y-2 font-mono text-[10px] uppercase tracking-wider text-steel">
               <li className="flex gap-2">
@@ -430,7 +447,7 @@ export default function Home() {
         <SectionHead
           idx="07"
           title="AI & Engineering Capabilities"
-          right="Full surface area — one person"
+          right="Full surface area, one person"
         />
         <div className="grid border-2 border-t-0 border-ink sm:grid-cols-2 lg:grid-cols-4">
           {CAPABILITIES.map((c, i) => (
@@ -464,7 +481,7 @@ export default function Home() {
           <MockVisual
             kind="portrait"
             src="/images/hemendra-tripathi-technical-lead.png"
-            alt="Hemendra Tripathi — technical lead and voice AI engineer"
+            alt="Hemendra Tripathi, technical lead and voice AI engineer"
             aspect="aspect-square"
             ready
           />
@@ -475,14 +492,14 @@ export default function Home() {
               code, freelancing across four frameworks, and rebuilding a
               voice-AI platform until{" "}
               <span className="text-org">1,500 companies</span> paid for it. I
-              like systems that are boring, fast, and profitable — and teams
+              like systems that are boring, fast, and profitable, and teams
               that own what they build.
             </p>
             <div className="mt-6 flex flex-wrap gap-6 font-mono text-[11px] font-bold uppercase tracking-[0.18em]">
               <a
                 href={LINKS.github}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="me"
                 className="text-ink hover:text-org"
               >
                 GitHub ↗
@@ -490,10 +507,16 @@ export default function Home() {
               <a
                 href={LINKS.linkedin}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="me"
                 className="text-ink hover:text-org"
               >
                 LinkedIn ↗
+              </a>
+              <a
+                href={PROFILE_PATH}
+                className="text-ink hover:text-org"
+              >
+                Full profile →
               </a>
               <a href={LINKS.resume} download className="text-ink hover:text-org">
                 Résumé ↓
@@ -545,11 +568,11 @@ export default function Home() {
       {/* contact */}
       <section id="contact" className="mt-24 scroll-mt-20 border-t-2 border-ink">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
-          <div className="eyebrow mb-6">(10) — Contact</div>
+          <div className="eyebrow mb-6">(10) Contact</div>
           <ContactTitle />
           <p className="mt-6 max-w-lg text-[15px] leading-relaxed text-ink/75">
             Looking for a technical lead and AI engineer who has already shipped
-            voice AI into revenue — and can stretch into other AI product work.
+            voice AI into revenue, and can stretch into other AI product work.
             Open to technical-lead / AI engineer / senior full-stack roles and
             select freelance. Replies within 24 hours.
           </p>
@@ -567,7 +590,7 @@ export default function Home() {
             <a
               href={LINKS.github}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="me"
               className="transition-colors hover:text-org"
             >
               GitHub ↗
@@ -575,10 +598,16 @@ export default function Home() {
             <a
               href={LINKS.linkedin}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="me"
               className="transition-colors hover:text-org"
             >
               LinkedIn ↗
+            </a>
+            <a
+              href={PROFILE_PATH}
+              className="transition-colors hover:text-org"
+            >
+              Full profile →
             </a>
             <a
               href={LINKS.resume}
@@ -592,12 +621,7 @@ export default function Home() {
             </a>
           </div>
         </div>
-        <footer className="border-t-2 border-ink">
-          <div className="mx-auto flex max-w-7xl flex-col justify-between gap-2 px-5 py-6 font-mono text-[9.5px] uppercase tracking-[0.18em] text-steel sm:flex-row sm:px-8">
-            <span>© 2026 Hemendra Tripathi — Udaipur, IN</span>
-            <span>Designed & built by him — and one persuasive agent</span>
-          </div>
-        </footer>
+        <SiteFooter />
       </section>
       </main>
     </div>

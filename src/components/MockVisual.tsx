@@ -58,7 +58,7 @@ function Chrome({ title }: { title: string }) {
 function CallinMock() {
   return (
     <div className="flex h-full flex-col">
-      <Chrome title="Callin.io — live agent" />
+      <Chrome title="Callin.io live agent" />
       <div className="grid flex-1 grid-cols-[1fr_0.9fr]">
         <div className="space-y-2 border-r border-ink/15 p-3">
           <div className="font-mono text-[8px] uppercase text-steel">
@@ -66,7 +66,7 @@ function CallinMock() {
           </div>
           <div className="space-y-1.5">
             <div className="border-l-2 border-org pl-2 text-[10px] leading-snug text-ink/80">
-              Agent: I can book you Thursday at 2:40 — does that work?
+              Agent: I can book you Thursday at 2:40. Does that work?
             </div>
             <div className="ml-auto w-[85%] bg-ink px-2 py-1 text-[10px] text-paper">
               Caller: Yes, Thursday works.
@@ -117,7 +117,7 @@ function CallinMock() {
 function CondoMock() {
   return (
     <div className="flex h-full flex-col">
-      <Chrome title="CondoMail — inbox agents" />
+      <Chrome title="CondoMail inbox agents" />
       <div className="flex-1 space-y-1.5 p-3">
         {[
           ["Urgent", "Amazon seller · return dispute", "Draft ready", true],
@@ -148,7 +148,7 @@ function CondoMock() {
 function RealeadMock() {
   return (
     <div className="flex h-full flex-col">
-      <Chrome title="Realead — lead queue" />
+      <Chrome title="Realead lead queue" />
       <div className="grid flex-1 grid-cols-2">
         <div className="space-y-2 border-r border-ink/15 p-3">
           <div className="font-mono text-[8px] uppercase text-steel">Today</div>

@@ -6,17 +6,22 @@ export const SITE_URL =
 export const SITE = {
   url: SITE_URL,
   name: "Hemendra Tripathi",
-  title: "Hemendra Tripathi — Technical Lead · Voice AI Engineer",
+  title: "Hemendra Tripathi | Technical Lead · Voice AI Engineer",
   description:
-    "Technical lead & AI engineer who scaled Callin.io voice AI to 1,500+ customers. Multi-LLM routing, usage billing — open to hire for tech lead roles.",
+    "Hemendra Tripathi is a technical lead and voice AI engineer in Udaipur. He scaled Callin.io to 1,500+ customers. Open to hire.",
   shortDescription:
-    "Hire a voice AI technical lead — 1,500+ customers, multi-LLM orchestration, usage-based billing.",
+    "Hemendra Tripathi, voice AI technical lead in Udaipur. Callin.io: 1,500+ customers. Open to hire.",
+  profileTitle: "Hemendra Tripathi | Official Profile",
+  profileDescription:
+    "Hemendra Tripathi is the Udaipur-based technical lead behind Callin.io voice AI. Official bio, work, and how to hire him.",
   locale: "en_US",
   email: "hemendratripathi880@gmail.com",
   location: "Udaipur, IN",
   jobTitle: "Technical Lead · AI Engineer",
   keywords: [
     "Hemendra Tripathi",
+    "Hemendra Tripathi Udaipur",
+    "Hemendra Tripathi Callin.io",
     "Technical Lead",
     "AI Engineer",
     "voice AI technical lead",
