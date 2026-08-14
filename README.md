@@ -56,6 +56,8 @@ Content lives in `src/lib/content.ts`. Product mocks in `src/components/MockVisu
 
 ## Contact
 
+- **Portfolio:** [me.readwith.io](https://me.readwith.io)
+- **LinkedIn:** [linkedin.com/in/hemendratripathi](https://www.linkedin.com/in/hemendratripathi/)
 - **Email:** [hemendratripathi880@gmail.com](mailto:hemendratripathi880@gmail.com)
 - **Location:** Udaipur, IN · shipping for US / EU
 
