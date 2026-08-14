@@ -67,7 +67,7 @@ const personJsonLd = {
   "@type": "Person",
   name: SITE.name,
   url: SITE_URL,
-  image: `${SITE_URL}/images/portrait.png`,
+  image: `${SITE_URL}/images/hemendra-tripathi-technical-lead.png`,
   jobTitle: SITE.jobTitle,
   description: SITE.description,
   email: `mailto:${SITE.email}`,

@@ -18,7 +18,7 @@ Drop real PNGs/JPGs, then set `ready={true}` on the matching `<MockVisual />` in
 | `work-condomail.png` | CondoMail |
 | `work-realead.png` | Realead |
 | `work-sunria.png` | Sunria / FinTech |
-| `portrait.png` | Off the record |
+| `hemendra-tripathi-technical-lead.png` | Off the record |
 
 ## Quotes
 

@@ -487,7 +487,7 @@ export default function Home() {
         <div className="grid gap-10 py-10 md:grid-cols-[240px_1fr] md:items-center">
           <MockVisual
             kind="portrait"
-            src="/images/portrait.png"
+            src="/images/hemendra-tripathi-technical-lead.png"
             alt="Hemendra Tripathi — technical lead and voice AI engineer"
             aspect="aspect-square"
             ready
