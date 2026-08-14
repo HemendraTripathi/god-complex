@@ -89,6 +89,7 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
       ref={containerRef}
       style={{ outline: 'none', userSelect: 'none' }}
     >
+      <span className="sr-only">{sentence}</span>
       {words.map((word, index) => {
         const isActive = index === currentIndex;
         return (
@@ -97,6 +98,7 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
             ref={el => {
               wordRefs.current[index] = el;
             }}
+            aria-hidden="true"
             className={wordClassName}
             style={
               {
@@ -121,6 +123,7 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
       })}
 
       <motion.div
+        aria-hidden="true"
         className="absolute top-0 left-0 pointer-events-none box-border border-0"
         animate={{
           x: focusRect.x,

@@ -15,13 +15,6 @@ export const NAV = [
   ["Contact", "#contact"],
 ] as const;
 
-export const STATS = [
-  { to: 1500, suffix: "+", label: "Paying customers on a platform he architected" },
-  { to: 20, prefix: "−", suffix: "%", label: "LLM inference cost via model routing" },
-  { to: 420, suffix: "ms", label: "Typical voice TTFT after orchestration work" },
-  { to: 30, suffix: "+", label: "Prospects personally closed into paying accounts" },
-];
-
 export const TICKER = [
   "REAL-TIME VOICE AI",
   "MULTI-LLM ORCHESTRATION",
@@ -113,6 +106,14 @@ export const CASE = {
     { value: "−20%", label: "LLM inference cost" },
     { value: "~420ms", label: "Voice TTFT (typical)" },
     { value: "~0", label: "Billing disputes since launch" },
+  ],
+  /** Pipeline shown in the case study — one hop per ownership surface. */
+  architecture: [
+    { id: "call", label: "Caller", detail: "PSTN / WebRTC" },
+    { id: "tel", label: "Telephony", detail: "Twilio · Telnyx · SIP" },
+    { id: "orch", label: "Orchestrator", detail: "Cache · parallel prompts" },
+    { id: "route", label: "Model router", detail: "Complexity-aware LLM" },
+    { id: "voice", label: "Voice out", detail: "ElevenLabs · Cartesia" },
   ],
   stack: [
     "React",

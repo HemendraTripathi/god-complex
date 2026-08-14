@@ -363,7 +363,11 @@ export default function AgentCall() {
   }
 
   return (
-    <div className="relative border-2 border-ink bg-paper">
+    <div
+      className="relative border-2 border-ink bg-paper"
+      role="region"
+      aria-label="Live AI agent demo"
+    >
       {/* header */}
       <div className="flex items-center justify-between border-b-2 border-ink bg-ink px-5 py-3 text-paper">
         <div className="flex items-center gap-3">
@@ -374,12 +378,18 @@ export default function AgentCall() {
         </div>
         {stage === "call" && (
           <div className="flex items-center gap-4">
-            <div className={`flex h-4 items-end gap-[3px] ${typing ? "eq-on" : ""}`}>
+            <div
+              aria-hidden="true"
+              className={`flex h-4 items-end gap-[3px] ${typing ? "eq-on" : ""}`}
+            >
               {[0, 1, 2, 3].map((i) => (
                 <span key={i} className="eq-bar h-full w-[3px] bg-org" />
               ))}
             </div>
-            <span className="font-mono text-[12px] font-bold">{fmt(seconds)}</span>
+            <span className="font-mono text-[12px] font-bold" aria-live="off">
+              <span className="sr-only">Call duration </span>
+              {fmt(seconds)}
+            </span>
           </div>
         )}
       </div>
@@ -404,16 +414,18 @@ export default function AgentCall() {
             <button
               type="button"
               onClick={() => setDeclineIdx((i) => Math.min(i + 1, DECLINE_LINES.length - 1))}
+              aria-label="Decline the demo call"
               className="border-2 border-ink px-6 py-3 font-mono text-[11px] font-bold uppercase tracking-widest transition-colors hover:border-org hover:text-org"
             >
-              ✕ Decline
+              <span aria-hidden="true">✕ </span>Decline
             </button>
             <button
               type="button"
               onClick={answer}
+              aria-label="Answer the demo call"
               className="border-2 border-ink bg-ink px-6 py-3 font-mono text-[11px] font-bold uppercase tracking-widest text-paper shadow-brutal transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-org hover:shadow-none"
             >
-              ▶ Answer call
+              <span aria-hidden="true">▶ </span>Answer call
             </button>
           </div>
           <AnimatePresence>

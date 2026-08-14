@@ -4,7 +4,7 @@
   --color-paper: #ece9e2;
   --color-ink: #161616;
   --color-org: #ff4d00;
-  --color-steel: #6e6a60;
+  --color-steel: #524e45;
   --color-hair: rgba(22, 22, 22, 0.16);
 
   --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
@@ -63,6 +63,10 @@ html {
   .eq-on .eq-bar,
   .tsq {
     animation: none !important;
+  }
+
+  .eq-on .eq-bar {
+    transform: scaleY(0.7);
   }
 }
 

@@ -1,5 +1,5 @@
-import CountUp from "@/components/CountUp";
 import AgentCall from "@/components/AgentCall";
+import ArchitectureFlow from "@/components/ArchitectureFlow";
 import MockVisual from "@/components/MockVisual";
 import SiteNav from "@/components/SiteNav";
 import {
@@ -19,7 +19,6 @@ import {
   LINKS,
   PRINCIPLES,
   SIGNALS,
-  STATS,
   TICKER,
   WORK,
 } from "@/lib/content";
@@ -60,38 +59,48 @@ export default function Home() {
         <HeroName />
         <HeroFocus />
 
-        <div className="mt-10 grid gap-8 border-t-2 border-ink pt-8 md:grid-cols-[1fr_300px] md:gap-16">
-          <p className="max-w-2xl text-[clamp(18px,2.4vw,26px)] font-medium leading-snug tracking-tight">
-            Hemendra Tripathi is a technical lead and AI engineer — primarily
-            voice systems, plus broader AI product work — who takes products from
-            first commit to paying customers —{" "}
-            <span className="text-org">
-              architecture, billing, teams, and the revenue they produce.
-            </span>
-          </p>
-          <div className="space-y-2 font-mono text-[11px] uppercase tracking-wider text-steel">
-            {[
-              ["Base", "Udaipur, IN"],
-              ["Serving", "US / EU teams"],
-              ["Current", "Callin.io · Tech Lead"],
-              ["Proof", "1,500+ paying customers"],
-            ].map(([k, v]) => (
+        <div className="mt-10 grid gap-8 border-t-2 border-ink pt-8 md:grid-cols-[1.15fr_0.85fr] md:gap-12 lg:gap-16">
+          <div>
+            <p className="max-w-2xl text-[clamp(18px,2.4vw,26px)] font-medium leading-snug tracking-tight">
+              Hemendra Tripathi is a technical lead and AI engineer — primarily
+              voice systems, plus broader AI product work — who takes products from
+              first commit to paying customers —{" "}
+              <span className="text-org">
+                architecture, billing, teams, and the revenue they produce.
+              </span>
+            </p>
+            <p className="mt-4 font-mono text-[11px] uppercase tracking-wider text-steel">
+              Udaipur, IN · US / EU teams · Callin.io Tech Lead
+            </p>
+          </div>
+          <dl
+            aria-label="Verified impact"
+            className="grid grid-cols-2 border-2 border-ink"
+          >
+            {CASE.metrics.map((m, i) => (
               <div
-                key={k}
-                className="flex justify-between gap-4 border-b border-hair pb-2"
+                key={m.label}
+                className={`border-hair p-4 sm:p-5 ${i % 2 === 1 ? "border-l" : ""} ${i < 2 ? "border-b" : ""}`}
               >
-                <span>{k}</span>
-                <span className="text-right text-ink">{v}</span>
+                <dt className="font-mono text-[9.5px] uppercase tracking-wider text-steel">
+                  {m.label}
+                </dt>
+                <dd className="mt-1.5 font-mono text-[clamp(22px,3.2vw,30px)] font-bold tracking-tight">
+                  {m.value}
+                </dd>
               </div>
             ))}
-          </div>
+          </dl>
         </div>
 
         <HeroCtas />
       </header>
 
       {/* ticker */}
-      <div className="overflow-hidden border-y-2 border-ink bg-ink py-2.5">
+      <div
+        aria-hidden="true"
+        className="overflow-hidden border-y-2 border-ink bg-ink py-2.5"
+      >
         <div className="marquee-track flex w-max gap-10 whitespace-nowrap font-mono text-[10.5px] font-bold uppercase tracking-[0.2em] text-paper">
           {[...TICKER, ...TICKER].map((t, i) => (
             <span key={i} className="flex items-center gap-10">
@@ -100,27 +109,6 @@ export default function Home() {
           ))}
         </div>
       </div>
-
-      {/* stats */}
-      <section className="border-b-2 border-ink">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 lg:grid-cols-4">
-          {STATS.map((s, i) => (
-            <div
-              key={s.label}
-              className={`border-hair px-5 py-8 sm:px-8 ${i > 0 ? "border-l" : ""} ${i >= 2 ? "max-lg:border-t" : ""}`}
-            >
-              <div className="font-mono text-[clamp(28px,3.5vw,44px)] font-semibold tracking-tight">
-                {s.prefix}
-                <CountUp to={s.to} duration={1.4} separator="," className="" />
-                {s.suffix}
-              </div>
-              <div className="eyebrow mt-2 !normal-case !tracking-normal">
-                {s.label}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* CASE STUDY — the 10/10 proof */}
       <FadeIn>
@@ -146,7 +134,7 @@ export default function Home() {
             <a
               href={LINKS.callin}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="mt-6 inline-block font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-org underline-offset-4 hover:underline"
             >
               callin.io ↗
@@ -155,40 +143,29 @@ export default function Home() {
           <MockVisual
             kind="callin"
             src="/images/work-callin.png"
-            alt="Callin.io voice AI agent — live medical intake call with multi-LLM routing"
+            alt="Callin.io analytics dashboard — call volume, usage, and success metrics"
+            ready
           />
         </div>
 
-        <div className="grid gap-0 border-b-2 border-ink lg:grid-cols-2">
-          <div className="border-hair p-6 sm:p-8 lg:border-r">
-            <div className="eyebrow mb-4">The problem</div>
-            <ul className="space-y-3">
-              {CASE.problem.map((p) => (
-                <li
-                  key={p}
-                  className="flex gap-3 text-[13.5px] leading-relaxed text-ink/80"
-                >
-                  <span className="mt-[9px] h-px w-4 shrink-0 bg-org" />
-                  {p}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="grid grid-cols-2">
-            {CASE.metrics.map((m, i) => (
-              <div
-                key={m.label}
-                className={`border-hair p-5 ${i % 2 === 1 ? "border-l" : ""} ${i < 2 ? "border-b" : ""}`}
+        <div className="border-b-2 border-ink p-6 sm:p-8">
+          <div className="eyebrow mb-4">The problem</div>
+          <ul className="grid gap-3 sm:grid-cols-3 sm:gap-6">
+            {CASE.problem.map((p) => (
+              <li
+                key={p}
+                className="flex gap-3 text-[13.5px] leading-relaxed text-ink/80"
               >
-                <div className="font-mono text-[clamp(22px,3vw,32px)] font-bold tracking-tight">
-                  {m.value}
-                </div>
-                <div className="mt-1 font-mono text-[10px] uppercase tracking-wider text-steel">
-                  {m.label}
-                </div>
-              </div>
+                <span className="mt-[9px] h-px w-4 shrink-0 bg-org" aria-hidden="true" />
+                {p}
+              </li>
             ))}
-          </div>
+          </ul>
+        </div>
+
+        <div className="border-b-2 border-ink py-10">
+          <div className="eyebrow mb-6">Architecture</div>
+          <ArchitectureFlow />
         </div>
 
         <div className="py-10">
@@ -506,7 +483,7 @@ export default function Home() {
               <a
                 href={LINKS.github}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="text-ink hover:text-org"
               >
                 GitHub ↗
@@ -514,7 +491,7 @@ export default function Home() {
               <a
                 href={LINKS.linkedin}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="text-ink hover:text-org"
               >
                 LinkedIn ↗
@@ -557,7 +534,7 @@ export default function Home() {
                   </span>
                 </span>
               </summary>
-              <p className="mt-3 max-w-3xl text-[14px] leading-relaxed text-ink/75">
+              <p className="mt-3 max-w-3xl text-[14px] leading-relaxed text-ink/80">
                 {item.answer}
               </p>
             </details>
@@ -591,7 +568,7 @@ export default function Home() {
             <a
               href={LINKS.github}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="transition-colors hover:text-org"
             >
               GitHub ↗
@@ -599,7 +576,7 @@ export default function Home() {
             <a
               href={LINKS.linkedin}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="transition-colors hover:text-org"
             >
               LinkedIn ↗

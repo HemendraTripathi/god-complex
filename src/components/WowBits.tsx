@@ -19,9 +19,10 @@ export function HeroEyebrow() {
         parentClassName="eyebrow"
         encryptedClassName="text-org/70"
       />
-      <span className="hidden items-center gap-2 sm:flex">
-        <span className="blink h-1.5 w-1.5 bg-org" />
-        Open to select roles · UTC+05:30
+      <span className="flex items-center gap-2">
+        <span className="blink h-1.5 w-1.5 bg-org" aria-hidden="true" />
+        <span className="sm:hidden">Open · UTC+05:30</span>
+        <span className="hidden sm:inline">Open to select roles · UTC+05:30</span>
       </span>
     </div>
   );
