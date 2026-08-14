@@ -79,6 +79,8 @@ export default function HemendraTripathiPage() {
               src={PORTRAIT_PATH}
               alt="Hemendra Tripathi, technical lead and voice AI engineer in Udaipur"
               aspect="aspect-square"
+              width={960}
+              height={960}
               ready
             />
             <dl className="grid gap-0 border-2 border-ink sm:grid-cols-2">

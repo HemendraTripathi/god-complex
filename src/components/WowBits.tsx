@@ -41,8 +41,8 @@ export function HeroName() {
         delay={30}
         duration={0.7}
         splitType="chars"
-        from={{ opacity: 0, y: 60 }}
-        to={{ opacity: 1, y: 0 }}
+        from={{ y: 60 }}
+        to={{ y: 0 }}
         threshold={0.01}
         rootMargin="0px"
       />
@@ -55,8 +55,8 @@ export function HeroName() {
           delay={40}
           duration={0.75}
           splitType="chars"
-          from={{ opacity: 0, y: 60 }}
-          to={{ opacity: 1, y: 0 }}
+          from={{ y: 60 }}
+          to={{ y: 0 }}
           threshold={0.01}
           rootMargin="0px"
         />

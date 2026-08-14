@@ -12,18 +12,26 @@ export default function MockVisual({
   ready = false,
   aspect = "aspect-[16/10]",
   alt,
+  width = 1200,
+  height = 750,
 }: {
   kind: Visual;
   src: string;
   ready?: boolean;
   aspect?: string;
   alt: string;
+  width?: number;
+  height?: number;
 }) {
   if (ready) {
     return (
       <img
         src={src}
         alt={alt}
+        width={width}
+        height={height}
+        loading="lazy"
+        decoding="async"
         className={`${aspect} w-full border-2 border-ink object-cover`}
       />
     );

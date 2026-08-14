@@ -5,7 +5,7 @@ export const PERSON_ID = `${SITE_URL}/#person`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;
 export const PROFILE_PATH = "/hemendra-tripathi";
 export const PROFILE_URL = `${SITE_URL}${PROFILE_PATH}`;
-export const PORTRAIT_PATH = "/images/hemendra-tripathi-technical-lead.png";
+export const PORTRAIT_PATH = "/images/hemendra-tripathi-technical-lead.webp";
 export const PORTRAIT_URL = `${SITE_URL}${PORTRAIT_PATH}`;
 
 export const SAME_AS = [LINKS.github, LINKS.linkedin, LINKS.callin] as const;

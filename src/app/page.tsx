@@ -25,7 +25,7 @@ import {
   TICKER,
   WORK,
 } from "@/lib/content";
-import { faqJsonLd, jsonLdGraph, PROFILE_PATH, profilePageJsonLd } from "@/lib/seo";
+import { faqJsonLd, jsonLdGraph, PORTRAIT_PATH, PROFILE_PATH, profilePageJsonLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -480,9 +480,11 @@ export default function Home() {
         <div className="grid gap-10 py-10 md:grid-cols-[240px_1fr] md:items-center">
           <MockVisual
             kind="portrait"
-            src="/images/hemendra-tripathi-technical-lead.png"
+            src={PORTRAIT_PATH}
             alt="Hemendra Tripathi, technical lead and voice AI engineer"
             aspect="aspect-square"
+            width={960}
+            height={960}
             ready
           />
           <div>
