@@ -143,8 +143,7 @@ export default function Home() {
           <MockVisual
             kind="callin"
             src="/images/work-callin.png"
-            alt="Callin.io analytics dashboard — call volume, usage, and success metrics"
-            ready
+            alt="Callin.io voice AI agent — live medical intake call with multi-LLM routing"
           />
         </div>
 
