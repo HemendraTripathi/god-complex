@@ -56,6 +56,10 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
+  other: {
+    me: [LINKS.github, LINKS.linkedin, `mailto:${SITE.email}`],
+    bingbot: "index, follow",
+  },
   formatDetection: {
     email: false,
     telephone: false,
@@ -75,9 +79,6 @@ export const metadata: Metadata = {
     other: {
       "msvalidate.01": "1C90B09FD6FCDF8D626A4CE796AB3657",
     },
-  },
-  other: {
-    me: [LINKS.github, LINKS.linkedin, `mailto:${SITE.email}`],
   },
 };
 

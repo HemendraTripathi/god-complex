@@ -9,6 +9,8 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
         disallow: ["/legacy/"],
       },
+      { userAgent: "Bingbot", allow: "/" },
+      { userAgent: "msnbot", allow: "/" },
       { userAgent: "GPTBot", allow: "/" },
       { userAgent: "ChatGPT-User", allow: "/" },
       { userAgent: "ClaudeBot", allow: "/" },
