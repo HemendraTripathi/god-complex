@@ -70,9 +70,12 @@ export const metadata: Metadata = {
     ],
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
-  ...(googleVerification
-    ? { verification: { google: googleVerification } }
-    : {}),
+  verification: {
+    ...(googleVerification ? { google: googleVerification } : {}),
+    other: {
+      "msvalidate.01": "1C90B09FD6FCDF8D626A4CE796AB3657",
+    },
+  },
   other: {
     me: [LINKS.github, LINKS.linkedin, `mailto:${SITE.email}`],
   },
