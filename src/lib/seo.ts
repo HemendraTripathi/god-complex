@@ -5,6 +5,8 @@ export const PERSON_ID = `${SITE_URL}/#person`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;
 export const PROFILE_PATH = "/hemendra-tripathi";
 export const PROFILE_URL = `${SITE_URL}${PROFILE_PATH}`;
+export const FIRST_NAME_PATH = "/hemendra";
+export const FIRST_NAME_URL = `${SITE_URL}${FIRST_NAME_PATH}`;
 export const PORTRAIT_PATH = "/images/hemendra-tripathi-technical-lead.webp";
 export const PORTRAIT_URL = `${SITE_URL}${PORTRAIT_PATH}`;
 
@@ -18,7 +20,9 @@ export function personJsonLd() {
     givenName: "Hemendra",
     familyName: "Tripathi",
     alternateName: [
+      "Hemendra",
       "Hemendra Tripathi Udaipur",
+      "Hemendra Callin.io",
       "Hemendra Tripathi Callin.io",
       "Hemendra Tripathi Appspundit Infotech",
     ],
@@ -86,7 +90,7 @@ export function websiteJsonLd() {
     "@type": "WebSite",
     "@id": WEBSITE_ID,
     name: SITE.name,
-    alternateName: ["me.readwith.io", "Hemendra Tripathi portfolio"],
+    alternateName: ["me.readwith.io", "Hemendra", "Hemendra Tripathi portfolio"],
     url: SITE_URL,
     description: SITE.description,
     inLanguage: "en",
@@ -111,10 +115,12 @@ export function profilePageJsonLd(url: string, pageId: string) {
   };
 }
 
-export function faqJsonLd() {
+export function faqJsonLd(
+  items: readonly { question: string; answer: string }[] = FAQS,
+) {
   return {
     "@type": "FAQPage",
-    mainEntity: FAQS.map((item) => ({
+    mainEntity: items.map((item) => ({
       "@type": "Question",
       name: item.question,
       acceptedAnswer: {
@@ -125,23 +131,20 @@ export function faqJsonLd() {
   };
 }
 
-export function breadcrumbJsonLd() {
+export function breadcrumbJsonLd(
+  items: { name: string; item: string }[] = [
+    { name: "Home", item: SITE_URL },
+    { name: SITE.name, item: PROFILE_URL },
+  ],
+) {
   return {
     "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: SITE_URL,
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: SITE.name,
-        item: PROFILE_URL,
-      },
-    ],
+    itemListElement: items.map((entry, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: entry.name,
+      item: entry.item,
+    })),
   };
 }
 

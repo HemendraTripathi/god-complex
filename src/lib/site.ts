@@ -14,12 +14,19 @@ export const SITE = {
   profileTitle: "Hemendra Tripathi | Official Profile",
   profileDescription:
     "Hemendra Tripathi is the Udaipur-based technical lead behind Callin.io voice AI. Official bio, work, and how to hire him.",
+  firstNameTitle: "Hemendra | Voice AI Technical Lead in Udaipur",
+  firstNameDescription:
+    "Hemendra is Hemendra Tripathi, a technical lead and voice AI engineer in Udaipur. He scaled Callin.io to 1,500+ customers. Official site.",
   locale: "en_US",
   email: "hemendratripathi880@gmail.com",
   location: "Udaipur, IN",
   jobTitle: "Technical Lead · AI Engineer",
   keywords: [
+    "Hemendra",
     "Hemendra Tripathi",
+    "Hemendra Udaipur",
+    "Hemendra Callin.io",
+    "Hemendra voice AI",
     "Hemendra Tripathi Udaipur",
     "Hemendra Tripathi Callin.io",
     "Technical Lead",

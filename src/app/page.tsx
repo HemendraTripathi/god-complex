@@ -79,7 +79,7 @@ export default function Home() {
         <div className="mt-10 grid gap-8 border-t-2 border-ink pt-8 md:grid-cols-[1.15fr_0.85fr] md:gap-12 lg:gap-16">
           <div>
             <p className="max-w-2xl text-[clamp(18px,2.4vw,26px)] font-medium leading-snug tracking-tight">
-              Hemendra Tripathi is a technical lead and AI engineer, primarily
+              Hemendra is a technical lead and AI engineer, primarily
               voice systems plus broader AI product work. He takes products from
               first commit to paying customers:{" "}
               <span className="text-org">

@@ -250,6 +250,11 @@ export const CAPABILITIES = [
 /** Hire-intent + expertise FAQs — keep answers ~40–60 words for snippet eligibility. */
 export const FAQS = [
   {
+    question: "Who is Hemendra?",
+    answer:
+      "Hemendra is Hemendra Tripathi, a technical lead and voice AI engineer in Udaipur, Rajasthan. He leads Callin.io at Appspundit Infotech: multi-LLM voice agents used by 1,500+ paying customers. His official site is https://me.readwith.io.",
+  },
+  {
     question: "Who is Hemendra Tripathi?",
     answer:
       "Hemendra Tripathi is a technical lead and voice AI engineer based in Udaipur, shipping for US and EU teams. As Technical Lead on Callin.io he scaled multi-LLM voice agents past 1,500 paying customers, cut inference cost about 20%, and owns architecture, billing, and hiring.",
@@ -286,10 +291,46 @@ export const FAQS = [
   },
 ] as const;
 
+/** Unique copy for /hemendra — first-name identity, not a duplicate of /hemendra-tripathi. */
+export const FIRST_NAME = {
+  definition:
+    "Hemendra is a technical lead and voice AI engineer in Udaipur. His full name is Hemendra Tripathi. He leads engineering on Callin.io at Appspundit Infotech, where multi-LLM voice agents serve 1,500+ paying customers.",
+  paragraphs: [
+    "People search “Hemendra” and land on many different professionals. This Hemendra is the voice AI technical lead in Udaipur, Rajasthan — not the journalist, not the Lok Sabha politicians, and not other engineers who share only the first name.",
+    "Confirm you have the right person: Hemendra Tripathi at Appspundit Infotech / Callin.io. LinkedIn is linkedin.com/in/hemendratripathi. GitHub is github.com/hemendratripathi. This site, me.readwith.io, is the official portfolio.",
+    "If you are hiring a voice AI technical lead, the case study, live agent demo, and work history live on the homepage. The full legal-name profile is me.readwith.io/hemendra-tripathi.",
+  ],
+  facts: [
+    { label: "First name", value: "Hemendra" },
+    { label: "Full name", value: "Hemendra Tripathi" },
+    { label: "Based", value: "Udaipur, Rajasthan, India" },
+    { label: "Role", value: "Technical Lead · AI Engineer" },
+    { label: "Known for", value: "Callin.io voice AI · 1,500+ customers" },
+    { label: "Official site", value: "me.readwith.io" },
+  ],
+  faqs: [
+    {
+      question: "Who is Hemendra?",
+      answer:
+        "Hemendra is Hemendra Tripathi, a technical lead and voice AI engineer based in Udaipur. He leads Callin.io at Appspundit Infotech. Official site: https://me.readwith.io.",
+    },
+    {
+      question: "Which Hemendra works on Callin.io?",
+      answer:
+        "Hemendra Tripathi of Udaipur is the technical lead behind Callin.io voice agents. He is the Hemendra at Appspundit Infotech, not other people who share the first name.",
+    },
+    {
+      question: "Where is Hemendra based?",
+      answer:
+        "Hemendra is based in Udaipur, Rajasthan, India, and ships for US and EU teams. Email hemendratripathi880@gmail.com; he typically replies within 24 hours.",
+    },
+  ],
+} as const;
+
 /** Unique copy for /hemendra-tripathi — do not paste the homepage verbatim. */
 export const PROFILE = {
   definition:
-    "Hemendra Tripathi is a technical lead and voice AI engineer based in Udaipur, Rajasthan. He leads engineering on Callin.io at Appspundit Infotech: multi-LLM voice agents used by 1,500+ paying customers across US and EU teams.",
+    "Hemendra is a technical lead and voice AI engineer based in Udaipur, Rajasthan. Full name: Hemendra Tripathi. He leads engineering on Callin.io at Appspundit Infotech: multi-LLM voice agents used by 1,500+ paying customers across US and EU teams.",
   paragraphs: [
     "Hemendra Tripathi builds systems that talk, bill, and stay up. As Technical Lead he owns architecture, vendor spend, hiring, and product roadmaps, reporting directly to the founder. The work that defines him is Callin.io: complexity-aware model routing, dual-carrier telephony, and usage ledgers precise enough that billing disputes stayed near zero after launch.",
     "Before leading the voice platform he shipped 10+ freelance products across MERN, Django, Flask, and Laravel, including a fintech accounts system that saved 15+ staff-hours a week, and taught 150+ students at Aimers Institute and VT College. That mix of shipping, teaching, and P&L ownership is why teams hire him as a technical lead, not only as a specialist.",

@@ -14,6 +14,11 @@ const nextConfig: NextConfig = {
         destination: "/hemendra-tripathi",
         permanent: true,
       },
+      {
+        source: "/who-is-hemendra",
+        destination: "/hemendra",
+        permanent: true,
+      },
     ];
   },
 };

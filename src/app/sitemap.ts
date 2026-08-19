@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
-import { PORTRAIT_URL, PROFILE_URL } from "@/lib/seo";
+import { FIRST_NAME_URL, PORTRAIT_URL, PROFILE_URL } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 
-const LAST_MODIFIED = "2026-08-14";
+const LAST_MODIFIED = "2026-08-19";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -18,6 +18,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: LAST_MODIFIED,
       changeFrequency: "weekly",
       priority: 0.9,
+      images: [PORTRAIT_URL],
+    },
+    {
+      url: FIRST_NAME_URL,
+      lastModified: LAST_MODIFIED,
+      changeFrequency: "weekly",
+      priority: 0.85,
       images: [PORTRAIT_URL],
     },
   ];
