@@ -7,6 +7,7 @@ Update if your real handles differ:
 - `github`
 - `linkedin`
 - `callin`
+- `calendar` — Cal.com booking page (`https://cal.com/hemendratripathi/hiring-freelance`)
 
 ## Images (`public/images/`)
 

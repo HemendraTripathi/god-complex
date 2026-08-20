@@ -13,6 +13,7 @@ import {
   type Persona,
   type TopicId,
 } from "@/lib/script";
+import BharatMark from "./BharatMark";
 import CountUp from "./CountUp";
 import { LINKS } from "@/lib/content";
 
@@ -101,10 +102,10 @@ function LeadFile({
               <div>
                 <div className="text-[14px] font-bold">Hemendra Tripathi</div>
                 <div className="text-[11.5px] text-steel">
-                  Technical Lead · AI Engineer · Voice Systems
+                  Technical Lead · AI Engineer · AI Voice Engineer
                 </div>
-                <div className="font-mono text-[9.5px] uppercase tracking-wide text-steel">
-                  Udaipur, IN · US/EU timezones
+                <div className="flex flex-wrap items-center gap-x-[0.4em] font-mono text-[9.5px] uppercase tracking-wide text-steel">
+                  Udaipur, IN <BharatMark /> · US/EU timezones
                 </div>
               </div>
             </div>
@@ -599,17 +600,18 @@ export default function AgentCall() {
                 </div>
                 <div className="mt-6 flex flex-col gap-2.5 sm:flex-row">
                   <a
-                    href={`mailto:${LINKS.email}?subject=Let%27s%20talk%20%E2%80%94%20hiring`}
+                    href={LINKS.calendar}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex-1 border-2 border-ink bg-ink px-5 py-3 text-center font-mono text-[10.5px] font-bold uppercase tracking-widest text-paper transition-colors hover:border-org hover:bg-org"
                   >
-                    Email Hemendra
+                    Book 20 minutes
                   </a>
                   <a
-                    href={LINKS.resume}
-                    download
+                    href={`mailto:${LINKS.email}?subject=Let%27s%20talk%20%E2%80%94%20hiring`}
                     className="flex-1 border-2 border-ink px-5 py-3 text-center font-mono text-[10.5px] font-bold uppercase tracking-widest transition-colors hover:bg-ink hover:text-paper"
                   >
-                    Résumé (PDF)
+                    Email Hemendra
                   </a>
                 </div>
                 <button

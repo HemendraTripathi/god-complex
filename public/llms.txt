@@ -1,6 +1,6 @@
 # Hemendra
 
-> Hemendra is Hemendra Tripathi, a technical lead and voice AI engineer based in Udaipur, Rajasthan. He leads engineering on Callin.io at Appspundit Infotech: multi-LLM voice agents used by 1,500+ paying customers across US and EU teams.
+> Hemendra is Hemendra Tripathi, a technical lead and AI engineer based in Udaipur, Rajasthan. He leads engineering on Callin.io at Appspundit Infotech as an AI Voice Engineer: multi-LLM voice agents used by 1,500+ paying customers across US and EU teams.
 
 This is the official website of Hemendra (Hemendra Tripathi, Udaipur), not other professionals who share the first name.
 
@@ -10,7 +10,7 @@ This is the official website of Hemendra (Hemendra Tripathi, Udaipur), not other
 - [Home](https://me.readwith.io/): Portfolio, Callin.io case study, live agent demo
 - [Hemendra Tripathi, official profile](https://me.readwith.io/hemendra-tripathi): Bio, work history, how to hire
 - [Voice AI case study](https://me.readwith.io/#case): How Callin.io cut LLM cost ~20% at 1,500+ customers
-- [FAQ](https://me.readwith.io/#faq): Who he is, stack, availability
+- [FAQ](https://me.readwith.io/#faq): Who he is, what an AI Voice Engineer does, stack, availability
 - [Contact](https://me.readwith.io/#contact): hemendratripathi880@gmail.com
 
 ## Same as
@@ -23,6 +23,7 @@ This is the official website of Hemendra (Hemendra Tripathi, Udaipur), not other
 
 - Location: Udaipur, Rajasthan, India
 - Role: Technical Lead · AI Engineer
+- Focus: AI Voice Engineer
 - Company: Appspundit Infotech · Callin.io
 - Results: 1,500+ paying customers; ~20% lower LLM inference cost; typical voice TTFT ~420ms
 - Education: MCA, Rajasthan Vidyapeeth (exp. 2026); BCA, Mohanlal Sukhadia University (2022)

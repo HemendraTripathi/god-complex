@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import BharatMark from "@/components/BharatMark";
 import JsonLd from "@/components/JsonLd";
 import MockVisual from "@/components/MockVisual";
 import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
+import SocialLink from "@/components/SocialLink";
 import { EXPERIENCE, LINKS, PROFILE } from "@/lib/content";
 import {
   PORTRAIT_PATH,
@@ -57,7 +59,9 @@ export default function HemendraTripathiPage() {
 
       <main id="main">
         <header className="mx-auto max-w-7xl px-5 pt-28 sm:px-8 sm:pt-36">
-          <p className="eyebrow mb-6">Official profile · Udaipur, IN</p>
+          <p className="eyebrow mb-6 flex items-center gap-[0.4em]">
+            Official profile · Udaipur, IN <BharatMark />
+          </p>
           <h1 className="display text-[clamp(40px,8vw,96px)]">
             Hemendra
             <span className="mt-1 block text-org">Tripathi</span>
@@ -78,7 +82,7 @@ export default function HemendraTripathiPage() {
             <MockVisual
               kind="portrait"
               src={PORTRAIT_PATH}
-              alt="Hemendra Tripathi, technical lead and voice AI engineer in Udaipur"
+              alt="Hemendra Tripathi, technical lead and AI engineer in Udaipur"
               aspect="aspect-square"
               width={960}
               height={960}
@@ -155,36 +159,49 @@ export default function HemendraTripathiPage() {
             How to reach Hemendra Tripathi
           </h2>
           <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-ink/80">
-            Email{" "}
+            <a
+              href={LINKS.calendar}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-ink underline-offset-2 hover:underline"
+            >
+              Book a 20-minute call
+            </a>
+            , or email{" "}
             <a
               href={`mailto:${LINKS.email}?subject=Hiring%20conversation`}
               className="font-semibold text-ink underline-offset-2 hover:underline"
             >
               {LINKS.email}
             </a>
-            . Replies within 24 hours. Open to technical-lead, AI engineer, and
-            senior full-stack roles, plus select freelance.
+            . Timezone is converted for you. Replies within 24 hours. Open to
+            technical-lead, AI engineer, and senior full-stack roles, plus
+            select freelance.
           </p>
           <div className="mt-8 flex flex-wrap gap-6 font-mono text-[11px] font-bold uppercase tracking-[0.18em]">
-            <Link href="/#case" className="text-org hover:underline">
+            <a
+              href={LINKS.calendar}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-org hover:underline"
+            >
+              Book 20 min ↗
+            </a>
+            <Link href="/#case" className="text-ink hover:text-org">
               Voice AI case study →
             </Link>
-            <a
-              rel="me"
-              href={LINKS.github}
-              target="_blank"
+            <SocialLink
+              network="github"
               className="text-ink hover:text-org"
             >
               GitHub ↗
-            </a>
-            <a
-              rel="me"
-              href={LINKS.linkedin}
-              target="_blank"
+            </SocialLink>
+            <SocialLink
+              network="linkedin"
               className="text-ink hover:text-org"
             >
               LinkedIn ↗
-            </a>
+            </SocialLink>
             <a href={LINKS.resume} download className="text-ink hover:text-org">
               Résumé ↓
             </a>
@@ -194,7 +211,7 @@ export default function HemendraTripathiPage() {
         <section className="mt-16 border-t-2 border-ink">
           <div className="mx-auto max-w-7xl px-5 py-10 sm:px-8">
             <p className="max-w-2xl text-[13px] leading-relaxed text-steel">
-              Looking for Hemendra Tripathi the voice AI technical lead in
+              Looking for Hemendra Tripathi the technical lead and AI engineer in
               Udaipur? You are on his official profile. First-name page:{" "}
               <Link
                 href="/hemendra"

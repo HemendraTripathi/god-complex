@@ -6,17 +6,17 @@ export const SITE_URL =
 export const SITE = {
   url: SITE_URL,
   name: "Hemendra Tripathi",
-  title: "Hemendra Tripathi | Technical Lead · Voice AI Engineer",
+  title: "Hemendra Tripathi | Technical Lead · AI Engineer",
   description:
-    "Hemendra Tripathi is a technical lead and voice AI engineer in Udaipur. He scaled Callin.io to 1,500+ customers. Open to hire.",
+    "Hemendra Tripathi is a technical lead and AI engineer in Udaipur. As an AI Voice Engineer he scaled Callin.io to 1,500+ customers. Open to hire.",
   shortDescription:
-    "Hemendra Tripathi, voice AI technical lead in Udaipur. Callin.io: 1,500+ customers. Open to hire.",
-  profileTitle: "Hemendra Tripathi | Official Profile",
+    "Hemendra Tripathi, technical lead and AI engineer in Udaipur. Callin.io: 1,500+ customers. Open to hire.",
+  profileTitle: "Hemendra Tripathi | Technical Lead · AI Engineer",
   profileDescription:
-    "Hemendra Tripathi is the Udaipur-based technical lead behind Callin.io voice AI. Official bio, work, and how to hire him.",
-  firstNameTitle: "Hemendra | Voice AI Technical Lead in Udaipur",
+    "Hemendra Tripathi is a technical lead and AI engineer in Udaipur, and the AI Voice Engineer behind Callin.io. Official bio, work, and how to hire him.",
+  firstNameTitle: "Hemendra | Technical Lead · AI Engineer in Udaipur",
   firstNameDescription:
-    "Hemendra is Hemendra Tripathi, a technical lead and voice AI engineer in Udaipur. He scaled Callin.io to 1,500+ customers. Official site.",
+    "Hemendra is Hemendra Tripathi, a technical lead and AI engineer in Udaipur. He scaled Callin.io to 1,500+ customers. Official site.",
   locale: "en_US",
   email: "hemendratripathi880@gmail.com",
   location: "Udaipur, IN",
@@ -24,6 +24,7 @@ export const SITE = {
   keywords: [
     "Hemendra",
     "Hemendra Tripathi",
+    "AI Voice Engineer",
     "Hemendra Udaipur",
     "Hemendra Callin.io",
     "Hemendra voice AI",
@@ -34,6 +35,7 @@ export const SITE = {
     "voice AI technical lead",
     "AI voice systems",
     "voice AI engineer",
+    "hire AI Voice Engineer",
     "Callin.io",
     "full-stack developer",
     "multi-LLM orchestration",

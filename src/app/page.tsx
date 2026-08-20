@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import AgentCall from "@/components/AgentCall";
+import BharatMark from "@/components/BharatMark";
 import ArchitectureFlow from "@/components/ArchitectureFlow";
 import JsonLd from "@/components/JsonLd";
 import MockVisual from "@/components/MockVisual";
 import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
+import SocialLink from "@/components/SocialLink";
 import {
   ContactMagnet,
   ContactTitle,
@@ -79,15 +81,15 @@ export default function Home() {
         <div className="mt-10 grid gap-8 border-t-2 border-ink pt-8 md:grid-cols-[1.15fr_0.85fr] md:gap-12 lg:gap-16">
           <div>
             <p className="max-w-2xl text-[clamp(18px,2.4vw,26px)] font-medium leading-snug tracking-tight">
-              Hemendra is a technical lead and AI engineer, primarily
-              voice systems plus broader AI product work. He takes products from
+              Hemendra is a technical lead and AI engineer. He ships as an
+              AI Voice Engineer, plus broader AI product work. He takes products from
               first commit to paying customers:{" "}
               <span className="text-org">
                 architecture, billing, teams, and the revenue they produce.
               </span>
             </p>
-            <p className="mt-4 font-mono text-[11px] uppercase tracking-wider text-steel">
-              Udaipur, IN · US / EU teams · Callin.io Tech Lead
+            <p className="mt-4 flex flex-wrap items-center gap-x-[0.4em] font-mono text-[11px] uppercase tracking-wider text-steel">
+              Udaipur, IN <BharatMark /> · US / EU teams · Callin.io Tech Lead
             </p>
           </div>
           <dl
@@ -347,7 +349,7 @@ export default function Home() {
         <div className="grid gap-8 pt-10 lg:grid-cols-[minmax(0,360px)_1fr] lg:gap-14">
           <div>
             <p className="text-[15px] leading-relaxed text-ink/80">
-              I build AI agents that make real phone calls for a living. This
+              I build AI voice agents that make real phone calls for a living. This
               one runs on the same conversational patterns as production
               voice agents, except its lead-qualification target is{" "}
               <span className="font-bold text-org">you</span>.
@@ -481,7 +483,7 @@ export default function Home() {
           <MockVisual
             kind="portrait"
             src={PORTRAIT_PATH}
-            alt="Hemendra Tripathi, technical lead and voice AI engineer"
+            alt="Hemendra Tripathi, technical lead and AI engineer"
             aspect="aspect-square"
             width={960}
             height={960}
@@ -498,22 +500,12 @@ export default function Home() {
               that own what they build.
             </p>
             <div className="mt-6 flex flex-wrap gap-6 font-mono text-[11px] font-bold uppercase tracking-[0.18em]">
-              <a
-                href={LINKS.github}
-                target="_blank"
-                rel="me"
-                className="text-ink hover:text-org"
-              >
+              <SocialLink network="github" className="text-ink hover:text-org">
                 GitHub ↗
-              </a>
-              <a
-                href={LINKS.linkedin}
-                target="_blank"
-                rel="me"
-                className="text-ink hover:text-org"
-              >
+              </SocialLink>
+              <SocialLink network="linkedin" className="text-ink hover:text-org">
                 LinkedIn ↗
-              </a>
+              </SocialLink>
               <a
                 href={PROFILE_PATH}
                 className="text-ink hover:text-org"
@@ -537,7 +529,7 @@ export default function Home() {
         <SectionHead
           idx="09"
           title="FAQ"
-          right="Hire a voice AI technical lead"
+          right="Hire a technical lead · AI engineer"
         />
         <div className="divide-y-2 divide-ink border-2 border-t-0 border-ink">
           {FAQS.map((item) => (
@@ -576,35 +568,37 @@ export default function Home() {
             Looking for a technical lead and AI engineer who has already shipped
             voice AI into revenue, and can stretch into other AI product work.
             Open to technical-lead / AI engineer / senior full-stack roles and
-            select freelance. Replies within 24 hours.
+            select freelance. Pick a 20-minute slot — timezone is converted for
+            you — or email if you prefer. Replies within 24 hours.
           </p>
-          <div className="mt-10 flex flex-wrap gap-4">
+          <div className="mt-10 flex flex-wrap items-center gap-4">
             <ContactMagnet>
               <a
-                href={`mailto:${LINKS.email}?subject=Let%27s%20talk%20%E2%80%94%20hiring`}
+                href={LINKS.calendar}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-block border-2 border-ink bg-ink px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-paper shadow-brutal transition-colors hover:border-org hover:bg-org"
               >
-                {LINKS.email}
+                Book 20 minutes
               </a>
             </ContactMagnet>
+            <a
+              href={`mailto:${LINKS.email}?subject=Let%27s%20talk%20%E2%80%94%20hiring`}
+              className="inline-block border-2 border-ink px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-ink hover:text-paper"
+            >
+              {LINKS.email}
+            </a>
           </div>
+          <p className="mt-4 font-mono text-[10px] uppercase tracking-wider text-steel">
+            US / EU-friendly hours · timezone handled
+          </p>
           <div className="mt-10 flex flex-wrap gap-8 font-mono text-[10.5px] font-bold uppercase tracking-[0.2em] text-steel">
-            <a
-              href={LINKS.github}
-              target="_blank"
-              rel="me"
-              className="transition-colors hover:text-org"
-            >
+            <SocialLink network="github" className="transition-colors hover:text-org">
               GitHub ↗
-            </a>
-            <a
-              href={LINKS.linkedin}
-              target="_blank"
-              rel="me"
-              className="transition-colors hover:text-org"
-            >
+            </SocialLink>
+            <SocialLink network="linkedin" className="transition-colors hover:text-org">
               LinkedIn ↗
-            </a>
+            </SocialLink>
             <a
               href={PROFILE_PATH}
               className="transition-colors hover:text-org"

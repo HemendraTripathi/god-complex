@@ -11,7 +11,7 @@ export function HeroEyebrow() {
   return (
     <div className="eyebrow mb-6 flex items-center justify-between">
       <DecryptedText
-        text="Technical Lead · Voice AI Engineer"
+        text="Technical Lead · AI Engineer · AI Voice Engineer"
         animateOn="view"
         sequential
         speed={28}
@@ -104,10 +104,12 @@ export function HeroCtas() {
           Talk to my AI agent
         </a>
         <a
-          href={`mailto:${LINKS.email}?subject=Hiring%20conversation`}
+          href={LINKS.calendar}
+          target="_blank"
+          rel="noopener noreferrer"
           className="text-steel underline-offset-4 hover:text-org hover:underline"
         >
-          Email me
+          Book 20 min
         </a>
       </div>
     </div>

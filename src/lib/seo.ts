@@ -31,7 +31,7 @@ export function personJsonLd() {
       "@type": "ImageObject",
       url: PORTRAIT_URL,
       contentUrl: PORTRAIT_URL,
-      caption: "Hemendra Tripathi, technical lead and voice AI engineer in Udaipur",
+      caption: "Hemendra Tripathi, technical lead and AI engineer in Udaipur",
     },
     jobTitle: SITE.jobTitle,
     description: SITE.description,
@@ -53,6 +53,8 @@ export function personJsonLd() {
     knowsLanguage: ["en", "hi"],
     sameAs: [...SAME_AS],
     knowsAbout: [
+      "AI Voice Engineer",
+      "AI Engineer",
       "AI voice systems",
       "voice AI technical lead",
       "Multi-LLM orchestration",
@@ -79,8 +81,9 @@ export function personJsonLd() {
     hasOccupation: {
       "@type": "Occupation",
       name: "Technical Lead",
+      alternateName: ["AI Engineer", "AI Voice Engineer", "Voice AI Technical Lead"],
       description:
-        "Voice AI technical lead: architecture, billing, hiring, and multi-LLM voice agents.",
+        "Technical lead and AI engineer: architecture, billing, hiring, and multi-LLM voice agents as an AI Voice Engineer.",
     },
   };
 }

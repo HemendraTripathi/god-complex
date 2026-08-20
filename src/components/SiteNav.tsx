@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useId, useState } from "react";
+import SocialLink from "@/components/SocialLink";
 import { LINKS, NAV } from "@/lib/content";
 
 export default function SiteNav() {
@@ -48,20 +49,34 @@ export default function SiteNav() {
         </div>
 
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-          <a
-            href={LINKS.github}
-            target="_blank"
-            rel="me"
-            className="hidden font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-steel transition-colors hover:text-org sm:block"
-          >
-            GitHub
-          </a>
+          <span className="hidden sm:contents">
+            <SocialLink
+              network="github"
+              className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-steel transition-colors hover:text-org"
+            >
+              GitHub
+            </SocialLink>
+            <SocialLink
+              network="linkedin"
+              className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-steel transition-colors hover:text-org"
+            >
+              LinkedIn
+            </SocialLink>
+          </span>
           <a
             href={LINKS.resume}
             download
-            className="inline-flex h-8 items-center border-2 border-ink bg-ink px-3 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-paper transition-colors hover:border-org hover:bg-org sm:px-4"
+            className="hidden h-8 items-center border-2 border-ink px-3 font-mono text-[10px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-ink hover:text-paper sm:inline-flex sm:px-4"
           >
             Résumé ↓
+          </a>
+          <a
+            href={LINKS.calendar}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex h-8 items-center border-2 border-ink bg-ink px-3 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-paper transition-colors hover:border-org hover:bg-org sm:px-4"
+          >
+            Book 20 min
           </a>
           <button
             type="button"
