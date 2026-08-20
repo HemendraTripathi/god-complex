@@ -78,21 +78,24 @@ export default function HemendraTripathiPage() {
         </header>
 
         <section className="mx-auto max-w-7xl px-5 pt-16 sm:px-8">
-          <div className="grid gap-10 border-t-2 border-ink py-10 md:grid-cols-[240px_1fr] md:items-start">
-            <MockVisual
-              kind="portrait"
-              src={PORTRAIT_PATH}
-              alt="Hemendra Tripathi, technical lead and AI engineer in Udaipur"
-              aspect="aspect-square"
-              width={960}
-              height={960}
-              ready
-            />
-            <dl className="grid gap-0 border-2 border-ink sm:grid-cols-2">
+          <div className="grid items-stretch gap-10 border-t-2 border-ink py-10 md:grid-cols-[240px_1fr]">
+            <div className="relative aspect-square md:aspect-auto">
+              <MockVisual
+                kind="portrait"
+                src={PORTRAIT_PATH}
+                alt="Hemendra Tripathi, technical lead and AI engineer in Udaipur"
+                aspect=""
+                className="absolute inset-0 h-full w-full"
+                width={960}
+                height={960}
+                ready
+              />
+            </div>
+            <dl className="grid h-full sm:grid-cols-2 sm:grid-rows-3 border-2 border-ink">
               {PROFILE.facts.map((fact, i) => (
                 <div
                   key={fact.label}
-                  className={`border-hair p-5 ${i % 2 === 1 ? "sm:border-l" : ""} ${i >= 2 ? "border-t" : ""}`}
+                  className={`flex flex-col justify-center border-hair p-5 ${i % 2 === 1 ? "sm:border-l" : ""} ${i >= 2 ? "border-t" : ""}`}
                 >
                   <dt className="font-mono text-[10px] uppercase tracking-wider text-steel">
                     {fact.label}

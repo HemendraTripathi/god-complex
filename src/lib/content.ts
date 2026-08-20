@@ -304,7 +304,7 @@ export const FIRST_NAME = {
   definition:
     "Hemendra is a technical lead and AI engineer in Udaipur. His full name is Hemendra Tripathi. He leads engineering on Callin.io at Appspundit Infotech as an AI Voice Engineer, where multi-LLM voice agents serve 1,500+ paying customers.",
   paragraphs: [
-    "People search “Hemendra” and land on many different professionals. This Hemendra is the technical lead and AI engineer in Udaipur, Rajasthan — not the journalist, not the Lok Sabha politicians, and not other engineers who share only the first name.",
+    "People search “Hemendra” and land on many different professionals. This Hemendra is the technical lead and AI engineer in Udaipur, Rajasthan. He is not the journalist, not the Lok Sabha politicians, and not other engineers who share only the first name.",
     "Confirm you have the right person: Hemendra Tripathi at Appspundit Infotech / Callin.io. LinkedIn is linkedin.com/in/hemendratripathi. GitHub is github.com/hemendratripathi. This site, me.readwith.io, is the official portfolio.",
     "If you are hiring a technical lead, AI engineer, or AI Voice Engineer, the case study, live agent demo, and work history live on the homepage. The full legal-name profile is me.readwith.io/hemendra-tripathi.",
   ],

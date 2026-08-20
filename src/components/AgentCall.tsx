@@ -608,7 +608,7 @@ export default function AgentCall() {
                     Book 20 minutes
                   </a>
                   <a
-                    href={`mailto:${LINKS.email}?subject=Let%27s%20talk%20%E2%80%94%20hiring`}
+                    href={`mailto:${LINKS.email}?subject=Let%27s%20talk%20hiring`}
                     className="flex-1 border-2 border-ink px-5 py-3 text-center font-mono text-[10.5px] font-bold uppercase tracking-widest transition-colors hover:bg-ink hover:text-paper"
                   >
                     Email Hemendra

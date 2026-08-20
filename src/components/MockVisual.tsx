@@ -14,6 +14,7 @@ export default function MockVisual({
   alt,
   width = 1200,
   height = 750,
+  className = "",
 }: {
   kind: Visual;
   src: string;
@@ -22,6 +23,7 @@ export default function MockVisual({
   alt: string;
   width?: number;
   height?: number;
+  className?: string;
 }) {
   if (ready) {
     return (
@@ -32,7 +34,7 @@ export default function MockVisual({
         height={height}
         loading="lazy"
         decoding="async"
-        className={`${aspect} w-full border-2 border-ink object-cover`}
+        className={`${aspect} w-full border-2 border-ink object-cover ${className}`}
       />
     );
   }
@@ -41,7 +43,7 @@ export default function MockVisual({
     <div
       role="img"
       aria-label={alt}
-      className={`${aspect} relative w-full overflow-hidden border-2 border-ink bg-paper`}
+      className={`${aspect} relative w-full overflow-hidden border-2 border-ink bg-paper ${className}`}
     >
       {kind === "callin" && <CallinMock />}
       {kind === "condo" && <CondoMock />}

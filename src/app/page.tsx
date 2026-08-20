@@ -568,8 +568,8 @@ export default function Home() {
             Looking for a technical lead and AI engineer who has already shipped
             voice AI into revenue, and can stretch into other AI product work.
             Open to technical-lead / AI engineer / senior full-stack roles and
-            select freelance. Pick a 20-minute slot — timezone is converted for
-            you — or email if you prefer. Replies within 24 hours.
+            select freelance. Pick a 20-minute slot (timezone is converted for
+            you), or email if you prefer. Replies within 24 hours.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <ContactMagnet>
@@ -583,7 +583,7 @@ export default function Home() {
               </a>
             </ContactMagnet>
             <a
-              href={`mailto:${LINKS.email}?subject=Let%27s%20talk%20%E2%80%94%20hiring`}
+              href={`mailto:${LINKS.email}?subject=Let%27s%20talk%20hiring`}
               className="inline-block border-2 border-ink px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-ink hover:text-paper"
             >
               {LINKS.email}
