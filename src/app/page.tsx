@@ -7,6 +7,7 @@ import MockVisual from "@/components/MockVisual";
 import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
 import SocialLink from "@/components/SocialLink";
+import SpotlightPortrait from "@/components/SpotlightPortrait";
 import {
   ContactMagnet,
   ContactTitle,
@@ -28,7 +29,7 @@ import {
   TICKER,
   WORK,
 } from "@/lib/content";
-import { faqJsonLd, jsonLdGraph, PORTRAIT_PATH, PROFILE_PATH, profilePageJsonLd } from "@/lib/seo";
+import { faqJsonLd, jsonLdGraph, PORTRAIT_BATMAN_PATH, PORTRAIT_PATH, PROFILE_PATH, profilePageJsonLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 
 const AgentCall = dynamic(() => import("@/components/AgentCall"), {
@@ -473,14 +474,12 @@ export default function Home() {
       <section className="mx-auto max-w-7xl px-5 pt-24 sm:px-8">
         <SectionHead idx="08" title="Off the Record" />
         <div className="grid gap-10 py-10 md:grid-cols-[240px_1fr] md:items-center">
-          <MockVisual
-            kind="portrait"
-            src={PORTRAIT_PATH}
+          <SpotlightPortrait
+            srcA={PORTRAIT_PATH}
+            srcB={PORTRAIT_BATMAN_PATH}
             alt="Hemendra Tripathi, technical lead and AI engineer"
-            aspect="aspect-square"
             width={960}
             height={960}
-            ready
           />
           <div>
             <p className="max-w-2xl text-[clamp(17px,2vw,22px)] font-medium leading-normal tracking-tight">
@@ -491,6 +490,8 @@ export default function Home() {
               <span className="text-org">1,500 companies</span> paid for it. I
               like systems that are boring, fast, and profitable, and teams
               that own what they build.
+              <br />
+              I&rsquo;m Batman.
             </p>
             <div className="mt-6 flex flex-wrap gap-6 font-mono text-[11px] font-bold uppercase tracking-[0.18em]">
               <SocialLink network="github" className="text-[16px] text-ink hover:text-org" />

@@ -9,6 +9,7 @@ export const FIRST_NAME_PATH = "/hemendra";
 export const FIRST_NAME_URL = `${SITE_URL}${FIRST_NAME_PATH}`;
 export const PORTRAIT_PATH = "/images/hemendra-tripathi-technical-lead.webp";
 export const PORTRAIT_URL = `${SITE_URL}${PORTRAIT_PATH}`;
+export const PORTRAIT_BATMAN_PATH = "/images/hemendra-tripathi-batman.webp";
 
 export const SAME_AS = [
   LINKS.github,
