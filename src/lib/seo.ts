@@ -156,6 +156,60 @@ export function breadcrumbJsonLd(
   };
 }
 
+export function writingCollectionJsonLd(postCount: number) {
+  return {
+    "@type": "CollectionPage",
+    "@id": `${SITE_URL}/writing#collection`,
+    url: `${SITE_URL}/writing`,
+    name: "Writing",
+    description:
+      "Notes on AI voice systems, technical leadership, and shipping products.",
+    inLanguage: "en",
+    isPartOf: { "@id": WEBSITE_ID },
+    about: { "@id": PERSON_ID },
+    numberOfItems: postCount,
+  };
+}
+
+export function blogPostingJsonLd({
+  title,
+  description,
+  url,
+  publishedAt,
+  imageUrl,
+  tags,
+}: {
+  title: string;
+  description: string;
+  url: string;
+  publishedAt: string;
+  imageUrl?: string;
+  tags?: string[];
+}) {
+  return {
+    "@type": "BlogPosting",
+    "@id": `${url}#article`,
+    headline: title,
+    description,
+    url,
+    datePublished: publishedAt,
+    inLanguage: "en",
+    author: { "@id": PERSON_ID },
+    publisher: { "@id": PERSON_ID },
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    isPartOf: { "@id": `${SITE_URL}/writing#collection` },
+    ...(imageUrl
+      ? {
+          image: {
+            "@type": "ImageObject",
+            url: imageUrl,
+          },
+        }
+      : {}),
+    ...(tags?.length ? { keywords: tags.join(", ") } : {}),
+  };
+}
+
 export function jsonLdGraph(nodes: Record<string, unknown>[]) {
   return {
     "@context": "https://schema.org",

@@ -11,6 +11,7 @@ export const LINKS = {
 
 export const NAV = [
   ["About", "/hemendra-tripathi"],
+  ["Writing", "/writing"],
   ["Case", "/#case"],
   ["Work", "/#work"],
   ["Experience", "/#experience"],
