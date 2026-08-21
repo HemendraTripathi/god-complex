@@ -415,7 +415,6 @@ export default function AgentCall() {
             <button
               type="button"
               onClick={() => setDeclineIdx((i) => Math.min(i + 1, DECLINE_LINES.length - 1))}
-              aria-label="Decline the demo call"
               className="border-2 border-ink px-6 py-3 font-mono text-[11px] font-bold uppercase tracking-widest transition-colors hover:border-org hover:text-org"
             >
               <span aria-hidden="true">✕ </span>Decline
@@ -423,7 +422,6 @@ export default function AgentCall() {
             <button
               type="button"
               onClick={answer}
-              aria-label="Answer the demo call"
               className="border-2 border-ink bg-ink px-6 py-3 font-mono text-[11px] font-bold uppercase tracking-widest text-paper shadow-brutal transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-org hover:shadow-none"
             >
               <span aria-hidden="true">▶ </span>Answer call

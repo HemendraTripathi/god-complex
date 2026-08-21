@@ -3,7 +3,8 @@
 @theme inline {
   --color-paper: #ece9e2;
   --color-ink: #161616;
-  --color-org: #ff4d00;
+  /* Darker orange for WCAG AA on paper (#ece9e2): ~4.9:1 */
+  --color-org: #b83600;
   --color-steel: #524e45;
   --color-hair: rgba(22, 22, 22, 0.16);
 
@@ -61,7 +62,8 @@ html {
   .blink,
   .callpulse,
   .eq-on .eq-bar,
-  .tsq {
+  .tsq,
+  .hop-arrow {
     animation: none !important;
   }
 
@@ -211,6 +213,20 @@ body {
 }
 .marquee-track {
   animation: marquee 26s linear infinite;
+}
+
+/* architecture hop arrow pulse */
+@keyframes hop-arrow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+.hop-arrow {
+  animation: hop-arrow 0.72s ease-in-out infinite;
 }
 
 /* image placeholder stripes */

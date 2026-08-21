@@ -227,6 +227,7 @@ export default async function WritingPostPage({ params }: Props) {
                     </Link>
                     <Link
                       href="/#contact"
+                      prefetch={false}
                       className="inline-flex h-10 items-center border-2 border-ink bg-ink px-4 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-paper transition-colors hover:border-org hover:bg-org"
                     >
                       Get in touch

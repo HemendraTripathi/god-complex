@@ -191,7 +191,7 @@ export default function HemendraTripathiPage() {
             >
               Book 20 min ↗
             </a>
-            <Link href="/#case" className="text-ink hover:text-org">
+            <Link href="/#case" prefetch={false} className="text-ink hover:text-org">
               Voice AI case study →
             </Link>
             <SocialLink network="github" className="text-[16px] text-ink hover:text-org" />
@@ -215,7 +215,11 @@ export default function HemendraTripathiPage() {
                 Hemendra
               </Link>
               . Portfolio and case study at{" "}
-              <Link href="/" className="text-ink underline-offset-2 hover:underline">
+              <Link
+                href="/"
+                prefetch={false}
+                className="text-ink underline-offset-2 hover:underline"
+              >
                 me.readwith.io
               </Link>
               .

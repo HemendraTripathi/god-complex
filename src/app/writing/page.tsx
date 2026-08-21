@@ -95,6 +95,7 @@ export default async function WritingIndexPage() {
               First piece is on the way. Meanwhile,{" "}
               <Link
                 href="/#contact"
+                prefetch={false}
                 className="font-medium text-org underline decoration-org/40 underline-offset-4 hover:decoration-org"
               >
                 say hello

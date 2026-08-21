@@ -78,7 +78,7 @@ export default function WritingToc({ items }: { items: WritingTocItem[] }) {
                 />
                 <span
                   className={`shrink-0 font-mono text-[10px] font-bold ${
-                    active ? "text-org" : "text-org/70 group-hover:text-org"
+                    active ? "text-org" : "text-steel group-hover:text-org"
                   }`}
                 >
                   ({String(item.index).padStart(2, "0")})

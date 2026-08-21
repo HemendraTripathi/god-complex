@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import AgentCall from "@/components/AgentCall";
+import dynamic from "next/dynamic";
 import BharatMark from "@/components/BharatMark";
 import ArchitectureFlow from "@/components/ArchitectureFlow";
 import JsonLd from "@/components/JsonLd";
@@ -14,6 +14,7 @@ import {
   HeroCtas,
   HeroEyebrow,
   HeroFocus,
+  HeroMetrics,
   HeroName,
 } from "@/components/WowBits";
 import {
@@ -29,6 +30,15 @@ import {
 } from "@/lib/content";
 import { faqJsonLd, jsonLdGraph, PORTRAIT_PATH, PROFILE_PATH, profilePageJsonLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
+
+const AgentCall = dynamic(() => import("@/components/AgentCall"), {
+  loading: () => (
+    <div
+      className="min-h-[420px] border-2 border-ink bg-paper"
+      aria-hidden="true"
+    />
+  ),
+});
 
 export const metadata: Metadata = {
   alternates: {
@@ -92,24 +102,7 @@ export default function Home() {
               Udaipur, IN <BharatMark /> · US / EU teams · Callin.io Tech Lead
             </p>
           </div>
-          <dl
-            aria-label="Verified impact"
-            className="grid grid-cols-2 border-2 border-ink"
-          >
-            {CASE.metrics.map((m, i) => (
-              <div
-                key={m.label}
-                className={`border-hair p-4 sm:p-5 ${i % 2 === 1 ? "border-l" : ""} ${i < 2 ? "border-b" : ""}`}
-              >
-                <dt className="font-mono text-[9.5px] uppercase tracking-wider text-steel">
-                  {m.label}
-                </dt>
-                <dd className="mt-1.5 font-mono text-[clamp(22px,3.2vw,30px)] font-bold tracking-tight">
-                  {m.value}
-                </dd>
-              </div>
-            ))}
-          </dl>
+          <HeroMetrics />
         </div>
 
         <HeroCtas />

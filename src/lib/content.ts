@@ -107,11 +107,17 @@ export const CASE = {
     },
   ],
   metrics: [
-    { value: "1,500+", label: "Paying customers" },
-    { value: "−20%", label: "LLM inference cost" },
-    { value: "~420ms", label: "Voice TTFT (typical)" },
-    { value: "~0", label: "Billing disputes since launch" },
-  ],
+    { to: 1500, suffix: "+", separator: ",", label: "Paying customers" },
+    { to: 20, prefix: "−", suffix: "%", label: "LLM inference cost" },
+    { to: 420, prefix: "~", suffix: "ms", label: "Voice TTFT (typical)" },
+    { to: 0, prefix: "~", label: "Billing disputes since launch" },
+  ] satisfies {
+    to: number;
+    label: string;
+    prefix?: string;
+    suffix?: string;
+    separator?: string;
+  }[],
   /** Pipeline shown in the case study — one hop per ownership surface. */
   architecture: [
     { id: "call", label: "Caller", detail: "PSTN / WebRTC" },

@@ -1,11 +1,12 @@
 "use client";
 
+import CountUp from "@/components/CountUp";
 import DecryptedText from "@/components/DecryptedText";
 import FadeContent from "@/components/FadeContent";
 import Magnet from "@/components/Magnet";
 import SplitText from "@/components/SplitText";
 import TrueFocus from "@/components/TrueFocus";
-import { LINKS } from "@/lib/content";
+import { CASE, LINKS } from "@/lib/content";
 
 export function HeroEyebrow() {
   return (
@@ -17,7 +18,7 @@ export function HeroEyebrow() {
         speed={28}
         className="eyebrow !normal-case"
         parentClassName="eyebrow"
-        encryptedClassName="text-org/70"
+        encryptedClassName="text-steel"
       />
       <span className="flex items-center gap-2">
         <span className="blink h-1.5 w-1.5 bg-org" aria-hidden="true" />
@@ -79,8 +80,8 @@ export function HeroFocus() {
         sentence="ARCHITECTURE  BILLING  TEAMS  REVENUE"
         separator="  "
         blurAmount={4}
-        borderColor="#ff4d00"
-        glowColor="rgba(255, 77, 0, 0.35)"
+        borderColor="#b83600"
+        glowColor="rgba(184, 54, 0, 0.35)"
         animationDuration={0.45}
         pauseBetweenAnimations={0.85}
         className="justify-start gap-3 sm:gap-5"
@@ -113,6 +114,36 @@ export function HeroCtas() {
         </a>
       </div>
     </div>
+  );
+}
+
+export function HeroMetrics() {
+  return (
+    <dl
+      aria-label="Verified impact"
+      className="grid grid-cols-2 border-2 border-ink"
+    >
+      {CASE.metrics.map((m, i) => (
+        <div
+          key={m.label}
+          className={`border-hair p-4 sm:p-5 ${i % 2 === 1 ? "border-l" : ""} ${i < 2 ? "border-b" : ""}`}
+        >
+          <dt className="font-mono text-[9.5px] uppercase tracking-wider text-steel">
+            {m.label}
+          </dt>
+          <dd className="mt-1.5 font-mono text-[clamp(22px,3.2vw,30px)] font-bold tracking-tight">
+            {m.prefix}
+            <CountUp
+              to={m.to}
+              duration={1.15}
+              delay={0.08 * i}
+              separator={m.separator ?? ""}
+            />
+            {m.suffix}
+          </dd>
+        </div>
+      ))}
+    </dl>
   );
 }
 

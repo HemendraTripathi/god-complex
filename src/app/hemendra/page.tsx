@@ -177,7 +177,7 @@ export default function HemendraPage() {
             <Link href={PROFILE_PATH} className="text-ink hover:text-org">
               Full profile →
             </Link>
-            <Link href="/#case" className="text-ink hover:text-org">
+            <Link href="/#case" prefetch={false} className="text-ink hover:text-org">
               Voice AI case study →
             </Link>
             <SocialLink network="github" className="text-[16px] text-ink hover:text-org" />

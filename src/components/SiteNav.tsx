@@ -30,6 +30,7 @@ export default function SiteNav() {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 py-3.5 sm:px-8">
         <Link
           href="/"
+          prefetch={false}
           className="min-w-0 truncate font-mono text-[12px] font-bold uppercase tracking-[0.18em]"
           onClick={() => setOpen(false)}
         >
