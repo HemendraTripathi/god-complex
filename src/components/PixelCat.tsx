@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 type CatState =
@@ -14,14 +15,13 @@ type CatState =
   | "click";
 
 const COLS = 8;
-const CELL = 128;
+const CELL = 64;
 const DISPLAY = 74;
-const GROUND = 0;
 const EDGE = 16;
 const FRAME_MS = 110;
-const SHEET_SRC = "/pixel-cat/sheet.png?v=3";
-const PURR_SRC = "/pixel-cat/purr.mp3";
-const PURR_VOLUME = 0.4;
+const SHEET_SRC = "/pixel-cat/sheet.png?v=4";
+const MEOW_SRC = "/pixel-cat/meow.opus";
+const MEOW_VOLUME = 0.7;
 
 const FRAMES = {
   walk: [0, 1, 2, 3, 4, 5, 6, 7],
@@ -80,6 +80,7 @@ function framesFor(state: CatState): readonly number[] {
 }
 
 export default function PixelCat() {
+  const router = useRouter();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const sheetRef = useRef<HTMLImageElement | null>(null);
@@ -93,6 +94,7 @@ export default function PixelCat() {
   const targetXRef = useRef(200);
   const jumpTRef = useRef(0);
   const reducedRef = useRef(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const [bubble, setBubble] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
@@ -107,31 +109,12 @@ export default function PixelCat() {
     };
     mq.addEventListener("change", onMq);
 
+    // Defer sheet fetch slightly so we don't contend with LCP resources.
     const img = new Image();
-    img.src = SHEET_SRC;
     sheetRef.current = img;
-
-    const audio = new Audio(PURR_SRC);
-    audio.loop = true;
-    audio.preload = "auto";
-    audio.volume = PURR_VOLUME;
-
-    const tryPurr = () => {
-      if (reducedRef.current) return;
-      void audio.play().catch(() => {
-        /* autoplay blocked until a gesture */
-      });
-    };
-
-    const unlockPurr = () => {
-      tryPurr();
-      window.removeEventListener("pointerdown", unlockPurr);
-      window.removeEventListener("keydown", unlockPurr);
-    };
-
-    tryPurr();
-    window.addEventListener("pointerdown", unlockPurr);
-    window.addEventListener("keydown", unlockPurr);
+    const sheetTimer = window.setTimeout(() => {
+      img.src = SHEET_SRC;
+    }, 400);
 
     /** Per-frame source crop flush to the paws (ignores soft fringe). */
     const crops: { sx: number; sy: number; sw: number; sh: number }[] = [];
@@ -386,14 +369,32 @@ export default function PixelCat() {
     return () => {
       cancelled = true;
       cancelAnimationFrame(raf);
+      window.clearTimeout(sheetTimer);
       window.removeEventListener("resize", onResize);
-      window.removeEventListener("pointerdown", unlockPurr);
-      window.removeEventListener("keydown", unlockPurr);
       mq.removeEventListener("change", onMq);
-      audio.pause();
-      audio.src = "";
+      const audio = audioRef.current;
+      if (audio) {
+        audio.pause();
+        audio.src = "";
+        audioRef.current = null;
+      }
     };
   }, []);
+
+  const playMeow = () => {
+    if (reducedRef.current) return;
+    let audio = audioRef.current;
+    if (!audio) {
+      audio = new Audio(MEOW_SRC);
+      audio.preload = "auto";
+      audio.volume = MEOW_VOLUME;
+      audioRef.current = audio;
+    }
+    audio.currentTime = 0;
+    void audio.play().catch(() => {
+      /* gesture required on some browsers */
+    });
+  };
 
   const onEnter = () => {
     if (reducedRef.current || interactingRef.current) return;
@@ -402,6 +403,7 @@ export default function PixelCat() {
     stateRef.current = "hover";
     animIndexRef.current = 0;
     setBubble("…");
+    playMeow();
   };
 
   const onLeave = () => {
@@ -420,12 +422,16 @@ export default function PixelCat() {
     animIndexRef.current = 0;
     jumpTRef.current = 0;
     setBubble(pick(["mrrp", "nya", "!!", "purr"]));
+    playMeow();
+  };
+
+  const onDoubleClick = () => {
+    router.push("/cat");
   };
 
   if (!mounted) return null;
 
   return (
-    <div className="pixel-cat-layer">
       <button
         ref={buttonRef}
         type="button"
@@ -433,7 +439,6 @@ export default function PixelCat() {
         style={{
           width: DISPLAY,
           height: DISPLAY,
-          bottom: GROUND,
           opacity: ready ? 1 : 0,
         }}
         onMouseEnter={onEnter}
@@ -441,7 +446,8 @@ export default function PixelCat() {
         onFocus={onEnter}
         onBlur={onLeave}
         onClick={onClick}
-        aria-label="Pixel cat. Hover or click to play."
+        onDoubleClick={onDoubleClick}
+        aria-label="Pixel cat. Hover or click to meow. Double-click for its story."
       >
         {bubble ? <span className="pixel-cat-bubble">{bubble}</span> : null}
         <canvas
@@ -451,6 +457,5 @@ export default function PixelCat() {
           height={DISPLAY}
         />
       </button>
-    </div>
   );
 }

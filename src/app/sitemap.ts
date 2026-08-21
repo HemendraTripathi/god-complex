@@ -43,6 +43,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       images: [PORTRAIT_URL],
     },
     {
+      url: `${SITE_URL}/cat`,
+      lastModified: "2026-08-21",
+      changeFrequency: "monthly",
+      priority: 0.4,
+    },
+    {
       url: `${SITE_URL}/writing`,
       lastModified: new Date().toISOString().slice(0, 10),
       changeFrequency: "weekly",

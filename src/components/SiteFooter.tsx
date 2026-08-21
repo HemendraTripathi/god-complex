@@ -1,4 +1,5 @@
 import BharatMark from "@/components/BharatMark";
+import Link from "next/link";
 import SocialLink from "@/components/SocialLink";
 
 export default function SiteFooter() {
@@ -12,6 +13,13 @@ export default function SiteFooter() {
           <SocialLink network="github" className="text-[12px] transition-colors hover:text-org" />
           <SocialLink network="linkedin" className="text-[12px] transition-colors hover:text-org" />
           <SocialLink network="twitter" className="text-[12px] transition-colors hover:text-org" />
+          <Link
+            href="/cat"
+            className="transition-colors hover:text-org"
+            title="Meet the arcade cat"
+          >
+            Arcade cat
+          </Link>
           <span>Designed & built by him</span>
         </div>
       </div>
