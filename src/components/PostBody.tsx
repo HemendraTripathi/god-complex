@@ -106,11 +106,6 @@ function buildComponents(tocByKey: Map<string, WritingTocItem>): PortableTextCom
               className="h-auto w-full"
               sizes="(max-width: 768px) 100vw, 720px"
             />
-            {alt ? (
-              <figcaption className="border-t-2 border-ink px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.18em] text-steel">
-                {alt}
-              </figcaption>
-            ) : null}
           </figure>
         );
       },
