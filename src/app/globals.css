@@ -62,7 +62,8 @@ html {
   .callpulse,
   .eq-on .eq-bar,
   .tsq,
-  .hop-arrow {
+  .hop-arrow,
+  .pixel-cat-bubble {
     animation: none !important;
   }
 
@@ -361,4 +362,78 @@ body::before {
   font-size: 11px;
   font-weight: 700;
   color: var(--color-org);
+}
+
+/* Arcade pixel cat — bottom companion */
+.pixel-cat-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.pixel-cat {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  pointer-events: auto;
+  image-rendering: pixelated;
+  outline: none;
+  line-height: 0;
+}
+
+.pixel-cat:focus-visible {
+  outline: 2px solid var(--color-org);
+  outline-offset: 4px;
+}
+
+.pixel-cat-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.pixel-cat-bubble {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 4px);
+  transform: translateX(-50%);
+  padding: 3px 6px;
+  border: 2px solid var(--color-ink);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  white-space: nowrap;
+  box-shadow: 2px 2px 0 0 var(--color-ink);
+  animation: pixel-cat-pop 180ms ease-out;
+  pointer-events: none;
+}
+
+@keyframes pixel-cat-pop {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(4px) scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 640px) {
+  .pixel-cat {
+    transform-origin: bottom left;
+  }
 }

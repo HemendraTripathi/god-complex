@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { Archivo, JetBrains_Mono } from "next/font/google";
 import JsonLd from "@/components/JsonLd";
+import PixelCat from "@/components/PixelCat";
 import { LINKS } from "@/lib/content";
 import { jsonLdGraph, personJsonLd, websiteJsonLd } from "@/lib/seo";
 import { SITE, SITE_URL } from "@/lib/site";
@@ -91,6 +92,7 @@ export default function RootLayout({
       <body className={`${archivo.variable} ${jet.variable} antialiased`}>
         <JsonLd data={jsonLdGraph([personJsonLd(), websiteJsonLd()])} />
         {children}
+        <PixelCat />
         <Analytics />
       </body>
     </html>
