@@ -44,6 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: SITE.title,
     description: SITE.shortDescription,
+    creator: "@hemendra_tr",
   },
   robots: {
     index: true,
@@ -57,7 +58,7 @@ export const metadata: Metadata = {
     },
   },
   other: {
-    me: [LINKS.github, LINKS.linkedin, `mailto:${SITE.email}`],
+    me: [LINKS.github, LINKS.linkedin, LINKS.twitter, `mailto:${SITE.email}`],
     bingbot: "index, follow",
   },
   formatDetection: {

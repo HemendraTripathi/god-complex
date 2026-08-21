@@ -500,12 +500,9 @@ export default function Home() {
               that own what they build.
             </p>
             <div className="mt-6 flex flex-wrap gap-6 font-mono text-[11px] font-bold uppercase tracking-[0.18em]">
-              <SocialLink network="github" className="text-ink hover:text-org">
-                GitHub ↗
-              </SocialLink>
-              <SocialLink network="linkedin" className="text-ink hover:text-org">
-                LinkedIn ↗
-              </SocialLink>
+              <SocialLink network="github" className="text-[16px] text-ink hover:text-org" />
+              <SocialLink network="linkedin" className="text-[16px] text-ink hover:text-org" />
+              <SocialLink network="twitter" className="text-[16px] text-ink hover:text-org" />
               <a
                 href={PROFILE_PATH}
                 className="text-ink hover:text-org"
@@ -593,12 +590,9 @@ export default function Home() {
             US / EU-friendly hours · timezone handled
           </p>
           <div className="mt-10 flex flex-wrap gap-8 font-mono text-[10.5px] font-bold uppercase tracking-[0.2em] text-steel">
-            <SocialLink network="github" className="transition-colors hover:text-org">
-              GitHub ↗
-            </SocialLink>
-            <SocialLink network="linkedin" className="transition-colors hover:text-org">
-              LinkedIn ↗
-            </SocialLink>
+            <SocialLink network="github" className="text-[14px] transition-colors hover:text-org" />
+            <SocialLink network="linkedin" className="text-[14px] transition-colors hover:text-org" />
+            <SocialLink network="twitter" className="text-[14px] transition-colors hover:text-org" />
             <a
               href={PROFILE_PATH}
               className="transition-colors hover:text-org"

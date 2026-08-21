@@ -49,19 +49,19 @@ export default function SiteNav() {
         </div>
 
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-          <span className="hidden sm:contents">
+          <span className="hidden items-center gap-3.5 sm:inline-flex">
             <SocialLink
               network="github"
-              className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-steel transition-colors hover:text-org"
-            >
-              GitHub
-            </SocialLink>
+              className="text-[14px] text-steel transition-colors hover:text-org"
+            />
             <SocialLink
               network="linkedin"
-              className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-steel transition-colors hover:text-org"
-            >
-              LinkedIn
-            </SocialLink>
+              className="text-[14px] text-steel transition-colors hover:text-org"
+            />
+            <SocialLink
+              network="twitter"
+              className="text-[14px] text-steel transition-colors hover:text-org"
+            />
           </span>
           <a
             href={LINKS.resume}

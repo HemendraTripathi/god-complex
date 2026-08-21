@@ -9,12 +9,9 @@ export default function SiteFooter() {
           © 2026 Hemendra Tripathi · Udaipur, IN <BharatMark />
         </span>
         <div className="flex flex-wrap items-center gap-6">
-          <SocialLink network="github" className="transition-colors hover:text-org">
-            GitHub
-          </SocialLink>
-          <SocialLink network="linkedin" className="transition-colors hover:text-org">
-            LinkedIn
-          </SocialLink>
+          <SocialLink network="github" className="text-[12px] transition-colors hover:text-org" />
+          <SocialLink network="linkedin" className="text-[12px] transition-colors hover:text-org" />
+          <SocialLink network="twitter" className="text-[12px] transition-colors hover:text-org" />
           <span>Designed & built by him</span>
         </div>
       </div>

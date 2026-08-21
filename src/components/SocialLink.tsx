@@ -22,23 +22,40 @@ function LinkedInIcon({ className }: { className?: string }) {
   );
 }
 
+function TwitterIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path
+        fill="currentColor"
+        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.727-8.851L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"
+      />
+    </svg>
+  );
+}
+
 const ICONS = {
   github: GitHubIcon,
   linkedin: LinkedInIcon,
+  twitter: TwitterIcon,
 } as const;
 
 const HREFS = {
   github: LINKS.github,
   linkedin: LINKS.linkedin,
+  twitter: LINKS.twitter,
+} as const;
+
+const LABELS = {
+  github: "GitHub",
+  linkedin: "LinkedIn",
+  twitter: "X (Twitter)",
 } as const;
 
 export default function SocialLink({
   network,
-  children,
   className = "",
 }: {
-  network: "github" | "linkedin";
-  children: React.ReactNode;
+  network: "github" | "linkedin" | "twitter";
   className?: string;
 }) {
   const Icon = ICONS[network];
@@ -47,10 +64,10 @@ export default function SocialLink({
       href={HREFS[network]}
       target="_blank"
       rel="me"
-      className={`inline-flex items-center gap-1.5 ${className}`.trim()}
+      aria-label={LABELS[network]}
+      className={`inline-flex items-center justify-center ${className}`.trim()}
     >
-      <Icon className="h-[1.1em] w-[1.1em] shrink-0" />
-      {children}
+      <Icon className="h-[1.15em] w-[1.15em] shrink-0" />
     </a>
   );
 }

@@ -40,6 +40,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: SITE.firstNameTitle,
     description: SITE.firstNameDescription,
+    creator: "@hemendra_tr",
   },
 };
 
@@ -179,18 +180,9 @@ export default function HemendraPage() {
             <Link href="/#case" className="text-ink hover:text-org">
               Voice AI case study →
             </Link>
-            <SocialLink
-              network="github"
-              className="text-ink hover:text-org"
-            >
-              GitHub ↗
-            </SocialLink>
-            <SocialLink
-              network="linkedin"
-              className="text-ink hover:text-org"
-            >
-              LinkedIn ↗
-            </SocialLink>
+            <SocialLink network="github" className="text-[16px] text-ink hover:text-org" />
+            <SocialLink network="linkedin" className="text-[16px] text-ink hover:text-org" />
+            <SocialLink network="twitter" className="text-[16px] text-ink hover:text-org" />
           </div>
         </section>
 
