@@ -13,7 +13,7 @@ import { getPosts } from "@/sanity/lib/fetch";
 
 const TITLE = "Writing";
 const DESCRIPTION =
-  "Notes on AI voice systems, technical leadership, and shipping products — by Hemendra Tripathi.";
+  "Notes on AI voice systems, technical leadership, and shipping products. By Hemendra Tripathi.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -92,7 +92,7 @@ export default async function WritingIndexPage() {
 
           {posts.length === 0 ? (
             <p className="mt-10 max-w-xl text-[17px] leading-relaxed text-steel">
-              First piece is on the way. Meanwhile —{" "}
+              First piece is on the way. Meanwhile,{" "}
               <Link
                 href="/#contact"
                 className="font-medium text-org underline decoration-org/40 underline-offset-4 hover:decoration-org"
