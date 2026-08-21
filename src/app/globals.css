@@ -3,8 +3,7 @@
 @theme inline {
   --color-paper: #ece9e2;
   --color-ink: #161616;
-  /* Darker orange for WCAG AA on paper (#ece9e2): ~4.9:1 */
-  --color-org: #b83600;
+  --color-org: #ff4d00;
   --color-steel: #524e45;
   --color-hair: rgba(22, 22, 22, 0.16);
 

@@ -80,8 +80,8 @@ export function HeroFocus() {
         sentence="ARCHITECTURE  BILLING  TEAMS  REVENUE"
         separator="  "
         blurAmount={4}
-        borderColor="#b83600"
-        glowColor="rgba(184, 54, 0, 0.35)"
+        borderColor="#ff4d00"
+        glowColor="rgba(255, 77, 0, 0.35)"
         animationDuration={0.45}
         pauseBetweenAnimations={0.85}
         className="justify-start gap-3 sm:gap-5"
