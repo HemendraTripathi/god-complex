@@ -39,13 +39,13 @@ export default function SiteNav() {
 
         <div className="hidden items-center gap-6 lg:flex">
           {NAV.map(([label, href]) => (
-            <a
+            <Link
               key={href}
               href={href}
               className="font-mono text-[10.5px] font-bold uppercase tracking-[0.18em] text-steel transition-colors hover:text-org"
             >
               {label}
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -116,7 +116,7 @@ export default function SiteNav() {
           <ul className="mx-auto max-w-7xl">
             {NAV.map(([label, href], i) => (
               <li key={href} className={i > 0 ? "border-t border-hair" : ""}>
-                <a
+                <Link
                   href={href}
                   className="flex min-h-12 items-center justify-between px-5 py-3.5 font-mono text-[12px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-ink hover:text-paper sm:px-8"
                   onClick={() => setOpen(false)}
@@ -125,7 +125,7 @@ export default function SiteNav() {
                   <span className="text-org" aria-hidden="true">
                     →
                   </span>
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
