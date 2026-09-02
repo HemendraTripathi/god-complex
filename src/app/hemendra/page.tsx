@@ -8,13 +8,15 @@ import SiteNav from "@/components/SiteNav";
 import SocialLink from "@/components/SocialLink";
 import { FIRST_NAME, LINKS } from "@/lib/content";
 import {
+  CASE_PATH,
   FIRST_NAME_PATH,
   PORTRAIT_PATH,
   PROFILE_PATH,
+  SHARE_IMAGE,
   breadcrumbJsonLd,
   faqJsonLd,
   jsonLdGraph,
-  profilePageJsonLd,
+  webPageJsonLd,
 } from "@/lib/seo";
 import { SITE, SITE_URL } from "@/lib/site";
 
@@ -35,12 +37,14 @@ export const metadata: Metadata = {
     firstName: "Hemendra",
     lastName: "Tripathi",
     username: "hemendratripathi",
+    images: [SHARE_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: SITE.firstNameTitle,
     description: SITE.firstNameDescription,
     creator: "@hemendra_tr",
+    images: [SHARE_IMAGE.url],
   },
 };
 
@@ -53,10 +57,12 @@ export default function HemendraPage() {
       <SiteNav />
       <JsonLd
         data={jsonLdGraph([
-          profilePageJsonLd(
-            `${SITE_URL}${FIRST_NAME_PATH}`,
-            `${SITE_URL}${FIRST_NAME_PATH}#profile`,
-          ),
+          webPageJsonLd({
+            url: `${SITE_URL}${FIRST_NAME_PATH}`,
+            pageId: `${SITE_URL}${FIRST_NAME_PATH}#webpage`,
+            name: SITE.firstNameTitle,
+            description: SITE.firstNameDescription,
+          }),
           breadcrumbJsonLd([
             { name: "Home", item: SITE_URL },
             { name: "Hemendra", item: `${SITE_URL}${FIRST_NAME_PATH}` },
@@ -177,7 +183,7 @@ export default function HemendraPage() {
             <Link href={PROFILE_PATH} className="text-ink hover:text-org">
               Full profile →
             </Link>
-            <Link href="/#case" prefetch={false} className="text-ink hover:text-org">
+            <Link href={CASE_PATH} prefetch={false} className="text-ink hover:text-org">
               Voice AI case study →
             </Link>
             <SocialLink network="github" className="text-[16px] text-ink hover:text-org" />

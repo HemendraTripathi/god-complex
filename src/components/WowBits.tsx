@@ -7,6 +7,7 @@ import Magnet from "@/components/Magnet";
 import SplitText from "@/components/SplitText";
 import TrueFocus from "@/components/TrueFocus";
 import { CASE, LINKS } from "@/lib/content";
+import { CASE_PATH } from "@/lib/seo";
 
 export function HeroEyebrow() {
   return (
@@ -95,7 +96,7 @@ export function HeroCtas() {
   return (
     <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 pb-16">
       <a
-        href="#case"
+        href={CASE_PATH}
         className="inline-block border-2 border-ink bg-ink px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-paper shadow-brutal transition-colors hover:border-org hover:bg-org"
       >
         Read the case study →

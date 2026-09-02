@@ -12,10 +12,10 @@ export const LINKS = {
 export const NAV = [
   ["About", "/hemendra-tripathi"],
   ["Writing", "/writing"],
-  ["Case", "/#case"],
+  ["Case", "/work/callin-io"],
   ["Work", "/#work"],
   ["Experience", "/#experience"],
-  ["FAQ", "/#faq"],
+  ["Hire", "/hire"],
   ["Contact", "/#contact"],
 ] as const;
 
@@ -142,6 +142,39 @@ export const CASE = {
   /** Add after approval — omit until then so the quote stays anonymous. */
   quoteName: "",
   quoteOrg: "",
+};
+
+export function formatMetricValue(m: (typeof CASE.metrics)[number]) {
+  const n = new Intl.NumberFormat("en-US", {
+    useGrouping: Boolean(m.separator),
+  }).format(m.to);
+  const grouped = m.separator ? n.replace(/,/g, m.separator) : n;
+  return `${m.prefix ?? ""}${grouped}${m.suffix ?? ""}`;
+}
+
+export const HIRE = {
+  eyebrow: "Open to select roles · US / EU teams",
+  lede:
+    "Hire an AI Voice Engineer who has already taken agents from first commit to paying customers: architecture, model routing, telephony, and the billing those calls produce.",
+  fits: [
+    {
+      title: "Technical lead",
+      body: "Own architecture, hiring, vendor spend, and the roadmap. Reporting line to founder or CTO. You want someone who has already done this on a voice product in production.",
+    },
+    {
+      title: "AI Voice Engineer",
+      body: "Real-time agents on Twilio, Telnyx, or SIP. Latency budgets, failover, STT/TTS vendor choices, and complexity-aware LLM routing — not a chatbot wrapped in a phone number.",
+    },
+    {
+      title: "Select freelance",
+      body: "Bounded work: voice pipeline, usage-based billing, or a multi-LLM product. US and EU-friendly hours. Typical reply within 24 hours.",
+    },
+  ],
+  notFor: [
+    "Prompt-only chatbot wrappers with no telephony",
+    "Staff-aug that needs a body in a seat tomorrow",
+    "Unpaid test projects or speculative equity-only gigs",
+  ],
 };
 
 export const PRINCIPLES = [

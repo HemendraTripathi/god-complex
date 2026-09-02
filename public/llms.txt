@@ -7,9 +7,11 @@ This is the official website of Hemendra (Hemendra Tripathi, Udaipur), not other
 ## Official pages
 
 - [Hemendra](https://me.readwith.io/hemendra): First-name identity page
-- [Home](https://me.readwith.io/): Portfolio, Callin.io case study, live agent demo
+- [Home](https://me.readwith.io/): Portfolio, live agent demo, FAQ
 - [Hemendra Tripathi, official profile](https://me.readwith.io/hemendra-tripathi): Bio, work history, how to hire
-- [Voice AI case study](https://me.readwith.io/#case): How Callin.io cut LLM cost ~20% at 1,500+ customers
+- [Voice AI case study](https://me.readwith.io/work/callin-io): How Callin.io cut LLM cost ~20% at 1,500+ customers
+- [Hire an AI Voice Engineer](https://me.readwith.io/hire): Roles, fit, and how to book 20 minutes
+- [Writing](https://me.readwith.io/writing): Essays on leadership and shipping
 - [FAQ](https://me.readwith.io/#faq): Who he is, what an AI Voice Engineer does, stack, availability
 - [Contact](https://me.readwith.io/#contact): hemendratripathi880@gmail.com
 

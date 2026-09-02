@@ -4,6 +4,7 @@ import JsonLd from "@/components/JsonLd";
 import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
 import {
+  SHARE_IMAGE,
   breadcrumbJsonLd,
   jsonLdGraph,
   writingCollectionJsonLd,
@@ -11,27 +12,32 @@ import {
 import { SITE, SITE_URL } from "@/lib/site";
 import { getPosts } from "@/sanity/lib/fetch";
 
-const TITLE = "Writing";
+const TITLE = "Writing on Leadership & Shipping";
 const DESCRIPTION =
-  "Notes on AI voice systems, technical leadership, and shipping products. By Hemendra Tripathi.";
+  "Essays on technical leadership, choosing the right problem, and how Hemendra Tripathi thinks about engineering.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: {
     canonical: "/writing",
+    types: {
+      "application/rss+xml": `${SITE_URL}/feed.xml`,
+    },
   },
   openGraph: {
     type: "website",
     title: `${TITLE} · ${SITE.name}`,
     description: DESCRIPTION,
     url: `${SITE_URL}/writing`,
+    images: [SHARE_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: `${TITLE} · ${SITE.name}`,
     description: DESCRIPTION,
     creator: "@hemendra_tr",
+    images: [SHARE_IMAGE.url],
   },
 };
 

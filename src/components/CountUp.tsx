@@ -1,7 +1,7 @@
 "use client";
 
 import { useInView, useMotionValue, useSpring } from 'motion/react';
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef } from 'react';
 
 interface CountUpProps {
   to: number;
@@ -71,10 +71,9 @@ export default function CountUp({
     [maxDecimals, separator]
   );
 
-  useEffect(() => {
-    if (ref.current) {
-      ref.current.textContent = formatValue(direction === 'down' ? to : from);
-    }
+  useLayoutEffect(() => {
+    if (!ref.current || from === to) return;
+    ref.current.textContent = formatValue(direction === 'down' ? to : from);
   }, [from, to, direction, formatValue]);
 
   useEffect(() => {
@@ -113,5 +112,9 @@ export default function CountUp({
     return () => unsubscribe();
   }, [springValue, formatValue]);
 
-  return <span className={className} ref={ref} />;
+  return (
+    <span className={className} ref={ref}>
+      {formatValue(to)}
+    </span>
+  );
 }

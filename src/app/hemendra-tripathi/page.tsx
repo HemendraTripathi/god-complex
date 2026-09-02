@@ -8,8 +8,10 @@ import SiteNav from "@/components/SiteNav";
 import SocialLink from "@/components/SocialLink";
 import { EXPERIENCE, LINKS, PROFILE } from "@/lib/content";
 import {
+  CASE_PATH,
   PORTRAIT_PATH,
   PROFILE_PATH,
+  SHARE_IMAGE,
   breadcrumbJsonLd,
   jsonLdGraph,
   profilePageJsonLd,
@@ -32,12 +34,14 @@ export const metadata: Metadata = {
     firstName: "Hemendra",
     lastName: "Tripathi",
     username: "hemendratripathi",
+    images: [SHARE_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: SITE.profileTitle,
     description: SITE.profileDescription,
     creator: "@hemendra_tr",
+    images: [SHARE_IMAGE.url],
   },
 };
 
@@ -191,7 +195,7 @@ export default function HemendraTripathiPage() {
             >
               Book 20 min ↗
             </a>
-            <Link href="/#case" prefetch={false} className="text-ink hover:text-org">
+            <Link href={CASE_PATH} prefetch={false} className="text-ink hover:text-org">
               Voice AI case study →
             </Link>
             <SocialLink network="github" className="text-[16px] text-ink hover:text-org" />

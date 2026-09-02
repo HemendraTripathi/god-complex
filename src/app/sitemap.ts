@@ -1,9 +1,9 @@
 import type { MetadataRoute } from "next";
-import { FIRST_NAME_URL, PORTRAIT_URL, PROFILE_URL } from "@/lib/seo";
+import { CASE_URL, FIRST_NAME_URL, HIRE_URL, PORTRAIT_URL, PROFILE_URL } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 import { getPostsForSitemap } from "@/sanity/lib/fetch";
 
-const LAST_MODIFIED = "2026-08-20";
+const LAST_MODIFIED = "2026-09-02";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let posts: MetadataRoute.Sitemap = [];
@@ -43,10 +43,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       images: [PORTRAIT_URL],
     },
     {
-      url: `${SITE_URL}/cat`,
-      lastModified: "2026-08-21",
+      url: CASE_URL,
+      lastModified: LAST_MODIFIED,
       changeFrequency: "monthly",
-      priority: 0.4,
+      priority: 0.9,
+    },
+    {
+      url: HIRE_URL,
+      lastModified: LAST_MODIFIED,
+      changeFrequency: "monthly",
+      priority: 0.9,
     },
     {
       url: `${SITE_URL}/writing`,
@@ -57,3 +63,4 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...posts,
   ];
 }
+

@@ -27,6 +27,21 @@ const nextConfig: NextConfig = {
         destination: "/hemendra",
         permanent: true,
       },
+      {
+        source: "/case",
+        destination: "/work/callin-io",
+        permanent: true,
+      },
+      {
+        source: "/case-study",
+        destination: "/work/callin-io",
+        permanent: true,
+      },
+      {
+        source: "/hire-me",
+        destination: "/hire",
+        permanent: true,
+      },
     ];
   },
 };

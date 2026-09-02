@@ -7,9 +7,20 @@ export const PROFILE_PATH = "/hemendra-tripathi";
 export const PROFILE_URL = `${SITE_URL}${PROFILE_PATH}`;
 export const FIRST_NAME_PATH = "/hemendra";
 export const FIRST_NAME_URL = `${SITE_URL}${FIRST_NAME_PATH}`;
+export const CASE_PATH = "/work/callin-io";
+export const CASE_URL = `${SITE_URL}${CASE_PATH}`;
+export const HIRE_PATH = "/hire";
+export const HIRE_URL = `${SITE_URL}${HIRE_PATH}`;
 export const PORTRAIT_PATH = "/images/hemendra-tripathi-technical-lead.webp";
 export const PORTRAIT_URL = `${SITE_URL}${PORTRAIT_PATH}`;
 export const PORTRAIT_BATMAN_PATH = "/images/hemendra-tripathi-batman.webp";
+
+export const SHARE_IMAGE = {
+  url: "/opengraph-image.jpg",
+  width: 1200,
+  height: 630,
+  alt: "Hemendra Tripathi, technical lead and AI Voice Engineer",
+} as const;
 
 export const SAME_AS = [
   LINKS.github,
@@ -124,6 +135,55 @@ export function profilePageJsonLd(url: string, pageId: string) {
   };
 }
 
+export function webPageJsonLd({
+  url,
+  pageId,
+  name,
+  description,
+}: {
+  url: string;
+  pageId: string;
+  name: string;
+  description: string;
+}) {
+  return {
+    "@type": "WebPage",
+    "@id": pageId,
+    url,
+    name,
+    description,
+    inLanguage: "en",
+    isPartOf: { "@id": WEBSITE_ID },
+    about: { "@id": PERSON_ID },
+    primaryImageOfPage: {
+      "@type": "ImageObject",
+      url: PORTRAIT_URL,
+    },
+  };
+}
+
+export function caseStudyJsonLd() {
+  return {
+    "@type": "Article",
+    "@id": `${CASE_URL}#article`,
+    headline: SITE.caseTitle,
+    description: SITE.caseDescription,
+    url: CASE_URL,
+    inLanguage: "en",
+    author: { "@id": PERSON_ID },
+    publisher: { "@id": PERSON_ID },
+    about: { "@id": PERSON_ID },
+    mainEntityOfPage: { "@type": "WebPage", "@id": CASE_URL },
+    isPartOf: { "@id": WEBSITE_ID },
+    image: {
+      "@type": "ImageObject",
+      url: `${SITE_URL}/images/work-callin.png`,
+    },
+    keywords:
+      "AI Voice Engineer, voice AI case study, multi-LLM orchestration, Callin.io, usage-based billing",
+  };
+}
+
 export function faqJsonLd(
   items: readonly { question: string; answer: string }[] = FAQS,
 ) {
@@ -164,7 +224,7 @@ export function writingCollectionJsonLd(postCount: number) {
     url: `${SITE_URL}/writing`,
     name: "Writing",
     description:
-      "Notes on AI voice systems, technical leadership, and shipping products.",
+      "Essays on technical leadership, shipping products, and how Hemendra Tripathi thinks about engineering.",
     inLanguage: "en",
     isPartOf: { "@id": WEBSITE_ID },
     about: { "@id": PERSON_ID },
@@ -177,6 +237,7 @@ export function blogPostingJsonLd({
   description,
   url,
   publishedAt,
+  updatedAt,
   imageUrl,
   tags,
 }: {
@@ -184,6 +245,7 @@ export function blogPostingJsonLd({
   description: string;
   url: string;
   publishedAt: string;
+  updatedAt?: string;
   imageUrl?: string;
   tags?: string[];
 }) {
@@ -194,19 +256,16 @@ export function blogPostingJsonLd({
     description,
     url,
     datePublished: publishedAt,
+    ...(updatedAt ? { dateModified: updatedAt } : {}),
     inLanguage: "en",
     author: { "@id": PERSON_ID },
     publisher: { "@id": PERSON_ID },
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
     isPartOf: { "@id": `${SITE_URL}/writing#collection` },
-    ...(imageUrl
-      ? {
-          image: {
-            "@type": "ImageObject",
-            url: imageUrl,
-          },
-        }
-      : {}),
+    image: {
+      "@type": "ImageObject",
+      url: imageUrl || `${SITE_URL}${SHARE_IMAGE.url}`,
+    },
     ...(tags?.length ? { keywords: tags.join(", ") } : {}),
   };
 }

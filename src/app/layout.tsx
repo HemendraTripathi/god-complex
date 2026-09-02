@@ -40,12 +40,21 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     locale: SITE.locale,
     type: "website",
+    images: [
+      {
+        url: "/opengraph-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: SITE.title,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: SITE.title,
     description: SITE.shortDescription,
     creator: "@hemendra_tr",
+    images: ["/opengraph-image.jpg"],
   },
   robots: {
     index: true,
@@ -61,6 +70,11 @@ export const metadata: Metadata = {
   other: {
     me: [LINKS.github, LINKS.linkedin, LINKS.twitter, `mailto:${SITE.email}`],
     bingbot: "index, follow",
+  },
+  alternates: {
+    types: {
+      "application/rss+xml": `${SITE_URL}/feed.xml`,
+    },
   },
   formatDetection: {
     email: false,

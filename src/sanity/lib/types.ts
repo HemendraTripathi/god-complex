@@ -17,6 +17,7 @@ export type PostCard = {
   excerpt?: string;
   tags?: string[];
   coverImage?: SanityImage;
+  _updatedAt?: string;
 };
 
 export type Post = PostCard & {

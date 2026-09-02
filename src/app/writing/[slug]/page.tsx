@@ -9,6 +9,7 @@ import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
 import WritingToc from "@/components/WritingToc";
 import {
+  SHARE_IMAGE,
   blogPostingJsonLd,
   breadcrumbJsonLd,
   jsonLdGraph,
@@ -27,18 +28,23 @@ export async function generateStaticParams() {
   return posts.map((post) => ({ slug: post.slug }));
 }
 
+const SHORT_TITLES: Record<string, string> = {
+  "same-job-title-different-pay-2026": "Same Title, Different Pay in 2026",
+  "solving-the-right-problem": "Solve the Right Problem First",
+};
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPost(slug);
   if (!post) return {};
 
-  const title = post.seoTitle || post.title;
+  const title = SHORT_TITLES[slug] || post.seoTitle || post.title;
   const description =
     post.seoDescription || post.excerpt || SITE.shortDescription;
   const url = `${SITE_URL}/writing/${post.slug}`;
   const ogImage = post.coverImage?.asset
     ? urlFor(post.coverImage).width(1200).height(630).fit("crop").url()
-    : undefined;
+    : SHARE_IMAGE.url;
 
   return {
     title,
@@ -52,15 +58,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       url,
       publishedTime: post.publishedAt,
+      modifiedTime: post._updatedAt,
       authors: [SITE.name],
-      ...(ogImage ? { images: [{ url: ogImage }] } : {}),
+      images: [{ url: ogImage, width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
       creator: "@hemendra_tr",
-      ...(ogImage ? { images: [ogImage] } : {}),
+      images: [ogImage],
     },
   };
 }
@@ -100,6 +107,7 @@ export default async function WritingPostPage({ params }: Props) {
               post.seoDescription || post.excerpt || SITE.shortDescription,
             url: `${SITE_URL}/writing/${post.slug}`,
             publishedAt: post.publishedAt,
+            updatedAt: post._updatedAt,
             imageUrl: coverSrc ?? undefined,
             tags: post.tags,
           }),
@@ -226,11 +234,10 @@ export default async function WritingPostPage({ params }: Props) {
                       All writing
                     </Link>
                     <Link
-                      href="/#contact"
-                      prefetch={false}
+                      href="/hire"
                       className="inline-flex h-10 items-center border-2 border-ink bg-ink px-4 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-paper transition-colors hover:border-org hover:bg-org"
                     >
-                      Get in touch
+                      Hire me
                     </Link>
                   </div>
                 </div>

@@ -4,7 +4,7 @@ import CatMeowButton from "@/components/CatMeowButton";
 import JsonLd from "@/components/JsonLd";
 import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
-import { breadcrumbJsonLd, jsonLdGraph } from "@/lib/seo";
+import { breadcrumbJsonLd, jsonLdGraph, SHARE_IMAGE } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 
 const CAT_PATH = "/cat";
@@ -15,18 +15,24 @@ export const metadata: Metadata = {
   description:
     "Once upon a pixel: the tiny black cat that wanders the bottom of this website, meows when you say hi, and has opinions about naps.",
   alternates: { canonical: CAT_PATH },
+  robots: {
+    index: false,
+    follow: true,
+  },
   openGraph: {
     title: "The Arcade Cat",
     description:
       "A tiny black cat lives at the bottom of this site. This is its story.",
     url: CAT_URL,
     type: "article",
+    images: [SHARE_IMAGE],
   },
   twitter: {
     card: "summary",
     title: "The Arcade Cat",
     description:
       "A tiny black cat lives at the bottom of this site. This is its story.",
+    images: [SHARE_IMAGE.url],
   },
 };
 

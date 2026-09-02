@@ -7,7 +7,8 @@ const postCardFields = /* groq */ `
   publishedAt,
   excerpt,
   tags,
-  coverImage
+  coverImage,
+  _updatedAt
 `;
 
 const postFields = /* groq */ `
