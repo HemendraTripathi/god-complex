@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     },
   },
   other: {
-    me: [LINKS.github, LINKS.linkedin, LINKS.twitter, `mailto:${SITE.email}`],
+    me: [LINKS.github, LINKS.linkedin, LINKS.twitter, LINKS.reddit, `mailto:${SITE.email}`],
     bingbot: "index, follow",
   },
   alternates: {

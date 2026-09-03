@@ -33,29 +33,43 @@ function TwitterIcon({ className }: { className?: string }) {
   );
 }
 
+function RedditIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path
+        fill="currentColor"
+        d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.552-.33.958-.966.958-1.66a1.875 1.875 0 0 0-1.875-1.875 1.87 1.87 0 0 0-1.123.347 8.349 8.349 0 0 0-3.193-.66 8.32 8.32 0 0 0-3.193.66 1.877 1.877 0 0 0-1.125-.348 1.875 1.875 0 0 0-1.871 1.877c0 .736.409 1.36.98 1.686 1.199-.86 2.852-1.428 4.68-1.498l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.841 2.484.913 2.961.913.477 0 2.105-.072 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.807-2.526.807-.842 0-1.98-.274-2.526-.807a.326.326 0 0 0-.233-.095z"
+      />
+    </svg>
+  );
+}
+
 const ICONS = {
   github: GitHubIcon,
   linkedin: LinkedInIcon,
   twitter: TwitterIcon,
+  reddit: RedditIcon,
 } as const;
 
 const HREFS = {
   github: LINKS.github,
   linkedin: LINKS.linkedin,
   twitter: LINKS.twitter,
+  reddit: LINKS.reddit,
 } as const;
 
 const LABELS = {
   github: "GitHub",
   linkedin: "LinkedIn",
   twitter: "X (Twitter)",
+  reddit: "Reddit",
 } as const;
 
 export default function SocialLink({
   network,
   className = "",
 }: {
-  network: "github" | "linkedin" | "twitter";
+  network: "github" | "linkedin" | "twitter" | "reddit";
   className?: string;
 }) {
   const Icon = ICONS[network];

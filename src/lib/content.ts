@@ -4,6 +4,7 @@ export const LINKS = {
   github: "https://github.com/hemendratripathi",
   linkedin: "https://www.linkedin.com/in/hemendratripathi",
   twitter: "https://x.com/hemendra_tr",
+  reddit: "https://www.reddit.com/u/hemendra_tripathi",
   callin: "https://callin.io",
   /** Claim this Cal.com username and add a 20-min intro with US/EU-friendly hours. */
   calendar: "https://cal.com/hemendratripathi/hiring-freelance",

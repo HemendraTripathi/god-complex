@@ -26,6 +26,7 @@ export const SAME_AS = [
   LINKS.github,
   LINKS.linkedin,
   LINKS.twitter,
+  LINKS.reddit,
   LINKS.callin,
 ] as const;
 

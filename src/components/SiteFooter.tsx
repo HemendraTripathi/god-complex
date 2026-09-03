@@ -13,6 +13,7 @@ export default function SiteFooter() {
           <SocialLink network="github" className="text-[12px] transition-colors hover:text-org" />
           <SocialLink network="linkedin" className="text-[12px] transition-colors hover:text-org" />
           <SocialLink network="twitter" className="text-[12px] transition-colors hover:text-org" />
+          <SocialLink network="reddit" className="text-[12px] transition-colors hover:text-org" />
           <Link
             href="/cat"
             className="transition-colors hover:text-org"
