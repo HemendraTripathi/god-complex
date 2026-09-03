@@ -1,9 +1,9 @@
-import Image from "next/image";
 import {
   PortableText,
   type PortableTextComponents,
   type PortableTextBlock,
 } from "next-sanity";
+import ZoomableImage from "@/components/ZoomableImage";
 import type { WritingTocItem } from "@/lib/writing";
 import { urlFor } from "@/sanity/lib/image";
 import type { SanityImage } from "@/sanity/lib/types";
@@ -95,15 +95,16 @@ function buildComponents(tocByKey: Map<string, WritingTocItem>): PortableTextCom
       image: ({ value }: { value: SanityImage & { alt?: string } }) => {
         if (!value?.asset) return null;
         const src = urlFor(value).width(1400).fit("max").url();
+        const fullSrc = urlFor(value).width(2400).fit("max").url();
         const alt = value.alt || "";
         return (
           <figure className="writing-figure mt-10">
-            <Image
+            <ZoomableImage
               src={src}
+              fullSrc={fullSrc}
               alt={alt}
               width={1400}
               height={788}
-              className="h-auto w-full"
               sizes="(max-width: 768px) 100vw, 720px"
             />
           </figure>

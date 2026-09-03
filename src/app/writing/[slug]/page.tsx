@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import JsonLd from "@/components/JsonLd";
 import PostBody from "@/components/PostBody";
 import PostShare from "@/components/PostShare";
+import ZoomableImage from "@/components/ZoomableImage";
 import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
 import WritingToc from "@/components/WritingToc";
@@ -89,6 +89,9 @@ export default async function WritingPostPage({ params }: Props) {
   const coverSrc = post.coverImage?.asset
     ? urlFor(post.coverImage).width(1600).fit("max").url()
     : null;
+  const coverFullSrc = post.coverImage?.asset
+    ? urlFor(post.coverImage).width(2400).fit("max").url()
+    : null;
   const toc = getWritingToc(post.body);
   const postUrl = `${SITE_URL}/writing/${post.slug}`;
   const shareTitle = post.seoTitle || post.title;
@@ -170,8 +173,9 @@ export default async function WritingPostPage({ params }: Props) {
           {coverSrc ? (
             <div className="border-b-2 border-ink">
               <figure className="mx-auto max-w-7xl">
-                <Image
+                <ZoomableImage
                   src={coverSrc}
+                  fullSrc={coverFullSrc ?? coverSrc}
                   alt={post.coverImage?.alt || post.title}
                   width={1600}
                   height={900}

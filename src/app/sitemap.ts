@@ -5,6 +5,10 @@ import { getPostsForSitemap } from "@/sanity/lib/fetch";
 
 const LAST_MODIFIED = "2026-09-02";
 
+// Metadata routes are cached at build time unless a route config is set.
+// Match the writing index so new Sanity posts appear without a redeploy.
+export const revalidate = 60;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let posts: MetadataRoute.Sitemap = [];
 

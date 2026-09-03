@@ -24,5 +24,5 @@ export async function getPostSlugs(): Promise<{ slug: string }[]> {
 export async function getPostsForSitemap(): Promise<
   { slug: string; publishedAt: string; _updatedAt: string }[]
 > {
-  return client.fetch(POSTS_SITEMAP_QUERY, {}, { next: { revalidate: 300 } });
+  return client.fetch(POSTS_SITEMAP_QUERY, {}, revalidate);
 }
