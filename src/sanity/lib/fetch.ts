@@ -5,7 +5,7 @@ import {
   POSTS_QUERY,
   POSTS_SITEMAP_QUERY,
 } from "./queries";
-import type { Post, PostCard, SanityImage } from "./types";
+import type { Post, PostCard } from "./types";
 
 const revalidate = { next: { revalidate: 60 } };
 
@@ -22,12 +22,7 @@ export async function getPostSlugs(): Promise<{ slug: string }[]> {
 }
 
 export async function getPostsForSitemap(): Promise<
-  {
-    slug: string;
-    publishedAt: string;
-    _updatedAt: string;
-    coverImage?: SanityImage;
-  }[]
+  { slug: string; publishedAt: string; _updatedAt: string }[]
 > {
   return client.withConfig({ useCdn: false }).fetch(
     POSTS_SITEMAP_QUERY,
