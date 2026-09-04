@@ -164,7 +164,7 @@ export default function CatPage() {
                 Once upon
                 <br />
                 <span className="text-org">a pixel</span>
-              </h2>
+              </h2> 
               <p className="max-w-xs font-mono text-[11px] uppercase tracking-[0.16em] text-steel">
                 Five soft scenes. No résumé. Only vibes.
               </p>
