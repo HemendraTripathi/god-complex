@@ -42,6 +42,7 @@ export const POSTS_SITEMAP_QUERY = defineQuery(/* groq */ `
   | order(publishedAt desc) {
     "slug": slug.current,
     publishedAt,
-    _updatedAt
+    _updatedAt,
+    coverImage
   }
 `);

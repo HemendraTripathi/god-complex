@@ -2,24 +2,31 @@ import type { MetadataRoute } from "next";
 import { CASE_URL, FIRST_NAME_URL, HIRE_URL, PORTRAIT_URL, PROFILE_URL } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 import { getPostsForSitemap } from "@/sanity/lib/fetch";
+import { urlFor } from "@/sanity/lib/image";
 
 const LAST_MODIFIED = "2026-09-02";
 
-// Metadata routes are cached at build time unless a route config is set.
-// Match the writing index so new Sanity posts appear without a redeploy.
-export const revalidate = 60;
+// sitemap.ts is cached at build time unless marked dynamic. ISR is not enough
+// here — Vercel kept serving the deploy snapshot. Fetch live on each request.
+export const dynamic = "force-dynamic";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let posts: MetadataRoute.Sitemap = [];
 
   try {
     const writing = await getPostsForSitemap();
-    posts = writing.map((post) => ({
-      url: `${SITE_URL}/writing/${post.slug}`,
-      lastModified: post._updatedAt || post.publishedAt,
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    }));
+    posts = writing.map((post) => {
+      const cover = post.coverImage?.asset
+        ? urlFor(post.coverImage).width(1600).fit("max").url()
+        : null;
+      return {
+        url: `${SITE_URL}/writing/${post.slug}`,
+        lastModified: post._updatedAt || post.publishedAt,
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
+        ...(cover ? { images: [cover] } : {}),
+      };
+    });
   } catch {
     // Build should succeed even if Sanity is unreachable.
   }
