@@ -122,10 +122,10 @@ export const CASE = {
   /** Pipeline shown in the case study — one hop per ownership surface. */
   architecture: [
     { id: "call", label: "Caller", detail: "PSTN / WebRTC" },
-    { id: "tel", label: "Telephony", detail: "Twilio · Telnyx · SIP" },
-    { id: "orch", label: "Orchestrator", detail: "Cache · parallel prompts" },
-    { id: "route", label: "Model router", detail: "Complexity-aware LLM" },
-    { id: "voice", label: "Voice out", detail: "ElevenLabs · Cartesia" },
+    { id: "tel", label: "Telephony", detail: "Dual-carrier + SIP" },
+    { id: "orch", label: "Callin orchestrator", detail: "Cache · parallel prompts · turn clock" },
+    { id: "runtime", label: "Runtime", detail: "Ultra-low latency · Premium Voice · Custom Stack" },
+    { id: "voice", label: "Voice out", detail: "Callin TTS path" },
   ],
   stack: [
     "React",

@@ -146,8 +146,8 @@ export default function ArchitectureFlow() {
       </ol>
 
       <p className="border-t-2 border-ink px-4 py-3 font-mono text-[10px] leading-relaxed uppercase tracking-wider text-steel sm:px-5">
-        Own the path end-to-end: carrier failover, spend routing, and billing
-        ledgers sit on the same turn clock as latency.
+        We own the path end-to-end. Spend routing and billing sit on the same
+        clock as latency.
       </p>
     </figure>
   );
