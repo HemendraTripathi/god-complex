@@ -35,7 +35,8 @@ import {
   PORTRAIT_BATMAN_PATH,
   PORTRAIT_PATH,
   PROFILE_PATH,
-  webPageJsonLd,
+  profilePageJsonLd,
+  SHARE_IMAGE,
 } from "@/lib/seo";
 import { SITE, SITE_URL } from "@/lib/site";
 
@@ -49,8 +50,21 @@ const AgentCall = dynamic(() => import("@/components/AgentCall"), {
 });
 
 export const metadata: Metadata = {
+  title: {
+    absolute: SITE.title,
+  },
   alternates: {
     canonical: "/",
+  },
+  openGraph: {
+    type: "profile",
+    title: SITE.title,
+    description: SITE.description,
+    url: SITE_URL,
+    firstName: "Hemendra",
+    lastName: "Tripathi",
+    username: "hemendratripathi",
+    images: [SHARE_IMAGE],
   },
 };
 
@@ -65,12 +79,7 @@ export default function Home() {
       <JsonLd
         data={jsonLdGraph([
           faqJsonLd(),
-          webPageJsonLd({
-            url: SITE_URL,
-            pageId: `${SITE_URL}#webpage`,
-            name: SITE.title,
-            description: SITE.description,
-          }),
+          profilePageJsonLd(SITE_URL, `${SITE_URL}#webpage`),
         ])}
       />
 
@@ -84,9 +93,9 @@ export default function Home() {
         <div className="mt-10 grid gap-8 border-t-2 border-ink pt-8 md:grid-cols-[1.15fr_0.85fr] md:gap-12 lg:gap-16">
           <div>
             <p className="max-w-2xl text-[clamp(18px,2.4vw,26px)] font-medium leading-snug tracking-tight">
-              Hemendra is a technical lead and AI engineer. He ships as an
-              AI Voice Engineer, plus broader AI product work. He takes products from
-              first commit to paying customers:{" "}
+              Hemendra Tripathi is a technical lead and AI engineer in Udaipur.
+              He ships as an AI Voice Engineer, plus broader AI product work. He
+              takes products from first commit to paying customers:{" "}
               <span className="text-org">
                 architecture, billing, teams, and the revenue they produce.
               </span>

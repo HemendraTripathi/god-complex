@@ -4,7 +4,7 @@ import { Archivo, JetBrains_Mono } from "next/font/google";
 import JsonLd from "@/components/JsonLd";
 import PixelCatLazy from "@/components/PixelCatLazy";
 import { LINKS } from "@/lib/content";
-import { jsonLdGraph, personJsonLd, websiteJsonLd } from "@/lib/seo";
+import { jsonLdGraph, personJsonLd, SAME_AS, websiteJsonLd } from "@/lib/seo";
 import { SITE, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
@@ -103,6 +103,11 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <head>
+        {SAME_AS.map((href) => (
+          <link key={href} rel="me" href={href} />
+        ))}
+      </head>
       <body className={`${archivo.variable} ${jet.variable} antialiased`}>
         <JsonLd data={jsonLdGraph([personJsonLd(), websiteJsonLd()])} />
         {children}

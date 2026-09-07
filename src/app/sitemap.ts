@@ -3,7 +3,7 @@ import { CASE_URL, FIRST_NAME_URL, HIRE_URL, PORTRAIT_URL, PROFILE_URL } from "@
 import { SITE_URL } from "@/lib/site";
 import { getPostsForSitemap } from "@/sanity/lib/fetch";
 
-const LAST_MODIFIED = "2026-09-02";
+const LAST_MODIFIED = "2026-09-07";
 
 // sitemap.ts is cached at build time unless marked dynamic. ISR is not enough
 // here — Vercel kept serving the deploy snapshot. Fetch live on each request.

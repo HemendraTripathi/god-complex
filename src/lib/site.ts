@@ -6,7 +6,7 @@ export const SITE_URL =
 export const SITE = {
   url: SITE_URL,
   name: "Hemendra Tripathi",
-  title: "Hemendra Tripathi | AI Voice Engineer · Tech Lead",
+  title: "Hemendra Tripathi | AI Voice Engineer in Udaipur",
   description:
     "Hemendra Tripathi is a technical lead and AI engineer in Udaipur. As an AI Voice Engineer he scaled Callin.io to 1,500+ customers. Open to hire.",
   shortDescription:

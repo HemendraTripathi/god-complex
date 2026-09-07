@@ -1,4 +1,4 @@
-# Hemendra
+# Hemendra Tripathi
 
 > Hemendra is Hemendra Tripathi, a technical lead and AI engineer based in Udaipur, Rajasthan. He leads engineering on Callin.io at Appspundit Infotech as an AI Voice Engineer: multi-LLM voice agents used by 1,500+ paying customers across US and EU teams.
 

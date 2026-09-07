@@ -45,6 +45,7 @@ export function personJsonLd() {
       "Hemendra Tripathi Appspundit Infotech",
     ],
     url: SITE_URL,
+    mainEntityOfPage: { "@id": `${PROFILE_URL}#profile` },
     image: {
       "@type": "ImageObject",
       url: PORTRAIT_URL,
@@ -94,6 +95,11 @@ export function personJsonLd() {
     worksFor: {
       "@type": "Organization",
       name: "Appspundit Infotech",
+      sameAs: "https://www.linkedin.com/company/appspundit-infotech",
+    },
+    affiliation: {
+      "@type": "Organization",
+      name: "Callin.io",
       url: LINKS.callin,
     },
     hasOccupation: {
@@ -111,12 +117,18 @@ export function websiteJsonLd() {
     "@type": "WebSite",
     "@id": WEBSITE_ID,
     name: SITE.name,
-    alternateName: ["me.readwith.io", "Hemendra", "Hemendra Tripathi portfolio"],
+    alternateName: [
+      "me.readwith.io",
+      "Hemendra",
+      "Hemendra Tripathi portfolio",
+      "Hemendra Tripathi Udaipur",
+    ],
     url: SITE_URL,
     description: SITE.description,
     inLanguage: "en",
     publisher: { "@id": PERSON_ID },
     about: { "@id": PERSON_ID },
+    significantLink: [PROFILE_URL, CASE_URL, HIRE_URL],
   };
 }
 
@@ -126,9 +138,11 @@ export function profilePageJsonLd(url: string, pageId: string) {
     "@id": pageId,
     url,
     name: SITE.name,
+    description: SITE.profileDescription,
     inLanguage: "en",
     about: { "@id": PERSON_ID },
     mainEntity: { "@id": PERSON_ID },
+    isPartOf: { "@id": WEBSITE_ID },
     primaryImageOfPage: {
       "@type": "ImageObject",
       url: PORTRAIT_URL,

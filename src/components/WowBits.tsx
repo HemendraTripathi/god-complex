@@ -33,42 +33,15 @@ export function HeroEyebrow() {
 export function HeroName() {
   return (
     <h1 className="display text-[clamp(52px,11.5vw,168px)]">
-      <span className="sr-only">Hemendra Tripathi</span>
-      <span aria-hidden="true">
-      <SplitText
-        text="HEMENDRA"
-        tag="span"
-        className="display !m-0 block text-[clamp(52px,11.5vw,168px)]"
-        textAlign="left"
-        delay={30}
-        duration={0.7}
-        splitType="chars"
-        from={{ y: 60 }}
-        to={{ y: 0 }}
-        threshold={0.01}
-        rootMargin="0px"
-      />
+      <span className="block">Hemendra</span>
       <span className="flex flex-wrap items-start gap-x-3">
-        <SplitText
-          text="TRIPATHI"
-          tag="span"
-          className="display !m-0 text-[clamp(52px,11.5vw,168px)] text-org"
-          textAlign="left"
-          delay={40}
-          duration={0.75}
-          splitType="chars"
-          from={{ y: 60 }}
-          to={{ y: 0 }}
-          threshold={0.01}
-          rootMargin="0px"
-        />
+        <span className="text-org">Tripathi</span>
         <span
           aria-hidden="true"
-          className="mt-3 align-top font-mono text-[clamp(14px,2vw,26px)] font-normal tracking-normal text-steel"
+          className="mt-3 align-top font-mono text-[clamp(14px,2vw,26px)] font-normal tracking-normal text-steel normal-case"
         >
           ©2026
         </span>
-      </span>
       </span>
     </h1>
   );
