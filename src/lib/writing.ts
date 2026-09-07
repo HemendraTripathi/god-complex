@@ -17,6 +17,34 @@ function slugify(text: string) {
   return base || "section";
 }
 
+export function getReadingMinutes(blocks: PortableTextBlock[]): number {
+  if (!blocks?.length) return 1;
+  const text = blocks
+    .filter((block) => block && typeof block === "object" && block._type === "block")
+    .map((block) => toPlainText(block).trim())
+    .filter(Boolean)
+    .join(" ");
+  const words = text.split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 200));
+}
+
+export type AdjacentPost = {
+  slug: string;
+  title: string;
+};
+
+export function getAdjacentPosts(
+  posts: AdjacentPost[],
+  slug: string,
+): { newer: AdjacentPost | null; older: AdjacentPost | null } {
+  const i = posts.findIndex((post) => post.slug === slug);
+  if (i < 0) return { newer: null, older: null };
+  return {
+    newer: posts[i - 1] ?? null,
+    older: posts[i + 1] ?? null,
+  };
+}
+
 export function getWritingToc(blocks: PortableTextBlock[]): WritingTocItem[] {
   const used = new Map<string, number>();
   const items: WritingTocItem[] = [];

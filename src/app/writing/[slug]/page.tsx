@@ -7,6 +7,8 @@ import PostShare from "@/components/PostShare";
 import ZoomableImage from "@/components/ZoomableImage";
 import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
+import WritingAdjacent from "@/components/WritingAdjacent";
+import WritingEssayRail from "@/components/WritingEssayRail";
 import WritingToc from "@/components/WritingToc";
 import {
   SHARE_IMAGE,
@@ -15,8 +17,8 @@ import {
   jsonLdGraph,
 } from "@/lib/seo";
 import { SITE, SITE_URL } from "@/lib/site";
-import { getWritingToc } from "@/lib/writing";
-import { getPost, getPostSlugs } from "@/sanity/lib/fetch";
+import { getAdjacentPosts, getReadingMinutes, getWritingToc } from "@/lib/writing";
+import { getPost, getPostSlugs, getPosts } from "@/sanity/lib/fetch";
 import { urlFor } from "@/sanity/lib/image";
 
 type Props = {
@@ -83,7 +85,7 @@ function formatDate(iso: string) {
 
 export default async function WritingPostPage({ params }: Props) {
   const { slug } = await params;
-  const post = await getPost(slug);
+  const [post, posts] = await Promise.all([getPost(slug), getPosts()]);
   if (!post) notFound();
 
   const coverSrc = post.coverImage?.asset
@@ -93,6 +95,8 @@ export default async function WritingPostPage({ params }: Props) {
     ? urlFor(post.coverImage).width(2400).fit("max").url()
     : null;
   const toc = getWritingToc(post.body);
+  const minutes = getReadingMinutes(post.body);
+  const { newer, older } = getAdjacentPosts(posts, post.slug);
   const postUrl = `${SITE_URL}/writing/${post.slug}`;
   const shareTitle = post.seoTitle || post.title;
 
@@ -140,6 +144,10 @@ export default async function WritingPostPage({ params }: Props) {
                 <time dateTime={post.publishedAt} className="text-org">
                   {formatDate(post.publishedAt)}
                 </time>
+                <span className="text-hair" aria-hidden="true">
+                  /
+                </span>
+                <span className="text-steel">{minutes} min read</span>
                 {post.tags?.length ? (
                   <>
                     <span className="text-hair" aria-hidden="true">
@@ -187,24 +195,16 @@ export default async function WritingPostPage({ params }: Props) {
             </div>
           ) : null}
 
-          <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-[minmax(0,11rem)_minmax(0,42rem)_minmax(0,14rem)] lg:justify-between lg:gap-10 xl:grid-cols-[minmax(0,12rem)_minmax(0,42rem)_minmax(0,16rem)]">
+          <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-[minmax(0,13rem)_minmax(0,42rem)_minmax(0,14rem)] lg:justify-between lg:gap-10 xl:grid-cols-[minmax(0,14rem)_minmax(0,42rem)_minmax(0,16rem)]">
             <aside className="hidden lg:block">
-              <div className="sticky top-28 space-y-8">
-                <div className="space-y-6">
-                  <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-steel">
-                    Essay
-                  </p>
-                  <div className="h-16 w-0.5 bg-org" aria-hidden="true" />
-                  <p className="max-w-[11rem] font-mono text-[10px] uppercase leading-relaxed tracking-[0.16em] text-steel">
-                    {SITE.jobTitle}
-                  </p>
-                </div>
-                <PostShare
-                  url={postUrl}
-                  title={shareTitle}
-                  variant="icons"
-                />
-              </div>
+              <WritingEssayRail
+                publishedAt={post.publishedAt}
+                minutes={minutes}
+                url={postUrl}
+                title={shareTitle}
+                newer={newer}
+                older={older}
+              />
             </aside>
 
             <div className="min-w-0">
@@ -216,6 +216,12 @@ export default async function WritingPostPage({ params }: Props) {
 
               <footer className="mt-16 border-t-2 border-ink pt-8">
                 <PostShare url={postUrl} title={shareTitle} />
+
+                {(newer || older) ? (
+                  <div className="mt-10 border-t border-hair pt-8 lg:hidden">
+                    <WritingAdjacent newer={newer} older={older} />
+                  </div>
+                ) : null}
 
                 <div className="mt-10 flex flex-col gap-6 border-t border-hair pt-8 sm:flex-row sm:items-end sm:justify-between">
                   <div>

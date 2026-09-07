@@ -3,6 +3,7 @@ import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
 import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
+import WritingIndex from "@/components/WritingIndex";
 import {
   SHARE_IMAGE,
   breadcrumbJsonLd,
@@ -40,15 +41,6 @@ export const metadata: Metadata = {
     images: [SHARE_IMAGE.url],
   },
 };
-
-function formatDate(iso: string) {
-  return new Intl.DateTimeFormat("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-    timeZone: "UTC",
-  }).format(new Date(iso));
-}
 
 export default async function WritingIndexPage() {
   const posts = await getPosts();
@@ -109,42 +101,7 @@ export default async function WritingIndexPage() {
               .
             </p>
           ) : (
-            <ul className="mt-2">
-              {posts.map((post, i) => (
-                <li
-                  key={post._id}
-                  className="border-b border-hair transition-colors hover:bg-ink/[0.03]"
-                >
-                  <Link
-                    href={`/writing/${post.slug}`}
-                    className="group flex flex-col gap-3 py-7 sm:flex-row sm:items-baseline sm:gap-8"
-                  >
-                    <span className="shrink-0 font-mono text-[11px] font-bold text-org sm:w-10">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className="shrink-0 font-mono text-[11px] uppercase tracking-[0.18em] text-steel sm:w-28">
-                      {formatDate(post.publishedAt)}
-                    </span>
-                    <span className="min-w-0 flex-1">
-                      <span className="block text-[clamp(20px,2.6vw,28px)] font-bold tracking-tight transition-colors group-hover:text-org">
-                        {post.title}
-                      </span>
-                      {post.excerpt ? (
-                        <span className="mt-2 block max-w-2xl text-[15px] leading-relaxed text-steel">
-                          {post.excerpt}
-                        </span>
-                      ) : null}
-                    </span>
-                    <span
-                      className="hidden shrink-0 font-mono text-[12px] text-org transition-transform group-hover:translate-x-1 sm:block"
-                      aria-hidden="true"
-                    >
-                      →
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <WritingIndex posts={posts} />
           )}
         </section>
       </main>
