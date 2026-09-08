@@ -14,10 +14,13 @@ type CatState =
   | "idle"
   | "jump"
   | "hover"
-  | "click";
+  | "click"
+  | "wake";
+
+type ClickKind = "meow" | "wake" | "pounce";
+type HoverKind = "look" | "sleep";
 
 const COLS = 8;
-const ROWS = 6;
 const CELL = 144;
 const DISPLAY = 90;
 const EDGE = 16;
@@ -41,18 +44,27 @@ const FRAMES = {
   jump: [40, 41, 42, 43, 44, 45],
 } as const;
 
+/** Weighted toward still poses so it doesn't pace while you read. */
 const IDLE_POOL: CatState[] = [
-  "walk",
-  "walk",
-  "walk",
-  "run",
+  "sit",
+  "sit",
+  "sit",
+  "sit",
+  "sit",
   "sit",
   "sleep",
-  "stretch",
+  "sleep",
+  "sleep",
+  "sleep",
+  "idle",
+  "idle",
+  "wash",
   "wash",
   "yawn",
-  "idle",
+  "stretch",
+  "walk",
   "jump",
+  "run",
 ];
 
 const LOOPING: ReadonlySet<CatState> = new Set([
@@ -62,7 +74,10 @@ const LOOPING: ReadonlySet<CatState> = new Set([
   "hover",
   "wash",
   "idle",
+  "click",
 ]);
+
+const BUSY: ReadonlySet<CatState> = new Set(["click", "wake", "jump"]);
 
 function rand(min: number, max: number) {
   return min + Math.random() * (max - min);
@@ -72,7 +87,7 @@ function pick<T>(arr: readonly T[]): T {
   return arr[Math.floor(Math.random() * arr.length)]!;
 }
 
-function framesFor(state: CatState): readonly number[] {
+function framesFor(state: CatState, clickKind: ClickKind): readonly number[] {
   switch (state) {
     case "walk":
       return FRAMES.walk;
@@ -83,6 +98,7 @@ function framesFor(state: CatState): readonly number[] {
     case "sleep":
       return FRAMES.sleep;
     case "stretch":
+    case "wake":
       return FRAMES.stretch;
     case "wash":
       return FRAMES.wash;
@@ -95,7 +111,7 @@ function framesFor(state: CatState): readonly number[] {
     case "hover":
       return FRAMES.hover;
     case "click":
-      return FRAMES.pounce;
+      return clickKind === "pounce" ? FRAMES.pounce : FRAMES.hover;
   }
 }
 
@@ -111,12 +127,13 @@ function frameMs(state: CatState) {
     case "idle":
       return 160;
     case "hover":
+    case "click":
       return 140;
     case "yawn":
     case "stretch":
+    case "wake":
       return 150;
     case "jump":
-    case "click":
       return 90;
     default:
       return 120;
@@ -128,7 +145,7 @@ export default function PixelCat() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const sheetRef = useRef<HTMLImageElement | null>(null);
-  const stateRef = useRef<CatState>("walk");
+  const stateRef = useRef<CatState>("sit");
   const animIndexRef = useRef(0);
   const blinkRef = useRef(false);
   const xRef = useRef(80);
@@ -139,10 +156,32 @@ export default function PixelCat() {
   const jumpTRef = useRef(0);
   const reducedRef = useRef(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const idleUntilRef = useRef(0);
+  const clickKindRef = useRef<ClickKind>("meow");
+  const clickUntilRef = useRef(0);
+  const fromStateRef = useRef<CatState>("sit");
+  const hoverKindRef = useRef<HoverKind | null>(null);
+  const wakeHoldRef = useRef(0);
+  const wakeFramesRef = useRef<readonly number[]>(FRAMES.stretch);
 
   const [bubble, setBubble] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
   const [ready, setReady] = useState(false);
+
+  const playMeow = () => {
+    if (reducedRef.current) return;
+    let audio = audioRef.current;
+    if (!audio) {
+      audio = new Audio(MEOW_SRC);
+      audio.preload = "auto";
+      audio.volume = MEOW_VOLUME;
+      audioRef.current = audio;
+    }
+    audio.currentTime = 0;
+    void audio.play().catch(() => {
+      /* gesture required on some browsers */
+    });
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -162,9 +201,9 @@ export default function PixelCat() {
     let raf = 0;
     let last = performance.now();
     let animAcc = 0;
-    let idleUntil = performance.now() + rand(2800, 5200);
     let blinkUntil = 0;
     let cancelled = false;
+    idleUntilRef.current = performance.now() + rand(4000, 8000);
 
     const maxX = () => Math.max(EDGE, window.innerWidth - DISPLAY - EDGE);
 
@@ -214,7 +253,10 @@ export default function PixelCat() {
       if (next === "walk" || next === "run") {
         const span = maxX();
         if (next === "run") {
-          targetXRef.current = dirRef.current === 1 ? span * rand(0.72, 0.96) : span * rand(0.04, 0.28);
+          targetXRef.current =
+            dirRef.current === 1
+              ? span * rand(0.72, 0.96)
+              : span * rand(0.04, 0.28);
           if (Math.abs(targetXRef.current - xRef.current) < span * 0.35) {
             targetXRef.current = xRef.current > span * 0.5 ? EDGE : span;
           }
@@ -226,10 +268,21 @@ export default function PixelCat() {
       if (next === "jump" || next === "click") {
         jumpTRef.current = 0;
       }
+      if (next === "wake") {
+        wakeHoldRef.current = 0;
+      }
     };
 
-    const scheduleIdle = (now: number, hold = rand(2500, 5500)) => {
-      idleUntil = now + hold;
+    const scheduleIdle = (now: number, hold = rand(4000, 8000)) => {
+      idleUntilRef.current = now + hold;
+    };
+
+    const rest = (now: number) => {
+      interactingRef.current = false;
+      hoverKindRef.current = null;
+      setBubble(null);
+      setState("sit");
+      scheduleIdle(now, rand(4000, 8000));
     };
 
     img.onload = () => {
@@ -260,11 +313,13 @@ export default function PixelCat() {
         }
 
         const state = stateRef.current;
-        const seq = framesFor(state);
+        const clickKind = clickKindRef.current;
+        const seq =
+          state === "wake" ? wakeFramesRef.current : framesFor(state, clickKind);
 
         if (animAcc >= frameMs(state)) {
           animAcc = 0;
-          if (LOOPING.has(state)) {
+          if (LOOPING.has(state) && !(state === "click" && clickKind === "pounce")) {
             animIndexRef.current = (animIndexRef.current + 1) % seq.length;
           } else if (state !== "sit") {
             animIndexRef.current = Math.min(
@@ -283,17 +338,19 @@ export default function PixelCat() {
           }
         }
 
-        if (!interactingRef.current && now >= idleUntil) {
+        if (!interactingRef.current && now >= idleUntilRef.current) {
           const next = pick(IDLE_POOL);
           setState(next);
           if (next === "sit" || next === "sleep" || next === "idle") {
-            scheduleIdle(now, rand(2800, 5200));
+            scheduleIdle(now, rand(4000, 8000));
           } else if (next === "stretch" || next === "wash" || next === "yawn") {
-            scheduleIdle(now, rand(1800, 2800));
+            scheduleIdle(now, rand(2200, 3200));
           } else if (next === "jump") {
             scheduleIdle(now, 1100);
+          } else if (next === "walk") {
+            scheduleIdle(now, rand(1800, 2800));
           } else if (next === "run") {
-            scheduleIdle(now, 8000);
+            scheduleIdle(now, 5000);
           } else {
             scheduleIdle(now);
           }
@@ -303,12 +360,9 @@ export default function PixelCat() {
           const speed = (state === "run" ? 0.22 : 0.085) * dt;
           const dx = targetXRef.current - xRef.current;
           if (Math.abs(dx) < 3) {
-            if (state === "run" && !interactingRef.current) {
+            if (!interactingRef.current) {
               setState("sit");
-              scheduleIdle(now, rand(1800, 3200));
-            } else {
-              targetXRef.current = rand(EDGE, maxX());
-              dirRef.current = targetXRef.current >= xRef.current ? 1 : -1;
+              scheduleIdle(now, rand(4000, 8000));
             }
           } else {
             dirRef.current = dx > 0 ? 1 : -1;
@@ -326,10 +380,9 @@ export default function PixelCat() {
             Math.floor(t * seq.length),
           );
           if (t >= 1 && !interactingRef.current) {
-            setState("walk");
-            scheduleIdle(now);
+            rest(now);
           }
-        } else if (state === "click") {
+        } else if (state === "click" && clickKind === "pounce") {
           jumpTRef.current += dt / 780;
           const t = Math.min(1, jumpTRef.current);
           yRef.current = -Math.sin(t * Math.PI) * 42;
@@ -340,10 +393,25 @@ export default function PixelCat() {
             Math.floor(t * seq.length),
           );
           if (t >= 1) {
-            interactingRef.current = false;
-            setBubble(null);
-            setState("walk");
-            scheduleIdle(now);
+            rest(now);
+          }
+        } else if (state === "click") {
+          yRef.current = 0;
+          if (now >= clickUntilRef.current) {
+            rest(now);
+          }
+        } else if (state === "wake") {
+          yRef.current = 0;
+          if (animIndexRef.current >= seq.length - 1) {
+            wakeHoldRef.current += dt;
+            if (wakeHoldRef.current > 420) {
+              rest(now);
+              setBubble("mrrp");
+              playMeow();
+              window.setTimeout(() => {
+                if (!cancelled) setBubble((b) => (b === "mrrp" ? null : b));
+              }, 1400);
+            }
           }
         } else {
           yRef.current = 0;
@@ -383,47 +451,81 @@ export default function PixelCat() {
     };
   }, []);
 
-  const playMeow = () => {
-    if (reducedRef.current) return;
-    let audio = audioRef.current;
-    if (!audio) {
-      audio = new Audio(MEOW_SRC);
-      audio.preload = "auto";
-      audio.volume = MEOW_VOLUME;
-      audioRef.current = audio;
-    }
-    audio.currentTime = 0;
-    void audio.play().catch(() => {
-      /* gesture required on some browsers */
-    });
-  };
-
   const onEnter = () => {
     if (reducedRef.current || interactingRef.current) return;
-    if (stateRef.current === "click") return;
+    const state = stateRef.current;
+    if (BUSY.has(state) || state === "run") return;
+
+    fromStateRef.current = state;
     interactingRef.current = true;
+
+    if (state === "sleep") {
+      hoverKindRef.current = "sleep";
+      setBubble("z");
+      return;
+    }
+
+    hoverKindRef.current = "look";
     stateRef.current = "hover";
     animIndexRef.current = 0;
-    setBubble("…");
-    playMeow();
+    setBubble(pick(["…", "?"]));
   };
 
   const onLeave = () => {
     if (reducedRef.current) return;
-    if (stateRef.current === "click") return;
-    interactingRef.current = false;
+    const state = stateRef.current;
+    if (state === "click" || state === "wake") return;
+
     setBubble(null);
-    stateRef.current = "walk";
+    interactingRef.current = false;
+    hoverKindRef.current = null;
+    idleUntilRef.current = performance.now() + rand(4000, 8000);
+
+    if (fromStateRef.current === "sleep" || state === "sleep") {
+      stateRef.current = "sleep";
+      animIndexRef.current = 0;
+      return;
+    }
+
+    stateRef.current = "sit";
     animIndexRef.current = 0;
   };
 
   const onClick = () => {
     if (reducedRef.current) return;
+    const state = stateRef.current;
+    if (state === "click" || state === "wake") return;
+
+    const from =
+      hoverKindRef.current != null ? fromStateRef.current : state;
+
     interactingRef.current = true;
-    stateRef.current = "click";
+    hoverKindRef.current = null;
     animIndexRef.current = 0;
     jumpTRef.current = 0;
-    setBubble(pick(["mrrp", "nya", "!!", "purr"]));
+    yRef.current = 0;
+
+    if (from === "sleep" || state === "sleep") {
+      clickKindRef.current = "wake";
+      wakeFramesRef.current = Math.random() < 0.5 ? FRAMES.stretch : FRAMES.yawn;
+      wakeHoldRef.current = 0;
+      stateRef.current = "wake";
+      setBubble(null);
+      return;
+    }
+
+    if (from === "idle" || from === "walk" || from === "run") {
+      clickKindRef.current = "pounce";
+      stateRef.current = "click";
+      setBubble(pick(["mrrp", "nya", "!!", "purr"]));
+      playMeow();
+      return;
+    }
+
+    clickKindRef.current = "meow";
+    clickUntilRef.current = performance.now() + 900;
+    stateRef.current = "click";
+    setBubble(pick(["mrrp", "nya", "purr"]));
     playMeow();
   };
 
@@ -449,7 +551,7 @@ export default function PixelCat() {
       onBlur={onLeave}
       onClick={onClick}
       onDoubleClick={onDoubleClick}
-      aria-label="Pixel cat. Hover or click to meow. Double-click for its story."
+      aria-label="Pixel cat. Hover to look. Click to pet. Double-click for its story."
     >
       {bubble ? <span className="pixel-cat-bubble">{bubble}</span> : null}
       <canvas
