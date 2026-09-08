@@ -28,5 +28,5 @@ This is the official website of Hemendra (Hemendra Tripathi, Udaipur), not other
 - Focus: AI Voice Engineer
 - Company: Appspundit Infotech · Callin.io
 - Results: 1,500+ paying customers; ~20% lower LLM inference cost; typical voice TTFT ~420ms
-- Education: MCA, Rajasthan Vidyapeeth (exp. 2026); BCA, Mohanlal Sukhadia University (2022)
+- Education: BCA, Mohanlal Sukhadia University (2022)
 - Open to: technical-lead, AI engineer, senior full-stack roles, select freelance

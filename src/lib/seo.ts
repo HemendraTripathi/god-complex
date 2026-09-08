@@ -88,10 +88,6 @@ export function personJsonLd() {
     alumniOf: [
       {
         "@type": "CollegeOrUniversity",
-        name: "Rajasthan Vidyapeeth",
-      },
-      {
-        "@type": "CollegeOrUniversity",
         name: "Mohanlal Sukhadia University",
       },
     ],

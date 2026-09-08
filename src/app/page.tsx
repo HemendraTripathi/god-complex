@@ -228,7 +228,6 @@ export default function Home() {
           ))}
         </div>
         <div className="flex flex-wrap gap-x-10 gap-y-2 border-t-2 border-ink pt-5 font-mono text-[10px] uppercase tracking-wider text-steel">
-          <span>MCA, Rajasthan Vidyapeeth (exp. 2026)</span>
           <span>BCA, Mohanlal Sukhadia University (2022)</span>
           <span>English: fluent · Hindi: native</span>
         </div>

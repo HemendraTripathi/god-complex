@@ -392,6 +392,6 @@ export const PROFILE = {
     { label: "Company", value: "Appspundit Infotech · Callin.io" },
     { label: "Focus", value: "AI Voice Engineer, multi-LLM routing, usage billing" },
     { label: "Languages", value: "English (fluent) · Hindi (native)" },
-    { label: "Education", value: "MCA, Rajasthan Vidyapeeth · BCA, MLSU" },
+    { label: "Education", value: "BCA, MLSU" },
   ],
 } as const;
