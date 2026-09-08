@@ -19,7 +19,7 @@ export const SHARE_IMAGE = {
   url: "/opengraph-image.jpg",
   width: 1200,
   height: 630,
-  alt: "Hemendra Tripathi, technical lead and AI Voice Engineer",
+  alt: "Hemendra Tripathi, AI Voice Engineer and Technical Lead. Builds voice AI that ships, scales, and makes money.",
 } as const;
 
 /** One site name for the whole host. Next overwrites layout `openGraph` per page, so spread this into every page. */

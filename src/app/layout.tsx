@@ -4,7 +4,7 @@ import { Archivo, JetBrains_Mono } from "next/font/google";
 import JsonLd from "@/components/JsonLd";
 import PixelCatLazy from "@/components/PixelCatLazy";
 import { LINKS } from "@/lib/content";
-import { jsonLdGraph, personJsonLd, SAME_AS, websiteJsonLd } from "@/lib/seo";
+import { jsonLdGraph, personJsonLd, SAME_AS, SHARE_IMAGE, websiteJsonLd } from "@/lib/seo";
 import { SITE, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
@@ -40,21 +40,14 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     locale: SITE.locale,
     type: "website",
-    images: [
-      {
-        url: "/opengraph-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: SITE.title,
-      },
-    ],
+    images: [SHARE_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: SITE.title,
     description: SITE.shortDescription,
     creator: "@hemendra_tr",
-    images: ["/opengraph-image.jpg"],
+    images: [SHARE_IMAGE],
   },
   robots: {
     index: true,
