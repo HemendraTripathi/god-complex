@@ -5,48 +5,64 @@ import { useEffect, useRef, useState } from "react";
 
 type CatState =
   | "walk"
+  | "run"
   | "sit"
   | "sleep"
   | "stretch"
   | "wash"
+  | "yawn"
   | "idle"
   | "jump"
   | "hover"
   | "click";
 
 const COLS = 8;
-const CELL = 64;
-const DISPLAY = 74;
+const ROWS = 6;
+const CELL = 144;
+const DISPLAY = 90;
 const EDGE = 16;
-const FRAME_MS = 110;
-const SHEET_SRC = "/pixel-cat/sheet.png?v=4";
+const SHEET_SRC = "/pixel-cat/sheet.png?v=9";
 const MEOW_SRC = "/pixel-cat/meow.opus";
 const MEOW_VOLUME = 0.7;
 
+/** Frame indices into the 8×6 sheet (row-major). */
 const FRAMES = {
   walk: [0, 1, 2, 3, 4, 5, 6, 7],
-  sit: [8],
-  sitBlink: [9],
-  sleep: [10, 11],
-  stretch: [12],
-  wash: [13],
-  idle: [15],
-  hover: [16, 17],
-  click: [18, 19],
-  jump: [20, 21, 22, 23],
+  run: [8, 9, 10, 11, 12, 13, 14, 15],
+  sitBlink: [17],
+  sit: [18],
+  idle: [21, 22, 23],
+  sleep: [16, 24, 25],
+  stretch: [26, 27],
+  wash: [28, 29],
+  yawn: [30, 31],
+  hover: [32, 33, 34],
+  pounce: [37, 38, 39],
+  jump: [40, 41, 42, 43, 44, 45],
 } as const;
 
 const IDLE_POOL: CatState[] = [
   "walk",
   "walk",
   "walk",
+  "run",
   "sit",
   "sleep",
   "stretch",
   "wash",
+  "yawn",
   "idle",
   "jump",
 ];
+
+const LOOPING: ReadonlySet<CatState> = new Set([
+  "walk",
+  "run",
+  "sleep",
+  "hover",
+  "wash",
+  "idle",
+]);
 
 function rand(min: number, max: number) {
   return min + Math.random() * (max - min);
@@ -60,6 +76,8 @@ function framesFor(state: CatState): readonly number[] {
   switch (state) {
     case "walk":
       return FRAMES.walk;
+    case "run":
+      return FRAMES.run;
     case "sit":
       return FRAMES.sit;
     case "sleep":
@@ -68,6 +86,8 @@ function framesFor(state: CatState): readonly number[] {
       return FRAMES.stretch;
     case "wash":
       return FRAMES.wash;
+    case "yawn":
+      return FRAMES.yawn;
     case "idle":
       return FRAMES.idle;
     case "jump":
@@ -75,7 +95,31 @@ function framesFor(state: CatState): readonly number[] {
     case "hover":
       return FRAMES.hover;
     case "click":
-      return FRAMES.click;
+      return FRAMES.pounce;
+  }
+}
+
+function frameMs(state: CatState) {
+  switch (state) {
+    case "run":
+      return 68;
+    case "walk":
+      return 88;
+    case "sleep":
+      return 420;
+    case "wash":
+    case "idle":
+      return 160;
+    case "hover":
+      return 140;
+    case "yawn":
+    case "stretch":
+      return 150;
+    case "jump":
+    case "click":
+      return 90;
+    default:
+      return 120;
   }
 }
 
@@ -109,15 +153,11 @@ export default function PixelCat() {
     };
     mq.addEventListener("change", onMq);
 
-    // Defer sheet fetch slightly so we don't contend with LCP resources.
     const img = new Image();
     sheetRef.current = img;
     const sheetTimer = window.setTimeout(() => {
       img.src = SHEET_SRC;
     }, 400);
-
-    /** Per-frame source crop flush to the paws (ignores soft fringe). */
-    const crops: { sx: number; sy: number; sw: number; sh: number }[] = [];
 
     let raf = 0;
     let last = performance.now();
@@ -128,65 +168,6 @@ export default function PixelCat() {
 
     const maxX = () => Math.max(EDGE, window.innerWidth - DISPLAY - EDGE);
 
-    const measureCrops = (sheet: HTMLImageElement) => {
-      const probe = document.createElement("canvas");
-      probe.width = CELL;
-      probe.height = CELL;
-      const pctx = probe.getContext("2d", { willReadFrequently: true });
-      if (!pctx) return;
-      for (let i = 0; i < COLS * 3; i++) {
-        const col = i % COLS;
-        const row = Math.floor(i / COLS);
-        pctx.clearRect(0, 0, CELL, CELL);
-        pctx.drawImage(
-          sheet,
-          col * CELL,
-          row * CELL,
-          CELL,
-          CELL,
-          0,
-          0,
-          CELL,
-          CELL,
-        );
-        const data = pctx.getImageData(0, 0, CELL, CELL).data;
-        let minX = CELL;
-        let minY = CELL;
-        let maxX = -1;
-        let maxY = -1;
-        for (let y = 0; y < CELL; y++) {
-          for (let x = 0; x < CELL; x++) {
-            const o = (y * CELL + x) * 4;
-            const r = data[o]!;
-            const g = data[o + 1]!;
-            const b = data[o + 2]!;
-            const a = data[o + 3]!;
-            if (a < 180) continue;
-            // ignore leftover magenta / purple fringe
-            if (r > 35 && b > 35 && g < 45 && Math.abs(r - b) < 55) continue;
-            const lum = (r + g + b) / 3;
-            const isOrange = r > 160 && g > 50 && b < 90;
-            const isDark = lum < 100;
-            if (!isOrange && !isDark) continue;
-            if (x < minX) minX = x;
-            if (y < minY) minY = y;
-            if (x > maxX) maxX = x;
-            if (y > maxY) maxY = y;
-          }
-        }
-        if (maxX < 0) {
-          crops[i] = { sx: col * CELL, sy: row * CELL, sw: CELL, sh: CELL };
-        } else {
-          crops[i] = {
-            sx: col * CELL + minX,
-            sy: row * CELL + minY,
-            sw: maxX - minX + 1,
-            sh: maxY - minY + 1,
-          };
-        }
-      }
-    };
-
     const drawFrame = (index: number, flip: boolean) => {
       const canvas = canvasRef.current;
       const sheet = sheetRef.current;
@@ -194,37 +175,34 @@ export default function PixelCat() {
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
 
-      const crop = crops[index] ?? {
-        sx: (index % COLS) * CELL,
-        sy: Math.floor(index / COLS) * CELL,
-        sw: CELL,
-        sh: CELL,
-      };
+      const dpr = Math.min(2, window.devicePixelRatio || 1);
+      const buf = Math.round(DISPLAY * dpr);
+      if (canvas.width !== buf || canvas.height !== buf) {
+        canvas.width = buf;
+        canvas.height = buf;
+      }
 
-      const scale = DISPLAY / CELL;
-      const dw = crop.sw * scale;
-      const dh = crop.sh * scale;
-      // Pin paws to the bottom edge of the canvas
-      const dx = (DISPLAY - dw) / 2;
-      const dy = DISPLAY - dh;
+      const col = index % COLS;
+      const row = Math.floor(index / COLS);
 
-      ctx.clearRect(0, 0, DISPLAY, DISPLAY);
-      ctx.imageSmoothingEnabled = false;
+      ctx.clearRect(0, 0, buf, buf);
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = "high";
       ctx.save();
       if (flip) {
-        ctx.translate(DISPLAY, 0);
+        ctx.translate(buf, 0);
         ctx.scale(-1, 1);
       }
       ctx.drawImage(
         sheet,
-        crop.sx,
-        crop.sy,
-        crop.sw,
-        crop.sh,
-        dx,
-        dy,
-        dw,
-        dh,
+        col * CELL,
+        row * CELL,
+        CELL,
+        CELL,
+        0,
+        0,
+        buf,
+        buf,
       );
       ctx.restore();
     };
@@ -233,8 +211,16 @@ export default function PixelCat() {
       stateRef.current = next;
       animIndexRef.current = 0;
       blinkRef.current = false;
-      if (next === "walk") {
-        targetXRef.current = rand(EDGE, maxX());
+      if (next === "walk" || next === "run") {
+        const span = maxX();
+        if (next === "run") {
+          targetXRef.current = dirRef.current === 1 ? span * rand(0.72, 0.96) : span * rand(0.04, 0.28);
+          if (Math.abs(targetXRef.current - xRef.current) < span * 0.35) {
+            targetXRef.current = xRef.current > span * 0.5 ? EDGE : span;
+          }
+        } else {
+          targetXRef.current = rand(EDGE, span);
+        }
         dirRef.current = targetXRef.current >= xRef.current ? 1 : -1;
       }
       if (next === "jump" || next === "click") {
@@ -248,7 +234,6 @@ export default function PixelCat() {
 
     img.onload = () => {
       if (cancelled) return;
-      measureCrops(img);
       xRef.current = rand(EDGE, maxX() * 0.45);
       targetXRef.current = rand(EDGE, maxX());
       setReady(true);
@@ -277,10 +262,15 @@ export default function PixelCat() {
         const state = stateRef.current;
         const seq = framesFor(state);
 
-        if (animAcc >= FRAME_MS) {
+        if (animAcc >= frameMs(state)) {
           animAcc = 0;
-          if (state === "walk" || state === "sleep" || state === "hover") {
+          if (LOOPING.has(state)) {
             animIndexRef.current = (animIndexRef.current + 1) % seq.length;
+          } else if (state !== "sit") {
+            animIndexRef.current = Math.min(
+              seq.length - 1,
+              animIndexRef.current + 1,
+            );
           }
           if (state === "sit" && now > blinkUntil) {
             if (!blinkRef.current && Math.random() < 0.12) {
@@ -297,32 +287,39 @@ export default function PixelCat() {
           const next = pick(IDLE_POOL);
           setState(next);
           if (next === "sit" || next === "sleep" || next === "idle") {
-            scheduleIdle(now, rand(2800, 5000));
-          } else if (next === "stretch" || next === "wash") {
-            scheduleIdle(now, rand(1600, 2600));
+            scheduleIdle(now, rand(2800, 5200));
+          } else if (next === "stretch" || next === "wash" || next === "yawn") {
+            scheduleIdle(now, rand(1800, 2800));
           } else if (next === "jump") {
-            scheduleIdle(now, 900);
+            scheduleIdle(now, 1100);
+          } else if (next === "run") {
+            scheduleIdle(now, 8000);
           } else {
             scheduleIdle(now);
           }
         }
 
-        if (state === "walk") {
-          const speed = 0.09 * dt;
+        if (state === "walk" || state === "run") {
+          const speed = (state === "run" ? 0.22 : 0.085) * dt;
           const dx = targetXRef.current - xRef.current;
-          if (Math.abs(dx) < 2) {
-            targetXRef.current = rand(EDGE, maxX());
-            dirRef.current = targetXRef.current >= xRef.current ? 1 : -1;
+          if (Math.abs(dx) < 3) {
+            if (state === "run" && !interactingRef.current) {
+              setState("sit");
+              scheduleIdle(now, rand(1800, 3200));
+            } else {
+              targetXRef.current = rand(EDGE, maxX());
+              dirRef.current = targetXRef.current >= xRef.current ? 1 : -1;
+            }
           } else {
             dirRef.current = dx > 0 ? 1 : -1;
             xRef.current += dirRef.current * speed;
           }
           yRef.current = 0;
         } else if (state === "jump") {
-          jumpTRef.current += dt / 780;
+          jumpTRef.current += dt / 920;
           const t = Math.min(1, jumpTRef.current);
-          yRef.current = -Math.sin(t * Math.PI) * 56;
-          xRef.current += dirRef.current * 0.05 * dt;
+          yRef.current = -Math.sin(t * Math.PI) * 64;
+          xRef.current += dirRef.current * 0.06 * dt;
           xRef.current = Math.min(maxX(), Math.max(EDGE, xRef.current));
           animIndexRef.current = Math.min(
             seq.length - 1,
@@ -333,10 +330,15 @@ export default function PixelCat() {
             scheduleIdle(now);
           }
         } else if (state === "click") {
-          jumpTRef.current += dt / 700;
+          jumpTRef.current += dt / 780;
           const t = Math.min(1, jumpTRef.current);
-          yRef.current = -Math.sin(t * Math.PI) * 28;
-          animIndexRef.current = t < 0.45 ? 0 : 1;
+          yRef.current = -Math.sin(t * Math.PI) * 42;
+          xRef.current += dirRef.current * 0.08 * dt;
+          xRef.current = Math.min(maxX(), Math.max(EDGE, xRef.current));
+          animIndexRef.current = Math.min(
+            seq.length - 1,
+            Math.floor(t * seq.length),
+          );
           if (t >= 1) {
             interactingRef.current = false;
             setBubble(null);
@@ -432,30 +434,30 @@ export default function PixelCat() {
   if (!mounted) return null;
 
   return (
-      <button
-        ref={buttonRef}
-        type="button"
-        className="pixel-cat"
-        style={{
-          width: DISPLAY,
-          height: DISPLAY,
-          opacity: ready ? 1 : 0,
-        }}
-        onMouseEnter={onEnter}
-        onMouseLeave={onLeave}
-        onFocus={onEnter}
-        onBlur={onLeave}
-        onClick={onClick}
-        onDoubleClick={onDoubleClick}
-        aria-label="Pixel cat. Hover or click to meow. Double-click for its story."
-      >
-        {bubble ? <span className="pixel-cat-bubble">{bubble}</span> : null}
-        <canvas
-          ref={canvasRef}
-          className="pixel-cat-canvas"
-          width={DISPLAY}
-          height={DISPLAY}
-        />
-      </button>
+    <button
+      ref={buttonRef}
+      type="button"
+      className="pixel-cat"
+      style={{
+        width: DISPLAY,
+        height: DISPLAY,
+        opacity: ready ? 1 : 0,
+      }}
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
+      onFocus={onEnter}
+      onBlur={onLeave}
+      onClick={onClick}
+      onDoubleClick={onDoubleClick}
+      aria-label="Pixel cat. Hover or click to meow. Double-click for its story."
+    >
+      {bubble ? <span className="pixel-cat-bubble">{bubble}</span> : null}
+      <canvas
+        ref={canvasRef}
+        className="pixel-cat-canvas"
+        width={DISPLAY}
+        height={DISPLAY}
+      />
+    </button>
   );
 }
