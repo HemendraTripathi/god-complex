@@ -6,9 +6,9 @@ import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
 import {
   breadcrumbJsonLd,
+  CAT_SHARE_IMAGE,
   jsonLdGraph,
   OPEN_GRAPH_SITE,
-  SHARE_IMAGE,
 } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 
@@ -31,14 +31,15 @@ export const metadata: Metadata = {
       "A tiny black cat lives at the bottom of this site. This is its story.",
     url: CAT_URL,
     type: "article",
-    images: [SHARE_IMAGE],
+    images: [CAT_SHARE_IMAGE],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "The Arcade Cat",
     description:
       "A tiny black cat lives at the bottom of this site. This is its story.",
-    images: [SHARE_IMAGE.url],
+    creator: "@hemendra_tr",
+    images: [CAT_SHARE_IMAGE.url],
   },
 };
 
@@ -96,6 +97,10 @@ export default function CatPage() {
             description:
               "A short, silly story about the black arcade cat on this website.",
             isPartOf: { "@id": `${SITE_URL}/#website` },
+            primaryImageOfPage: {
+              "@type": "ImageObject",
+              url: `${SITE_URL}${CAT_SHARE_IMAGE.url}`,
+            },
           },
         ])}
       />

@@ -22,6 +22,13 @@ export const SHARE_IMAGE = {
   alt: "Hemendra Tripathi, AI Voice Engineer and Technical Lead. Builds voice AI that ships, scales, and makes money.",
 } as const;
 
+export const CAT_SHARE_IMAGE = {
+  url: "/cat/opengraph-image.jpg",
+  width: 1200,
+  height: 630,
+  alt: "The Arcade Cat: a tiny black pixel cat with orange eyes. A tiny story, extremely canon.",
+} as const;
+
 /** One site name for the whole host. Next overwrites layout `openGraph` per page, so spread this into every page. */
 export const OPEN_GRAPH_SITE = { siteName: SITE.name } as const;
 
