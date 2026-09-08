@@ -4,7 +4,12 @@ import CatMeowButton from "@/components/CatMeowButton";
 import JsonLd from "@/components/JsonLd";
 import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
-import { breadcrumbJsonLd, jsonLdGraph, SHARE_IMAGE } from "@/lib/seo";
+import {
+  breadcrumbJsonLd,
+  jsonLdGraph,
+  OPEN_GRAPH_SITE,
+  SHARE_IMAGE,
+} from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 
 const CAT_PATH = "/cat";
@@ -20,6 +25,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
+    ...OPEN_GRAPH_SITE,
     title: "The Arcade Cat",
     description:
       "A tiny black cat lives at the bottom of this site. This is its story.",

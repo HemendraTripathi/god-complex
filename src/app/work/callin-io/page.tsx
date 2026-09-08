@@ -13,6 +13,7 @@ import {
   CASE_PATH,
   CASE_URL,
   HIRE_PATH,
+  OPEN_GRAPH_SITE,
   SHARE_IMAGE,
   breadcrumbJsonLd,
   caseStudyJsonLd,
@@ -29,6 +30,7 @@ export const metadata: Metadata = {
     canonical: CASE_PATH,
   },
   openGraph: {
+    ...OPEN_GRAPH_SITE,
     type: "article",
     title: SITE.caseTitle,
     description: SITE.caseDescription,

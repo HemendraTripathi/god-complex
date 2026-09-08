@@ -5,6 +5,7 @@ import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
 import WritingIndex from "@/components/WritingIndex";
 import {
+  OPEN_GRAPH_SITE,
   SHARE_IMAGE,
   breadcrumbJsonLd,
   jsonLdGraph,
@@ -27,6 +28,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OPEN_GRAPH_SITE,
     type: "website",
     title: `${TITLE} · ${SITE.name}`,
     description: DESCRIPTION,

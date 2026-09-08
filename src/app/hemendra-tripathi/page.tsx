@@ -11,6 +11,7 @@ import {
   CASE_PATH,
   PORTRAIT_PATH,
   PROFILE_PATH,
+  OPEN_GRAPH_SITE,
   SHARE_IMAGE,
   breadcrumbJsonLd,
   jsonLdGraph,
@@ -27,6 +28,7 @@ export const metadata: Metadata = {
     canonical: PROFILE_PATH,
   },
   openGraph: {
+    ...OPEN_GRAPH_SITE,
     type: "profile",
     title: SITE.profileTitle,
     description: SITE.profileDescription,

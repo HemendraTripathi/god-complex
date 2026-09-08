@@ -32,6 +32,7 @@ import {
   CASE_PATH,
   faqJsonLd,
   jsonLdGraph,
+  OPEN_GRAPH_SITE,
   PORTRAIT_BATMAN_PATH,
   PORTRAIT_PATH,
   PROFILE_PATH,
@@ -57,6 +58,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
+    ...OPEN_GRAPH_SITE,
     type: "profile",
     title: SITE.title,
     description: SITE.description,

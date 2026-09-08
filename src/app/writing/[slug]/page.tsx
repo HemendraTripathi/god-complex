@@ -11,6 +11,7 @@ import WritingAdjacent from "@/components/WritingAdjacent";
 import WritingEssayRail from "@/components/WritingEssayRail";
 import WritingToc from "@/components/WritingToc";
 import {
+  OPEN_GRAPH_SITE,
   SHARE_IMAGE,
   blogPostingJsonLd,
   breadcrumbJsonLd,
@@ -55,6 +56,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: `/writing/${post.slug}`,
     },
     openGraph: {
+      ...OPEN_GRAPH_SITE,
       type: "article",
       title,
       description,

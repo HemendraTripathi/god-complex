@@ -22,6 +22,9 @@ export const SHARE_IMAGE = {
   alt: "Hemendra Tripathi, technical lead and AI Voice Engineer",
 } as const;
 
+/** One site name for the whole host. Next overwrites layout `openGraph` per page, so spread this into every page. */
+export const OPEN_GRAPH_SITE = { siteName: SITE.name } as const;
+
 export const SAME_AS = [
   LINKS.github,
   LINKS.linkedin,
@@ -118,10 +121,10 @@ export function websiteJsonLd() {
     "@id": WEBSITE_ID,
     name: SITE.name,
     alternateName: [
-      "me.readwith.io",
       "Hemendra",
       "Hemendra Tripathi portfolio",
       "Hemendra Tripathi Udaipur",
+      "me.readwith.io",
     ],
     url: SITE_URL,
     description: SITE.description,

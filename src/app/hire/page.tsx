@@ -7,6 +7,7 @@ import {
   CASE_PATH,
   HIRE_PATH,
   HIRE_URL,
+  OPEN_GRAPH_SITE,
   SHARE_IMAGE,
   breadcrumbJsonLd,
   faqJsonLd,
@@ -29,6 +30,7 @@ export const metadata: Metadata = {
     canonical: HIRE_PATH,
   },
   openGraph: {
+    ...OPEN_GRAPH_SITE,
     type: "website",
     title: SITE.hireTitle,
     description: SITE.hireDescription,
