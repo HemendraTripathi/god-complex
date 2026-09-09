@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { trackGaEvent } from "@/lib/ga-events";
 
 function XIcon({ className }: { className?: string }) {
   return (
@@ -58,6 +59,14 @@ export default function PostShare({ url, title, variant = "buttons" }: Props) {
   const xHref = `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`;
   const linkedInHref = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
 
+  function trackShare(method: "twitter" | "linkedin" | "copy") {
+    trackGaEvent("share", {
+      method,
+      content_type: "article",
+      item_id: url,
+    });
+  }
+
   async function copyLink() {
     try {
       await navigator.clipboard.writeText(url);
@@ -67,6 +76,7 @@ export default function PostShare({ url, title, variant = "buttons" }: Props) {
       // Fallback for older browsers / denied permission
       window.prompt("Copy link", url);
     }
+    trackShare("copy");
   }
 
   if (variant === "icons") {
@@ -81,6 +91,7 @@ export default function PostShare({ url, title, variant = "buttons" }: Props) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Share on X"
+            onClick={() => trackShare("twitter")}
             className="inline-flex h-9 w-9 items-center justify-center border-2 border-ink text-ink transition-colors hover:border-org hover:bg-org hover:text-paper"
           >
             <XIcon className="h-3.5 w-3.5" />
@@ -90,6 +101,7 @@ export default function PostShare({ url, title, variant = "buttons" }: Props) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Share on LinkedIn"
+            onClick={() => trackShare("linkedin")}
             className="inline-flex h-9 w-9 items-center justify-center border-2 border-ink text-ink transition-colors hover:border-org hover:bg-org hover:text-paper"
           >
             <LinkedInIcon className="h-3.5 w-3.5" />
@@ -120,6 +132,7 @@ export default function PostShare({ url, title, variant = "buttons" }: Props) {
           href={xHref}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackShare("twitter")}
           className="inline-flex h-9 items-center gap-2 border-2 border-ink px-3 font-mono text-[10px] font-bold uppercase tracking-[0.16em] transition-colors hover:border-org hover:bg-org hover:text-paper"
         >
           <XIcon className="h-3 w-3" />
@@ -129,6 +142,7 @@ export default function PostShare({ url, title, variant = "buttons" }: Props) {
           href={linkedInHref}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackShare("linkedin")}
           className="inline-flex h-9 items-center gap-2 border-2 border-ink px-3 font-mono text-[10px] font-bold uppercase tracking-[0.16em] transition-colors hover:border-org hover:bg-org hover:text-paper"
         >
           <LinkedInIcon className="h-3 w-3" />

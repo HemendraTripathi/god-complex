@@ -16,6 +16,7 @@ import {
 import BharatMark from "./BharatMark";
 import CountUp from "./CountUp";
 import { LINKS } from "@/lib/content";
+import { trackGaEvent } from "@/lib/ga-events";
 
 type Msg = { id: number; role: "agent" | "user"; html: string };
 type Choice = { label: string; onPick: () => void; done?: boolean; end?: boolean };
@@ -338,6 +339,9 @@ export default function AgentCall() {
         push("user", "End call, summarize");
         await say(OUTRO);
         setQualified(true);
+        trackGaEvent("agent_demo_complete", {
+          topics_visited: visitedRef.current.size,
+        });
         await sleep(600);
         setShowSummary(true);
       },
@@ -353,6 +357,7 @@ export default function AgentCall() {
 
   async function answer() {
     setStage("call");
+    trackGaEvent("agent_demo_start");
     await sleep(400);
     reveal("profile");
     await say(INTRO);

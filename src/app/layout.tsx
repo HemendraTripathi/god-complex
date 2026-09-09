@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
 import { Archivo, JetBrains_Mono } from "next/font/google";
+import GaClickTracker from "@/components/GaClickTracker";
 import JsonLd from "@/components/JsonLd";
 import PixelCatLazy from "@/components/PixelCatLazy";
 import { LINKS } from "@/lib/content";
+import { GA_MEASUREMENT_ID } from "@/lib/ga";
 import { jsonLdGraph, personJsonLd, SAME_AS, SHARE_IMAGE, websiteJsonLd } from "@/lib/seo";
 import { SITE, SITE_URL } from "@/lib/site";
 import "./globals.css";
@@ -105,8 +108,15 @@ export default function RootLayout({
         <JsonLd data={jsonLdGraph([personJsonLd(), websiteJsonLd()])} />
         {children}
         <PixelCatLazy />
+        {GA_MEASUREMENT_ID ? <GaClickTracker /> : null}
         <Analytics />
       </body>
+      {GA_MEASUREMENT_ID ? (
+        <GoogleAnalytics
+          gaId={GA_MEASUREMENT_ID}
+          debugMode={process.env.NODE_ENV !== "production"}
+        />
+      ) : null}
     </html>
   );
 }

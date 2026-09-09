@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import ArticleTracker from "@/components/ArticleTracker";
 import JsonLd from "@/components/JsonLd";
 import PostBody from "@/components/PostBody";
 import PostShare from "@/components/PostShare";
@@ -108,6 +109,11 @@ export default async function WritingPostPage({ params }: Props) {
         Skip to content
       </a>
       <SiteNav />
+      <ArticleTracker
+        slug={post.slug}
+        title={shareTitle}
+        minutes={minutes}
+      />
       <JsonLd
         data={jsonLdGraph([
           blogPostingJsonLd({
