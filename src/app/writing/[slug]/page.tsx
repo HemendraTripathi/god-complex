@@ -12,6 +12,8 @@ import WritingAdjacent from "@/components/WritingAdjacent";
 import WritingEssayRail from "@/components/WritingEssayRail";
 import WritingToc from "@/components/WritingToc";
 import {
+  CASE_PATH,
+  HIRE_PATH,
   OPEN_GRAPH_SITE,
   SHARE_IMAGE,
   blogPostingJsonLd,
@@ -223,7 +225,23 @@ export default async function WritingPostPage({ params }: Props) {
               <PostBody value={post.body} toc={toc} />
 
               <footer className="mt-16 border-t-2 border-ink pt-8">
-                <PostShare url={postUrl} title={shareTitle} />
+                <p className="text-[15px] leading-relaxed text-steel">
+                  Looking for the case study or to hire me? See{" "}
+                  <Link
+                    href={CASE_PATH}
+                    className="font-medium text-org underline decoration-org/35 underline-offset-[3px] transition-colors hover:decoration-org"
+                  >
+                    Callin.io
+                  </Link>{" "}
+                  and <Link
+                    href={HIRE_PATH}
+                    className="font-medium text-org underline decoration-org/35 underline-offset-[3px] transition-colors hover:decoration-org"
+                  >Hire</Link>.
+                </p>
+
+                <div className="mt-8">
+                  <PostShare url={postUrl} title={shareTitle} />
+                </div>
 
                 {(newer || older) ? (
                   <div className="mt-10 border-t border-hair pt-8 lg:hidden">
