@@ -29,7 +29,6 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
   manualMode = false,
   blurAmount = 5,
   borderColor = 'green',
-  glowColor = 'rgba(0, 255, 0, 0.6)',
   animationDuration = 0.5,
   pauseBetweenAnimations = 1,
   className = '',
@@ -43,6 +42,7 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
   const [focusRect, setFocusRect] = useState<FocusRect>({ x: 0, y: 0, width: 0, height: 0 });
 
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (!manualMode) {
       const interval = setInterval(
         () => {
@@ -85,7 +85,7 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
 
   return (
     <div
-      className={`relative flex gap-4 items-center flex-wrap ${className}`}
+      className={`true-focus relative flex gap-4 items-center flex-wrap ${className}`}
       ref={containerRef}
       style={{ outline: 'none', userSelect: 'none' }}
     >
@@ -99,7 +99,7 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
               wordRefs.current[index] = el;
             }}
             aria-hidden="true"
-            className={wordClassName}
+            className={`true-focus-word ${wordClassName}`}
             style={
               {
                 filter: manualMode
@@ -131,7 +131,7 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
         <motion.span
           key={i}
           aria-hidden="true"
-          className={`pointer-events-none absolute top-0 left-0 h-4 w-4 rounded-[3px] border-[3px] ${corners}`}
+          className={`true-focus-bracket pointer-events-none absolute top-0 left-0 h-4 w-4 rounded-[3px] border-[3px] ${corners}`}
           animate={{
             x,
             y,
@@ -140,7 +140,6 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
           transition={{ duration: animationDuration }}
           style={{
             borderColor,
-            filter: `drop-shadow(0 0 4px ${glowColor})`,
           }}
         />
       ))}

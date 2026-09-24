@@ -46,6 +46,7 @@ const FadeContent: React.FC<FadeContentProps> = ({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     let scrollerTarget: Element | string | null = container || document.getElementById('snap-main-container') || null;
 

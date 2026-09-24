@@ -20,6 +20,10 @@ export interface SplitTextProps {
   to?: gsap.TweenVars;
   threshold?: number;
   rootMargin?: string;
+  /** Seconds before the stagger starts. */
+  startDelay?: number;
+  /** Clip the rise. Off for tight display type, which would get cut. */
+  mask?: boolean;
   tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
   textAlign?: React.CSSProperties['textAlign'];
   onLetterAnimationComplete?: () => void;
@@ -36,6 +40,8 @@ const SplitText: React.FC<SplitTextProps> = ({
   to = { opacity: 1, y: 0 },
   threshold = 0.1,
   rootMargin = '-100px',
+  startDelay = 0,
+  mask = true,
   tag = 'p',
   textAlign = 'center',
   onLetterAnimationComplete
@@ -63,6 +69,7 @@ const SplitText: React.FC<SplitTextProps> = ({
   useGSAP(
     () => {
       if (!ref.current || !text || !fontsLoaded) return;
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       // Prevent re-animation if already completed
       if (animationCompletedRef.current) return;
       const el = ref.current as HTMLElement & {
@@ -112,6 +119,7 @@ const SplitText: React.FC<SplitTextProps> = ({
               ...to,
               duration,
               ease,
+              delay: startDelay,
               stagger: delay / 1000,
               scrollTrigger: {
                 trigger: el,
@@ -152,6 +160,7 @@ const SplitText: React.FC<SplitTextProps> = ({
         JSON.stringify(to),
         threshold,
         rootMargin,
+        startDelay,
         fontsLoaded
       ],
       scope: ref
@@ -164,7 +173,7 @@ const SplitText: React.FC<SplitTextProps> = ({
       wordWrap: 'break-word',
       willChange: 'transform, opacity'
     };
-    const classes = `split-parent overflow-hidden inline-block whitespace-normal ${className}`;
+    const classes = `split-parent whitespace-normal ${mask ? "inline-block overflow-hidden" : ""} ${className}`;
     const Tag = (tag || 'p') as React.ElementType;
 
     return (

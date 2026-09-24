@@ -87,12 +87,13 @@ export default function Home() {
 
       {/* hero */}
       <main id="main">
-      <header className="mx-auto max-w-7xl px-5 pt-28 sm:px-8 sm:pt-36">
+      <div className="plate-survey flex min-h-dvh flex-col">
+      <header className="mx-auto flex w-full max-w-7xl flex-1 flex-col px-5 pb-5 pt-20 sm:px-8 sm:pb-8 sm:pt-24">
         <HeroEyebrow />
         <HeroName />
         <HeroFocus />
 
-        <div className="mt-10 grid gap-8 border-t-2 border-ink pt-8 md:grid-cols-[1.15fr_0.85fr] md:gap-12 lg:gap-16">
+        <div className="mt-4 grid gap-6 border-t-2 border-ink pt-4 sm:mt-6 sm:gap-8 sm:pt-6 md:grid-cols-[1.15fr_0.85fr] md:gap-12 lg:gap-16">
           <div>
             <p className="max-w-2xl text-[clamp(18px,2.4vw,26px)] font-medium leading-snug tracking-tight">
               Hemendra Tripathi is a technical lead and AI engineer in Udaipur.
@@ -111,6 +112,7 @@ export default function Home() {
 
         <HeroCtas />
       </header>
+      </div>
 
       {/* ticker */}
       <div
@@ -455,7 +457,7 @@ export default function Home() {
       </FadeIn>
 
       {/* contact */}
-      <section id="contact" className="mt-24 scroll-mt-20 border-t-2 border-ink">
+      <section id="contact" className="plate-laid mt-24 scroll-mt-20 border-t-2 border-ink">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
           <div className="eyebrow mb-6">(10) Contact</div>
           <ContactTitle />

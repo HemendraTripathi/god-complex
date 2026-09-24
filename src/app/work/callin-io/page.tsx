@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
 import Link from "next/link";
-import ArchitectureFlow from "@/components/ArchitectureFlow";
-import { SectionHead } from "@/components/CaseStudy";
+import CaseChapters from "@/components/CaseChapters";
 import JsonLd from "@/components/JsonLd";
+import MetricTiles from "@/components/MetricTiles";
 import MockVisual from "@/components/MockVisual";
 import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
-import { CALLIN_CASE, CASE_STUDY_STACK } from "@/lib/callin-case";
-import { CASE, LINKS, formatMetricValue } from "@/lib/content";
+import { CALLIN_CASE } from "@/lib/callin-case";
+import { CASE, LINKS } from "@/lib/content";
 import {
   CASE_PATH,
   CASE_URL,
@@ -45,34 +44,6 @@ export const metadata: Metadata = {
     images: [SHARE_IMAGE.url],
   },
 };
-
-function MetricsBoard() {
-  return (
-    <dl className="grid grid-cols-2 border-2 border-ink sm:grid-cols-4">
-      {CASE.metrics.map((m, i) => (
-        <div
-          key={m.label}
-          className={`border-hair p-4 sm:p-5 ${i > 0 ? "border-l" : ""} ${i >= 2 ? "max-sm:border-t" : ""}`}
-        >
-          <dt className="font-mono text-[9.5px] uppercase tracking-wider text-steel">
-            {m.label}
-          </dt>
-          <dd className="mt-1.5 font-mono text-[clamp(22px,3.2vw,30px)] font-bold tracking-tight">
-            {formatMetricValue(m)}
-          </dd>
-        </div>
-      ))}
-    </dl>
-  );
-}
-
-function Prose({ children }: { children: ReactNode }) {
-  return (
-    <p className="mt-5 max-w-3xl text-[16px] leading-[1.7] text-ink/85 first:mt-0">
-      {children}
-    </p>
-  );
-}
 
 function HireCtas() {
   return (
@@ -116,7 +87,7 @@ export default function CallinCaseStudyPage() {
         <header className="mx-auto max-w-7xl px-5 pt-28 sm:px-8 sm:pt-36">
           <p className="eyebrow mb-6">{CASE.product} · production voice AI</p>
           <h1 className="display text-[clamp(40px,7vw,84px)] leading-[0.95]">
-            Callin.io
+            {CASE.product}
             <span className="mt-1 block text-org">voice AI case study</span>
           </h1>
           <p className="mt-8 max-w-2xl text-[clamp(18px,2.4vw,24px)] font-medium leading-snug tracking-tight">
@@ -138,7 +109,7 @@ export default function CallinCaseStudyPage() {
         </header>
 
         <section className="mx-auto max-w-7xl px-5 pt-12 sm:px-8">
-          <MetricsBoard />
+          <MetricTiles />
         </section>
 
         <section className="mx-auto max-w-7xl px-5 pt-10 sm:px-8">
@@ -173,109 +144,7 @@ export default function CallinCaseStudyPage() {
           </div>
         </section>
 
-        <article className="mx-auto max-w-7xl px-5 pt-20 sm:px-8">
-          <Prose>{CALLIN_CASE.lede}</Prose>
-
-          <section className="pt-16">
-            <SectionHead idx="01" title="Context" right="Appspundit · US / EU" />
-            <div className="pt-8">
-              <Prose>{CALLIN_CASE.context}</Prose>
-            </div>
-          </section>
-
-          <section className="pt-16">
-            <SectionHead idx="02" title="The product" right="Multi-tenant SaaS" />
-            <div className="pt-8">
-              <Prose>{CALLIN_CASE.product[0]}</Prose>
-              <Prose>
-                The builder, the campaign tools, and the numbers are the product
-                they click. Under that, every call still hits the same owned
-                path: telephony in, orchestrator, one of three runtimes, voice
-                out, minutes on the clock. I am not dropping a fake screenshot of
-                the builder. You can see the product at{" "}
-                <a
-                  href={LINKS.callin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-semibold text-ink underline-offset-2 hover:underline"
-                >
-                  callin.io
-                </a>
-                . This page is the system under it.
-              </Prose>
-              <div className="mt-8 flex flex-wrap gap-2">
-                {CASE_STUDY_STACK.map((s) => (
-                  <span
-                    key={s}
-                    className="border border-ink px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-wider"
-                  >
-                    {s}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          <section className="pt-16">
-            <SectionHead idx="03" title="Architecture" right="Five hops we own" />
-            <div className="pt-8">
-              <Prose>{CALLIN_CASE.architecture[0]}</Prose>
-              <div className="mt-8">
-                <ArchitectureFlow />
-              </div>
-              {CALLIN_CASE.architecture.slice(1).map((p) => (
-                <Prose key={p}>{p}</Prose>
-              ))}
-            </div>
-          </section>
-
-          <section className="pt-16">
-            <SectionHead
-              idx="04"
-              title="Three production failures"
-              right="Problem → decision → outcome"
-            />
-            <div className="pt-8">
-              <Prose>{CALLIN_CASE.storiesIntro}</Prose>
-              {CALLIN_CASE.stories.map((story) => (
-                <section
-                  key={story.idx}
-                  className="mt-12 border-t-2 border-ink pt-10 first:mt-8"
-                >
-                  <h3 className="flex flex-wrap items-baseline gap-x-4 gap-y-2 text-[clamp(20px,2.6vw,28px)] font-bold tracking-tight">
-                    <span className="font-mono text-[12px] font-bold text-org">
-                      {story.idx}.
-                    </span>
-                    {story.title}
-                  </h3>
-                  {story.body.map((p) => (
-                    <Prose key={p}>{p}</Prose>
-                  ))}
-                </section>
-              ))}
-            </div>
-          </section>
-
-          <section className="pt-16">
-            <SectionHead idx="05" title="Results" right="Same four numbers" />
-            <div className="pt-8">
-              <Prose>{CALLIN_CASE.results[0]}</Prose>
-              <div className="mt-8">
-                <MetricsBoard />
-              </div>
-              {CALLIN_CASE.results.slice(1).map((p) => (
-                <Prose key={p}>{p}</Prose>
-              ))}
-            </div>
-          </section>
-
-          <section className="pt-16">
-            <SectionHead idx="06" title="What I’d do next" right="Non-sensitive" />
-            <div className="pt-8">
-              <Prose>{CALLIN_CASE.next}</Prose>
-            </div>
-          </section>
-        </article>
+        <CaseChapters />
 
         <section className="mx-auto max-w-7xl px-5 pb-24 pt-16 sm:px-8">
           <div className="border-t-2 border-ink pt-10">

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import FadeContent from "@/components/FadeContent";
 import JsonLd from "@/components/JsonLd";
+import MetricTiles from "@/components/MetricTiles";
 import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
 import {
@@ -14,7 +16,7 @@ import {
   jsonLdGraph,
   webPageJsonLd,
 } from "@/lib/seo";
-import { CASE, FAQS, HIRE, LINKS, formatMetricValue } from "@/lib/content";
+import { FAQS, HIRE, LINKS } from "@/lib/content";
 import { SITE, SITE_URL } from "@/lib/site";
 
 const HIRE_FAQS = FAQS.filter((item) =>
@@ -101,21 +103,7 @@ export default function HirePage() {
         </header>
 
         <section className="mx-auto max-w-7xl px-5 pt-16 sm:px-8">
-          <dl className="grid grid-cols-2 border-2 border-ink sm:grid-cols-4">
-            {CASE.metrics.map((m, i) => (
-              <div
-                key={m.label}
-                className={`border-hair p-4 sm:p-5 ${i > 0 ? "border-l" : ""} ${i >= 2 ? "max-sm:border-t" : ""}`}
-              >
-                <dt className="font-mono text-[9.5px] uppercase tracking-wider text-steel">
-                  {m.label}
-                </dt>
-                <dd className="mt-1.5 font-mono text-[clamp(22px,3.2vw,30px)] font-bold tracking-tight">
-                  {formatMetricValue(m)}
-                </dd>
-              </div>
-            ))}
-          </dl>
+          <MetricTiles />
         </section>
 
         <section className="mx-auto max-w-7xl px-5 pt-24 sm:px-8">
@@ -192,7 +180,7 @@ export default function HirePage() {
         </section>
 
         <section className="mt-24 border-t-2 border-ink">
-          <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
+          <FadeContent duration={0.6} className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
             <p className="eyebrow mb-6">Next step</p>
             <h2 className="display text-[clamp(32px,6vw,64px)]">Book 20 minutes.</h2>
             <p className="mt-6 max-w-lg text-[15px] leading-relaxed text-ink/75">
@@ -216,7 +204,7 @@ export default function HirePage() {
                 Read the case study
               </Link>
             </div>
-          </div>
+          </FadeContent>
           <SiteFooter />
         </section>
       </main>

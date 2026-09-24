@@ -30,7 +30,7 @@ const Magnet: React.FC<MagnetProps> = ({
   const magnetRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (disabled) {
+    if (disabled || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setPosition({ x: 0, y: 0 });
       return;
     }

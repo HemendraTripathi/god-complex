@@ -73,10 +73,17 @@ export default function CountUp({
 
   useLayoutEffect(() => {
     if (!ref.current || from === to) return;
-    ref.current.textContent = formatValue(direction === 'down' ? to : from);
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    ref.current.textContent = formatValue(
+      reduced || direction === "down" ? to : from
+    );
   }, [from, to, direction, formatValue]);
 
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      if (ref.current) ref.current.textContent = formatValue(to);
+      return;
+    }
     if (isInView && startWhen) {
       if (typeof onStart === 'function') {
         onStart();
