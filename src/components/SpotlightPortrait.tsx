@@ -18,6 +18,7 @@ export default function SpotlightPortrait({
   srcA,
   srcB,
   alt,
+  altB,
   width = 960,
   height = 960,
   className = "",
@@ -25,6 +26,7 @@ export default function SpotlightPortrait({
   srcA: string;
   srcB: string;
   alt: string;
+  altB: string;
   width?: number;
   height?: number;
   className?: string;
@@ -115,12 +117,11 @@ export default function SpotlightPortrait({
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={srcB}
-        alt=""
+        alt={altB}
         width={width}
         height={height}
         loading="lazy"
         decoding="async"
-        aria-hidden="true"
         draggable={false}
         className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-200"
         style={{

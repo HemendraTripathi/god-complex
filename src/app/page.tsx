@@ -381,6 +381,7 @@ export default function Home() {
             srcA={PORTRAIT_PATH}
             srcB={PORTRAIT_BATMAN_PATH}
             alt="Hemendra Tripathi, technical lead and AI engineer"
+            altB="Hemendra Tripathi in a playful Batman portrait"
             width={960}
             height={960}
           />
