@@ -1,7 +1,10 @@
 /** Canonical production origin — override with NEXT_PUBLIC_SITE_URL if needed. */
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
-  "https://me.readwith.io";
+  "https://hemendra.readwith.io";
+
+/** Hostname only, for visible copy and robots Host. */
+export const SITE_HOST = SITE_URL.replace(/^https?:\/\//, "");
 
 export const SITE = {
   url: SITE_URL,

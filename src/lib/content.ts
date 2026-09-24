@@ -1,3 +1,5 @@
+import { SITE_HOST, SITE_URL } from "@/lib/site";
+
 export const LINKS = {
   email: "hemendratripathi880@gmail.com",
   resume: "/Hemendra_Tripathi_Resume.pdf",
@@ -297,7 +299,7 @@ export const FAQS = [
   {
     question: "Who is Hemendra?",
     answer:
-      "Hemendra is Hemendra Tripathi, a technical lead and AI engineer in Udaipur, Rajasthan. He leads Callin.io at Appspundit Infotech as an AI Voice Engineer: multi-LLM voice agents used by 1,500+ paying customers. His official site is https://me.readwith.io.",
+      `Hemendra is Hemendra Tripathi, a technical lead and AI engineer in Udaipur, Rajasthan. He leads Callin.io at Appspundit Infotech as an AI Voice Engineer: multi-LLM voice agents used by 1,500+ paying customers. His official site is ${SITE_URL}.`,
   },
   {
     question: "Who is Hemendra Tripathi?",
@@ -312,7 +314,7 @@ export const FAQS = [
   {
     question: "Which Hemendra Tripathi is the Callin.io technical lead?",
     answer:
-      "Hemendra Tripathi of Udaipur, Rajasthan is the technical lead and AI engineer at Appspundit Infotech behind Callin.io. His official site is https://me.readwith.io. He is not the Newstrack journalist or other professionals who share the same name.",
+      `Hemendra Tripathi of Udaipur, Rajasthan is the technical lead and AI engineer at Appspundit Infotech behind Callin.io. His official site is ${SITE_URL}. He is not the Newstrack journalist or other professionals who share the same name.`,
   },
   {
     question: "How do I hire an AI Voice Engineer like Hemendra?",
@@ -347,8 +349,8 @@ export const FIRST_NAME = {
     "Hemendra is a technical lead and AI engineer in Udaipur. His full name is Hemendra Tripathi. He leads engineering on Callin.io at Appspundit Infotech as an AI Voice Engineer, where multi-LLM voice agents serve 1,500+ paying customers.",
   paragraphs: [
     "People search “Hemendra” and land on many different professionals. This Hemendra is the technical lead and AI engineer in Udaipur, Rajasthan. He is not the journalist, not the Lok Sabha politicians, and not other engineers who share only the first name.",
-    "Confirm you have the right person: Hemendra Tripathi at Appspundit Infotech / Callin.io. LinkedIn is linkedin.com/in/hemendratripathi. GitHub is github.com/hemendratripathi. X is x.com/hemendra_tr. This site, me.readwith.io, is the official portfolio.",
-    "If you are hiring a technical lead, AI engineer, or AI Voice Engineer, the case study, live agent demo, and work history live on the homepage. The full legal-name profile is me.readwith.io/hemendra-tripathi.",
+    `Confirm you have the right person: Hemendra Tripathi at Appspundit Infotech / Callin.io. LinkedIn is linkedin.com/in/hemendratripathi. GitHub is github.com/hemendratripathi. X is x.com/hemendra_tr. This site, ${SITE_HOST}, is the official portfolio.`,
+    `If you are hiring a technical lead, AI engineer, or AI Voice Engineer, the case study, live agent demo, and work history live on the homepage. The full legal-name profile is ${SITE_HOST}/hemendra-tripathi.`,
   ],
   facts: [
     { label: "First name", value: "Hemendra" },
@@ -356,13 +358,13 @@ export const FIRST_NAME = {
     { label: "Based", value: "Udaipur, Rajasthan, India" },
     { label: "Role", value: "Technical Lead · AI Engineer" },
     { label: "Known for", value: "Callin.io voice AI · 1,500+ customers" },
-    { label: "Official site", value: "me.readwith.io" },
+    { label: "Official site", value: SITE_HOST },
   ],
   faqs: [
     {
       question: "Who is Hemendra?",
       answer:
-        "Hemendra is Hemendra Tripathi, a technical lead and AI engineer based in Udaipur. He leads Callin.io at Appspundit Infotech. Official site: https://me.readwith.io.",
+        `Hemendra is Hemendra Tripathi, a technical lead and AI engineer based in Udaipur. He leads Callin.io at Appspundit Infotech. Official site: ${SITE_URL}.`,
     },
     {
       question: "Which Hemendra works on Callin.io?",
@@ -384,7 +386,7 @@ export const PROFILE = {
   paragraphs: [
     "Hemendra Tripathi builds systems that talk, bill, and stay up. As Technical Lead and AI engineer he owns architecture, vendor spend, hiring, and product roadmaps, reporting directly to the founder. The work that defines him is Callin.io: complexity-aware model routing, dual-carrier telephony, and usage ledgers precise enough that billing disputes stayed near zero after launch.",
     "Before leading the voice platform he shipped 10+ freelance products across MERN, Django, Flask, and Laravel, including a fintech accounts system that saved 15+ staff-hours a week, and taught 150+ students at Aimers Institute and VT College. That mix of shipping, teaching, and P&L ownership is why teams hire him as a technical lead, not only as a specialist.",
-    "This page is the canonical profile for Hemendra Tripathi of Udaipur, the Callin.io / Appspundit Infotech technical lead and AI engineer. Other people share the name. If you are looking for the AI Voice Engineer behind Callin.io, this is the official site: me.readwith.io.",
+    `This page is the canonical profile for Hemendra Tripathi of Udaipur, the Callin.io / Appspundit Infotech technical lead and AI engineer. Other people share the name. If you are looking for the AI Voice Engineer behind Callin.io, this is the official site: ${SITE_HOST}.`,
   ],
   facts: [
     { label: "Based", value: "Udaipur, Rajasthan, India" },

@@ -1,5 +1,5 @@
 import { FAQS, LINKS } from "@/lib/content";
-import { SITE, SITE_URL } from "@/lib/site";
+import { SITE, SITE_HOST, SITE_URL } from "@/lib/site";
 
 export const PERSON_ID = `${SITE_URL}/#person`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;
@@ -127,7 +127,7 @@ export function websiteJsonLd() {
       "Hemendra",
       "Hemendra Tripathi portfolio",
       "Hemendra Tripathi Udaipur",
-      "me.readwith.io",
+      SITE_HOST,
     ],
     url: SITE_URL,
     description: SITE.description,

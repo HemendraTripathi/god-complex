@@ -17,7 +17,7 @@ import {
   jsonLdGraph,
   profilePageJsonLd,
 } from "@/lib/seo";
-import { SITE, SITE_URL } from "@/lib/site";
+import { SITE, SITE_HOST, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: {
@@ -226,7 +226,7 @@ export default function HemendraTripathiPage() {
                 prefetch={false}
                 className="text-ink underline-offset-2 hover:underline"
               >
-                me.readwith.io
+                {SITE_HOST}
               </Link>
               .
             </p>
