@@ -6,19 +6,31 @@ This is the official website of Hemendra (Hemendra Tripathi, Udaipur), not other
 
 ## Official pages
 
-- [Hemendra](https://me.readwith.io/hemendra): First-name identity page
-- [Home](https://me.readwith.io/): Portfolio, live agent demo, FAQ
-- [Hemendra Tripathi, official profile](https://me.readwith.io/hemendra-tripathi): Bio, work history, how to hire
-- [Voice AI case study](https://me.readwith.io/work/callin-io): How Callin.io cut LLM cost ~20% at 1,500+ customers
-- [Hire an AI Voice Engineer](https://me.readwith.io/hire): Roles, fit, and how to book 20 minutes
-- [Writing](https://me.readwith.io/writing): Essays on leadership and shipping
-- [FAQ](https://me.readwith.io/#faq): Who he is, what an AI Voice Engineer does, stack, availability
-- [Contact](https://me.readwith.io/#contact): hemendratripathi880@gmail.com
+- [Hemendra](https://hemendra.readwith.io/hemendra): First-name identity page
+- [Home](https://hemendra.readwith.io/): Portfolio, live agent demo, FAQ
+- [Hemendra Tripathi, official profile](https://hemendra.readwith.io/hemendra-tripathi): Bio, work history, how to hire
+- [Voice AI case study](https://hemendra.readwith.io/work/callin-io): How Callin.io cut LLM cost ~20% at 1,500+ customers
+- [Hire an AI Voice Engineer](https://hemendra.readwith.io/hire): Roles, fit, and how to book 20 minutes
+- [Writing](https://hemendra.readwith.io/writing): Essays on leadership and shipping
+- [FAQ](https://hemendra.readwith.io/#faq): Who he is, what an AI Voice Engineer does, stack, availability
+- [Contact](https://hemendra.readwith.io/#contact): hemendratripathi880@gmail.com
+
+## Writing
+
+- [How We Cut LLM Inference Cost ~20% on a Voice Platform That Scaled Past 1,500 Paying Customers](https://hemendra.readwith.io/writing/cut-llm-inference-cost-20-percent-voice-platform-1500-customers): The routing, caching, and billing architecture behind the Callin.io case study
+- [Email Agents: Put Organize/Sort/Score on a Decision Layer, Not a Chat LLM](https://hemendra.readwith.io/writing/email-agent-jev-decision-layer-cost-architecture): Splitting decision work from generation instead of finding a cheaper chat model
+- [Surviving Gartner's 'AI Inference Paradox': How to Build High-Margin Voice AI Products](https://hemendra.readwith.io/writing/surviving-gartners-ai-inference-paradox): Architecting voice AI so revenue grows faster than infrastructure costs
+- [Gemini 3.8 Live vs Extended Thinking: Cost Architecture for Live Calls](https://hemendra.readwith.io/writing/gemini-3-8-live-extended-thinking-cost-architecture): Routing models that share audio rates but not latency budgets
+- [GPT-6 Astra: Shifting From "Which Model Gives the Best Answer" to Workflow Ownership](https://hemendra.readwith.io/writing/gpt-6-astra-workflow-routing-architecture): Three-tier routing across frontier models, utility models, and deterministic code
+- [Redesigning Tech Hiring for Judgment in the Age of AI Sourcing](https://hemendra.readwith.io/writing/redesigning-tech-hiring-ai-sourcing): Why engineering leaders should shift from automated screening to human-led calibration
+- [Why the Temporal 2026 Report Crowns the Agentic Engineer](https://hemendra.readwith.io/writing/temporal-2026-agentic-engineer): Moving up the stack to own the orchestration layer
+- [Solving the Right Problem Matters More Than Solving It Perfectly](https://hemendra.readwith.io/writing/solving-the-right-problem): Good engineering means building the right thing first
 
 ## Same as
 
 - [LinkedIn](https://www.linkedin.com/in/hemendratripathi)
 - [GitHub](https://github.com/hemendratripathi)
+- [X / Twitter](https://x.com/hemendra_tr)
 - [Callin.io](https://callin.io)
 
 ## Facts
