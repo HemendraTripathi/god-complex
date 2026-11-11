@@ -105,7 +105,7 @@ export default function Home() {
               Callin.io is pre-incubated by I3P, the incubator of Politecnico di Torino.
             </p>
             <p className="mt-4 flex flex-wrap items-center gap-x-[0.4em] font-mono text-[11px] uppercase tracking-wider text-steel">
-              Udaipur, IN <BharatMark /> · Fully remote · APAC, US and EU overlap · Callin.io Tech Lead
+              Udaipur, IN <BharatMark /> · Remote from India, working with APAC time zones · Callin.io Tech Lead
             </p>
           </div>
           <HeroMetrics />
@@ -354,8 +354,8 @@ export default function Home() {
           />
           <div>
             <p className="max-w-2xl text-[clamp(17px,2vw,22px)] font-medium leading-normal tracking-tight">
-              Based in Udaipur, working remotely with teams across APAC, the US
-              and Europe. I got here by teaching{" "}
+              Based in Udaipur. Remote from India, working with APAC time
+              zones. I got here by teaching{" "}
               <span className="text-org">150+ students</span> to code and
               rebuilding a voice AI platform until{" "}
               <span className="text-org">500+ businesses</span> relied on it.
@@ -428,7 +428,7 @@ export default function Home() {
           <p className="mt-6 max-w-lg text-[15px] leading-relaxed text-ink/75">
             Open to fully remote AI Voice Engineer, applied AI and
             technical-lead roles. Pick a 20-minute slot (timezone is converted
-            for you), or email if you prefer. Replies within 24 hours.
+            for you). Replies within 24 hours.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <ContactMagnet>
@@ -441,15 +441,9 @@ export default function Home() {
                 Book 20 minutes
               </a>
             </ContactMagnet>
-            <a
-              href={`mailto:${LINKS.email}?subject=Let%27s%20talk%20hiring`}
-              className="inline-block border-2 border-ink px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-ink hover:text-paper"
-            >
-              {LINKS.email}
-            </a>
           </div>
           <p className="mt-4 font-mono text-[10px] uppercase tracking-wider text-steel">
-            Fully remote · APAC, US and EU overlap
+            Remote from India, working with APAC time zones
           </p>
           <div className="mt-10 flex flex-wrap gap-8 font-mono text-[10.5px] font-bold uppercase tracking-[0.2em] text-steel">
             <SocialLink network="github" className="text-[14px] transition-colors hover:text-org" />

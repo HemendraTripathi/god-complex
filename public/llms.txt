@@ -37,4 +37,4 @@ This is the official website of Hemendra Tripathi, the AI Voice Engineer, not ot
 - Company: Appspundit Infotech (Callin.io)
 - Results: 500+ businesses served, roughly 20% lower LLM inference cost, roughly 40% fewer cancellations
 - Education: BCA, Mohanlal Sukhadia University (2022)
-- Open to: fully remote Applied AI, voice-agent, forward-deployed and technical-lead roles
+- Open to: fully remote Applied AI, voice-agent, forward-deployed and technical-lead roles. Remote from India, working with APAC time zones.

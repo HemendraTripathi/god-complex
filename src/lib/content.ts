@@ -49,7 +49,7 @@ export const WORK: WorkItem[] = [
     idx: "01",
     name: "CondoMail",
     role: "Product architecture: multi-provider email sync",
-    desc: "AI agents that sort, draft, and auto-reply across providers. Live with early adopters, including high-volume Amazon sellers running inbox workflows on it.",
+    desc: "AI agents that sort, draft, and auto-reply across providers. Live with early adopters running real inbox workflows on it.",
     stack: "React / Node.js / Supabase / Stripe / Firebase",
     status: "Production",
     img: "/images/work-condomail.png",
@@ -131,7 +131,7 @@ export function formatMetricValue(m: (typeof CASE.metrics)[number]) {
 }
 
 export const HIRE = {
-  eyebrow: "Open to fully remote roles · APAC, US and EU overlap",
+  eyebrow: "Open to fully remote roles · Remote from India, working with APAC time zones",
   lede:
     "I take real-time voice agents from architecture to production: telephony, model routing, latency and cost. Open to fully remote Applied AI, voice-agent and forward-deployed engineering roles.",
   fits: [
@@ -201,7 +201,7 @@ export const EXPERIENCE = [
   {
     period: "2021 to 2024",
     title: "Earlier: engineering and teaching",
-    org: "Freelance and Aimers Institute",
+    org: "Aimers Institute",
     points: [
       "Built 10+ web applications across MERN, Django, Flask and Laravel.",
       "Taught 150+ students Python, Django, MERN and Flutter through project-based learning.",
@@ -293,6 +293,6 @@ export const FAQS = [
   {
     question: "What roles is Hemendra open to?",
     answer:
-      "Fully remote Applied AI, voice-agent and forward-deployed engineering roles, and technical-lead roles. He works across APAC, US and EU time zones.",
+      "Fully remote Applied AI, voice-agent and forward-deployed engineering roles, and technical-lead roles. Remote from India, working with APAC time zones.",
   },
 ] as const;

@@ -130,7 +130,7 @@ function CondoMock() {
       <Chrome title="CondoMail inbox agents" />
       <div className="flex-1 space-y-1.5 p-3">
         {[
-          ["Urgent", "Amazon seller · return dispute", "Draft ready", true],
+          ["Urgent", "Customer · return dispute", "Draft ready", true],
           ["Promo", "Newsletter batch · 48 msgs", "Auto-archived", false],
           ["Lead", "Partnership inquiry", "Draft ready", true],
           ["Noise", "Receipts · 12", "Sorted", false],

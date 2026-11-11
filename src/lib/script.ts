@@ -77,7 +77,7 @@ export const TOPICS: Record<
     lines: [
       "Honest answer: most engineers write code. <b>Hemendra ships systems that hold up on real calls.</b>",
       "The same person designs the architecture, watches the infrastructure bill and builds the billing path. That intersection (<span class='hl'>deep AI engineering × product ownership × cost discipline</span>) is rare.",
-      "He works fully remotely from India, across APAC, US and European time zones.",
+      "He is remote from India, working with APAC time zones.",
       "And the meta-argument: <b>this portfolio is a working replica of his product.</b> Everyone else told you what they can do. He showed you.",
     ],
   },
