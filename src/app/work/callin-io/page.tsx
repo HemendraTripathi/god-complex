@@ -94,10 +94,10 @@ export default function CallinCaseStudyPage() {
             {SITE.caseDescription}
           </p>
           <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-ink/75">
-            This is the canonical write-up of the work: complexity-aware
-            multi-LLM routing, dual-carrier telephony, and usage ledgers precise
-            enough that billing disputes stayed near zero. If you are hiring an
-            AI Voice Engineer or technical lead, start here, then{" "}
+            This is the canonical write-up of the work: routing each turn by
+            complexity, a latency budget on the call path, and post-call
+            analytics that show what to fix. If you are hiring an AI Voice
+            Engineer or technical lead, start here, then{" "}
             <Link
               href={HIRE_PATH}
               className="font-semibold text-ink underline-offset-2 hover:underline"

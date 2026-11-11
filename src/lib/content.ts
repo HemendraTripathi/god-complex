@@ -73,30 +73,30 @@ export const WORK: WorkItem[] = [
 export const CASE = {
   product: "Callin.io",
   eyebrow: "Featured voice AI case study",
-  title: "How we made voice agents cheap enough to scale, and fast enough that humans stayed on the line.",
+  title: "Callin.io: building a voice AI platform that holds up on real calls",
   summary:
-    "As Technical Lead I owned the architecture, vendor spend, and billing system for an AI voice platform that grew past 1,500 paying customers, including medical and real-estate enterprise accounts, while cutting LLM cost 20% and keeping billing disputes near zero.",
+    "How I helped take Callin.io from first commit to a platform serving 1,000+ businesses across healthcare and real estate, with lower cost per call and fewer cancellations.",
   problem: [
-    "Every turn of a voice agent is a race: if the model thinks too long, the caller hangs up.",
-    "Using one large model for every utterance burned margin on greetings and confirmations.",
-    "Minute-based billing with rollovers was creating support tickets, and eroding trust with the accounts that mattered most.",
+    "Every turn of a voice call is a race. If the agent takes too long to answer, the caller hangs up.",
+    "Using one large model for everything burned margin on simple turns like greetings and confirmations.",
+    "Customers were leaving, and the causes were spread across latency, voice quality, language support and how hard agents were to manage.",
   ],
   approach: [
     {
-      title: "Complexity-aware model routing",
-      body: "Classify each turn (greeting, FAQ, scheduling, objection) and route to the smallest model that can finish the job. Large models only for hard reasoning.",
+      title: "Route by complexity",
+      body: "Classify each turn and send it to the smallest model that can handle it, keeping large models for hard reasoning. This is what cut inference cost by roughly 20%.",
     },
     {
-      title: "Semantic cache + concurrent prompts",
-      body: "Cache high-frequency intents; fire retrieval and response scaffolds in parallel so time-to-first-token drops before the caller notices silence.",
+      title: "Treat latency as a budget",
+      body: "Each part of the call path gets a time allowance, and anything that blows it gets fixed first.",
     },
     {
-      title: "Dual-carrier telephony",
-      body: "Twilio + Telnyx with SIP fallback. Fail over without dropping the call; keep audio streaming over WebSockets under load.",
+      title: "Choose providers on evidence",
+      body: "I compared speech and voice providers side by side and recommended a switch, which the CEO approved.",
     },
     {
-      title: "Billing as a product surface",
-      body: "Minute tracking with rollover ledgers precise enough that disputes became rare. Stripe subscriptions wired to actual usage, not estimates.",
+      title: "Learn from every call",
+      body: "Post-call analytics (goal analysis, sentiment, key moments, recommendations) show customers what to fix in their agents.",
     },
   ],
   metrics: [
@@ -112,26 +112,14 @@ export const CASE = {
   }[],
   /** Pipeline shown in the case study — one hop per ownership surface. */
   architecture: [
-    { id: "call", label: "Caller", detail: "PSTN / WebRTC" },
-    { id: "tel", label: "Telephony", detail: "Dual-carrier + SIP" },
-    { id: "orch", label: "Callin orchestrator", detail: "Cache · parallel prompts · turn clock" },
-    { id: "runtime", label: "Runtime", detail: "Ultra-low latency · Premium Voice · Custom Stack" },
-    { id: "voice", label: "Voice out", detail: "Callin TTS path" },
+    { id: "call", label: "Caller", detail: "Phone or web" },
+    { id: "tel", label: "Telephony", detail: "SIP · WebRTC" },
+    { id: "orch", label: "Orchestrator", detail: "Routing · cache · latency budget" },
+    { id: "runtime", label: "Models", detail: "STT · LLM · TTS" },
+    { id: "voice", label: "Post-call analytics", detail: "Insights back to the customer" },
   ],
-  stack: [
-    "React",
-    "Node.js",
-    "Supabase",
-    "Twilio",
-    "Telnyx",
-    "Stripe",
-    "ElevenLabs",
-    "Cartesia",
-    "Redis",
-  ],
-  quote:
-    "Hemendra is the rare engineer who can rewrite the voice pipeline before lunch and close an enterprise prospect after dinner. He treats infrastructure cost like product debt, and it shows in the margins.",
-  /** Add after approval — omit until then so the quote stays anonymous. */
+  stack: ["React", "Node.js", "Supabase", "Stripe", "Redis"],
+  quote: "",
   quoteName: "",
   quoteOrg: "",
 };

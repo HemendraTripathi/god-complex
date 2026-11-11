@@ -132,22 +132,24 @@ export default function CaseStudy({
         </div>
       </div>
 
-      <blockquote className="mb-4 border-2 border-ink bg-ink px-6 py-8 text-paper sm:px-10">
-        <p className="max-w-3xl text-[clamp(16px,2vw,22px)] font-medium leading-snug tracking-tight">
-          “{CASE.quote}”
-        </p>
-        {(CASE.quoteName || CASE.quoteOrg) && (
-          <footer className="mt-5 font-mono text-[10px] uppercase tracking-[0.18em] text-paper/55">
-            {CASE.quoteName && <>– {CASE.quoteName}</>}
-            {CASE.quoteOrg && (
-              <span className="text-paper/35">
-                {CASE.quoteName ? " · " : "– "}
-                {CASE.quoteOrg}
-              </span>
-            )}
-          </footer>
-        )}
-      </blockquote>
+      {CASE.quote ? (
+        <blockquote className="mb-4 border-2 border-ink bg-ink px-6 py-8 text-paper sm:px-10">
+          <p className="max-w-3xl text-[clamp(16px,2vw,22px)] font-medium leading-snug tracking-tight">
+            “{CASE.quote}”
+          </p>
+          {(CASE.quoteName || CASE.quoteOrg) && (
+            <footer className="mt-5 font-mono text-[10px] uppercase tracking-[0.18em] text-paper/55">
+              {CASE.quoteName && <>– {CASE.quoteName}</>}
+              {CASE.quoteOrg && (
+                <span className="text-paper/35">
+                  {CASE.quoteName ? " · " : "– "}
+                  {CASE.quoteOrg}
+                </span>
+              )}
+            </footer>
+          )}
+        </blockquote>
+      ) : null}
     </section>
   );
 }
