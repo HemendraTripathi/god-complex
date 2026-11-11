@@ -5,8 +5,6 @@ export const PERSON_ID = `${SITE_URL}/#person`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;
 export const PROFILE_PATH = "/";
 export const PROFILE_URL = SITE_URL;
-export const FIRST_NAME_PATH = "/";
-export const FIRST_NAME_URL = SITE_URL;
 export const CASE_PATH = "/work/callin-io";
 export const CASE_URL = `${SITE_URL}${CASE_PATH}`;
 export const HIRE_PATH = "/hire";
@@ -49,8 +47,6 @@ export function personJsonLd() {
     familyName: "Tripathi",
     alternateName: [
       "Hemendra",
-      "Hemendra Tripathi Udaipur",
-      "Hemendra Callin.io",
       "Hemendra Tripathi Callin.io",
       "Hemendra Tripathi Appspundit Infotech",
     ],
@@ -64,7 +60,6 @@ export function personJsonLd() {
     },
     jobTitle: SITE.jobTitle,
     description: SITE.description,
-    email: `mailto:${SITE.email}`,
     address: {
       "@type": "PostalAddress",
       addressLocality: "Udaipur",

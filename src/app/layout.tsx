@@ -30,7 +30,6 @@ export const metadata: Metadata = {
     template: `%s · ${SITE.name}`,
   },
   description: SITE.description,
-  keywords: [...SITE.keywords],
   authors: [{ name: SITE.name, url: SITE_URL }],
   creator: SITE.name,
   publisher: SITE.name,
@@ -64,7 +63,7 @@ export const metadata: Metadata = {
     },
   },
   other: {
-    me: [LINKS.github, LINKS.linkedin, LINKS.twitter, LINKS.reddit, `mailto:${SITE.email}`],
+    me: [LINKS.github, LINKS.linkedin, LINKS.twitter, LINKS.reddit],
     bingbot: "index, follow",
   },
   alternates: {
