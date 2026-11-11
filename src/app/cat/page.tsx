@@ -273,7 +273,7 @@ export default function CatPage() {
                 Back home
               </Link>
               <Link
-                href="/hemendra-tripathi"
+                href="/"
                 className="inline-flex h-11 items-center border-2 border-ink px-5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-ink hover:text-paper"
               >
                 Meet the human

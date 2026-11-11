@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { CASE_URL, FIRST_NAME_URL, HIRE_URL, PORTRAIT_URL, PROFILE_URL } from "@/lib/seo";
+import { CASE_URL, HIRE_URL, PORTRAIT_URL } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 import { getPostsForSitemap } from "@/sanity/lib/fetch";
 
@@ -30,20 +30,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: LAST_MODIFIED,
       changeFrequency: "weekly",
       priority: 1,
-      images: [PORTRAIT_URL],
-    },
-    {
-      url: PROFILE_URL,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: "weekly",
-      priority: 0.9,
-      images: [PORTRAIT_URL],
-    },
-    {
-      url: FIRST_NAME_URL,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: "weekly",
-      priority: 0.85,
       images: [PORTRAIT_URL],
     },
     {

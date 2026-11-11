@@ -3,10 +3,10 @@ import { SITE, SITE_HOST, SITE_URL } from "@/lib/site";
 
 export const PERSON_ID = `${SITE_URL}/#person`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;
-export const PROFILE_PATH = "/hemendra-tripathi";
-export const PROFILE_URL = `${SITE_URL}${PROFILE_PATH}`;
-export const FIRST_NAME_PATH = "/hemendra";
-export const FIRST_NAME_URL = `${SITE_URL}${FIRST_NAME_PATH}`;
+export const PROFILE_PATH = "/";
+export const PROFILE_URL = SITE_URL;
+export const FIRST_NAME_PATH = "/";
+export const FIRST_NAME_URL = SITE_URL;
 export const CASE_PATH = "/work/callin-io";
 export const CASE_URL = `${SITE_URL}${CASE_PATH}`;
 export const HIRE_PATH = "/hire";
@@ -55,7 +55,7 @@ export function personJsonLd() {
       "Hemendra Tripathi Appspundit Infotech",
     ],
     url: SITE_URL,
-    mainEntityOfPage: { "@id": `${PROFILE_URL}#profile` },
+    mainEntityOfPage: { "@id": SITE_URL },
     image: {
       "@type": "ImageObject",
       url: PORTRAIT_URL,

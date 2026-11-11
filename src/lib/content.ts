@@ -13,7 +13,7 @@ export const LINKS = {
 };
 
 export const NAV = [
-  ["About", "/hemendra-tripathi"],
+  ["About", "/"],
   ["Writing", "/writing"],
   ["Case", "/work/callin-io"],
   ["Work", "/#work"],
@@ -350,7 +350,7 @@ export const FIRST_NAME = {
   paragraphs: [
     "People search “Hemendra” and land on many different professionals. This Hemendra is the technical lead and AI engineer in Udaipur, Rajasthan. He is not the journalist, not the Lok Sabha politicians, and not other engineers who share only the first name.",
     `Confirm you have the right person: Hemendra Tripathi at Appspundit Infotech / Callin.io. LinkedIn is linkedin.com/in/hemendratripathi. GitHub is github.com/hemendratripathi. X is x.com/hemendra_tr. This site, ${SITE_HOST}, is the official portfolio.`,
-    `If you are hiring a technical lead, AI engineer, or AI Voice Engineer, the case study, live agent demo, and work history live on the homepage. The full legal-name profile is ${SITE_HOST}/hemendra-tripathi.`,
+    `If you are hiring a technical lead, AI engineer, or AI Voice Engineer, the case study, live agent demo, and work history live on the homepage. The full legal-name profile is ${SITE_HOST}.`,
   ],
   facts: [
     { label: "First name", value: "Hemendra" },

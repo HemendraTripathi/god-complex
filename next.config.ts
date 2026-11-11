@@ -32,17 +32,27 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/about",
-        destination: "/hemendra-tripathi",
+        destination: "/",
         permanent: true,
       },
       {
         source: "/who-is-hemendra-tripathi",
-        destination: "/hemendra-tripathi",
+        destination: "/",
         permanent: true,
       },
       {
         source: "/who-is-hemendra",
-        destination: "/hemendra",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/hemendra",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/hemendra-tripathi",
+        destination: "/",
         permanent: true,
       },
       {
