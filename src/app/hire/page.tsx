@@ -20,7 +20,7 @@ import { FAQS, HIRE, LINKS } from "@/lib/content";
 import { SITE, SITE_URL } from "@/lib/site";
 
 const HIRE_FAQS = FAQS.filter((item) =>
-  /hire|available|AI Voice Engineer/i.test(item.question),
+  /hire|roles|AI Voice Engineer/i.test(item.question),
 );
 
 export const metadata: Metadata = {
@@ -82,7 +82,7 @@ export default function HirePage() {
             {HIRE.lede}
           </p>
           <p className="mt-4 font-mono text-[11px] uppercase tracking-wider text-steel">
-            {SITE.name} · {SITE.jobTitle} · Udaipur, IN · US / EU teams
+            {SITE.name} · {SITE.jobTitle} · Udaipur, IN · Fully remote
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <a
@@ -93,13 +93,10 @@ export default function HirePage() {
             >
               Book 20 minutes
             </a>
-            <a
-              href={`mailto:${LINKS.email}?subject=Hiring%20an%20AI%20Voice%20Engineer`}
-              className="inline-block border-2 border-ink px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-ink hover:text-paper"
-            >
-              {LINKS.email}
-            </a>
           </div>
+          <p className="mt-4 font-mono text-[11px] uppercase tracking-wider text-steel">
+            Replies within 24 hours.
+          </p>
         </header>
 
         <section className="mx-auto max-w-7xl px-5 pt-16 sm:px-8">
@@ -132,9 +129,10 @@ export default function HirePage() {
             Proof, not a deck
           </h2>
           <p className="mt-8 max-w-2xl text-[15px] leading-relaxed text-ink/80">
-            The Callin.io case study is the résumé: 1,500+ paying customers,
-            ~20% lower LLM inference cost, typical voice TTFT near 420ms, and
-            billing disputes near zero after launch. Read it before we talk.
+            The Callin.io case study is the résumé: a platform serving 1,000+
+            businesses, roughly 20% lower LLM inference cost and roughly 40%
+            fewer cancellations. Read it, or call the live agent on the home
+            page, before we talk.
           </p>
           <Link
             href={CASE_PATH}
@@ -159,6 +157,9 @@ export default function HirePage() {
               </li>
             ))}
           </ul>
+          <p className="mt-8 max-w-2xl text-[15px] leading-relaxed text-ink/80">
+            Book 20 minutes. Bring the problem, not a spec.
+          </p>
         </section>
 
         <section className="mx-auto max-w-7xl px-5 pt-24 sm:px-8">

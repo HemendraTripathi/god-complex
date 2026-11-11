@@ -146,8 +146,7 @@ export default function ArchitectureFlow() {
       </ol>
 
       <p className="border-t-2 border-ink px-4 py-3 font-mono text-[10px] leading-relaxed uppercase tracking-wider text-steel sm:px-5">
-        We own the path end-to-end. Spend routing and billing sit on the same
-        clock as latency.
+        We own the path end to end. Cost and latency are visible on every turn.
       </p>
     </figure>
   );

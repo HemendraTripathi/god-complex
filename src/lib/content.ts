@@ -1,5 +1,3 @@
-import { SITE_URL } from "@/lib/site";
-
 export const LINKS = {
   email: "hemendratripathi880@gmail.com",
   resume: "/Hemendra_Tripathi_Resume.pdf",
@@ -8,8 +6,8 @@ export const LINKS = {
   twitter: "https://x.com/hemendra_tr",
   reddit: "https://www.reddit.com/u/hemendra_tripathi",
   callin: "https://callin.io",
-  /** Claim this Cal.com username and add a 20-min intro with US/EU-friendly hours. */
-  calendar: "https://cal.com/hemendratripathi/hiring-freelance",
+  /** 20-minute hiring conversation. */
+  calendar: "https://cal.com/hemendratripathi/hiring",
 };
 
 export const NAV = [
@@ -133,21 +131,21 @@ export function formatMetricValue(m: (typeof CASE.metrics)[number]) {
 }
 
 export const HIRE = {
-  eyebrow: "Open to select roles · US / EU teams",
+  eyebrow: "Open to fully remote roles · APAC, US and EU overlap",
   lede:
-    "Hire an AI Voice Engineer who has already taken agents from first commit to paying customers: architecture, model routing, telephony, and the billing those calls produce.",
+    "I take real-time voice agents from architecture to production: telephony, model routing, latency and cost. Open to fully remote Applied AI, voice-agent and forward-deployed engineering roles.",
   fits: [
     {
-      title: "Technical lead",
-      body: "Own architecture, hiring, vendor spend, and the roadmap. Reporting line to founder or CTO. You want someone who has already done this on a voice product in production.",
+      title: "Voice agents in production",
+      body: "SIP/VoIP and WebRTC orchestration, STT/LLM/TTS selection, latency budgets and failover.",
     },
     {
-      title: "AI Voice Engineer",
-      body: "Real-time agents on Twilio, Telnyx, or SIP. Latency budgets, failover, STT/TTS vendor choices, and complexity-aware LLM routing — not a chatbot wrapped in a phone number.",
+      title: "LLM cost and quality",
+      body: "Multi-LLM routing by complexity, self-hosted models and post-call analytics.",
     },
     {
-      title: "Select freelance",
-      body: "Bounded work: voice pipeline, usage-based billing, or a multi-LLM product. US and EU-friendly hours. Typical reply within 24 hours.",
+      title: "Technical leadership",
+      body: "Architecture decisions, mentoring, and ownership of the roadmap and the infrastructure bill.",
     },
   ],
   notFor: [
@@ -255,46 +253,46 @@ export const FAQS = [
   {
     question: "Who is Hemendra?",
     answer:
-      `Hemendra is Hemendra Tripathi, a technical lead and AI engineer in Udaipur, Rajasthan. He leads Callin.io at Appspundit Infotech as an AI Voice Engineer: multi-LLM voice agents used by 1,500+ paying customers. His official site is ${SITE_URL}.`,
+      "Hemendra is Hemendra Tripathi, an AI Voice Engineer and Technical Lead based in Udaipur, India. He leads engineering on Callin.io, a voice AI platform serving 1,000+ businesses, and works fully remotely.",
   },
   {
     question: "Who is Hemendra Tripathi?",
     answer:
-      "Hemendra Tripathi is a technical lead and AI engineer based in Udaipur, shipping for US and EU teams. As an AI Voice Engineer and Technical Lead on Callin.io he scaled multi-LLM voice agents past 1,500 paying customers, cut inference cost about 20%, and owns architecture, billing, and hiring.",
+      "Hemendra Tripathi is an AI Voice Engineer and Technical Lead who builds real-time voice agents. At Appspundit Infotech he joined Callin.io as a Software Engineer in October 2024 and became Technical Lead in February 2026. He holds a BCA from Mohanlal Sukhadia University.",
   },
   {
     question: "What is an AI Voice Engineer?",
     answer:
-      "An AI Voice Engineer designs and ships real-time voice agents: telephony, model routing, latency, and billing. Hemendra Tripathi is an AI Voice Engineer and technical lead in Udaipur. At Callin.io he scaled multi-LLM voice agents past 1,500 paying customers and cut inference cost about 20%.",
+      "An AI Voice Engineer designs and ships real-time voice agents: telephony, speech-to-text and text-to-speech, language-model routing, latency and cost. Hemendra Tripathi does this in production at Callin.io.",
   },
   {
     question: "Which Hemendra Tripathi is the Callin.io technical lead?",
     answer:
-      `Hemendra Tripathi of Udaipur, Rajasthan is the technical lead and AI engineer at Appspundit Infotech behind Callin.io. His official site is ${SITE_URL}. He is not the Newstrack journalist or other professionals who share the same name.`,
+      "The one who leads engineering at Callin.io is an AI Voice Engineer based in Udaipur, India, and the author of this site. He is not the journalist or the academics who share the name. His LinkedIn and GitHub are linked from this page.",
   },
   {
     question: "How do I hire an AI Voice Engineer like Hemendra?",
     answer:
-      "Book a 20-minute call at cal.com/hemendratripathi/hiring-freelance. Timezone is converted for you. Or email hemendratripathi880@gmail.com. He is open to technical-lead, AI engineer, and senior full-stack roles, plus select freelance. Expect a reply within 24 hours, plus the Callin.io case study.",
+      "Book a 20-minute call from the hire page. Hemendra is open to fully remote Applied AI, voice-agent and forward-deployed engineering roles, and replies within 24 hours.",
   },
   {
     question: "What is complexity-aware multi-LLM orchestration?",
     answer:
-      "It classifies each voice-agent turn (greeting, FAQ, scheduling, objection) and routes to the smallest model that can finish the job. Large models handle hard reasoning only. Paired with semantic cache and concurrent prompts, this cuts LLM spend while keeping time-to-first-token low enough callers stay on the line.",
+      "Each turn of a call is classified and sent to the smallest model that can handle it, with large models reserved for hard reasoning. At Callin.io this cut LLM inference cost by roughly 20%.",
   },
   {
-    question: "What voice AI stack does Hemendra ship with?",
+    question: "What does Hemendra work on?",
     answer:
-      "Production systems use React and Node.js with Twilio, Telnyx, and SIP failover, plus ElevenLabs or Cartesia for voice, Supabase or Redis for state and cache, and Stripe for usage-based billing. RAG paths use Pinecone or Supabase Vector when retrieval is required.",
+      "Real-time voice systems (SIP/VoIP and WebRTC, speech-to-text and text-to-speech, latency budgets), multi-LLM routing and post-call analytics, plus the React, Node.js, Supabase and Stripe platform around them.",
   },
   {
     question: "What results did the Callin.io voice AI platform achieve?",
     answer:
-      "Under Hemendra’s technical leadership the platform grew past 1,500 paying customers, including healthcare and real-estate accounts. Model routing cut LLM inference cost about 20%, typical voice TTFT landed near 420ms, and precise minute ledgers kept billing disputes near zero after launch.",
+      "Callin.io serves 1,000+ businesses across healthcare and real estate. Complexity-aware routing cut LLM inference cost by roughly 20%, and cancellations fell by roughly 40%. The case study explains how.",
   },
   {
-    question: "Is Hemendra available for freelance or full-time AI engineering roles?",
+    question: "What roles is Hemendra open to?",
     answer:
-      "Yes. He is open to technical-lead, AI engineer, and senior full-stack roles, and select freelance focused on voice AI, multi-LLM products, or usage-based billing. Book 20 minutes at cal.com/hemendratripathi/hiring-freelance or email; he typically replies within 24 hours and can share the Callin.io case study and résumé.",
+      "Fully remote Applied AI, voice-agent and forward-deployed engineering roles, and technical-lead roles. He works across APAC, US and EU time zones.",
   },
 ] as const;

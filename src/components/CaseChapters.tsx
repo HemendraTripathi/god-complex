@@ -136,9 +136,9 @@ export default function CaseChapters() {
               <Prose>{CALLIN_CASE.product[0]}</Prose>
               <Prose>
                 The builder, the campaign tools, and the numbers are the product
-                they click. Under that, every call still hits the same owned
-                path: telephony in, orchestrator, one of three runtimes, voice
-                out, minutes on the clock. I am not dropping a fake screenshot of
+                they click. Under that, every call still follows the same path:
+                telephony in, orchestrator, models, voice out, and post-call
+                analytics. I am not dropping a fake screenshot of
                 the builder. You can see the product at{" "}
                 <a
                   href={LINKS.callin}
