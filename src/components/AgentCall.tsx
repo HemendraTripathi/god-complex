@@ -27,17 +27,16 @@ const fmt = (s: number) =>
 
 /* ---------------- lead file (right column) ---------------- */
 const METRICS = [
-  { to: 1500, suffix: "+", label: "paying customers" },
-  { to: 20, prefix: "−", suffix: "%", label: "LLM inference cost" },
-  { to: 30, suffix: "+", label: "prospects closed" },
-  { to: 150, suffix: "+", label: "students mentored" },
+  { to: 1000, suffix: "+", label: "businesses served" },
+  { to: 20, prefix: "~", suffix: "%", label: "lower LLM inference cost" },
+  { to: 40, prefix: "~", suffix: "%", label: "fewer cancellations" },
+  { to: 150, suffix: "+", label: "students taught" },
 ];
 
 const FILE_PROJECTS = [
   { n: "Callin.io", t: "PROD", d: "Voice pipeline: WebSockets + SIP, multi-LLM orchestration" },
-  { n: "CondoMail", t: "LIVE", d: "AI email agents for high-volume Amazon sellers" },
+  { n: "CondoMail", t: "LIVE", d: "AI email agents, live with early adopters" },
   { n: "Realead", t: "BETA", d: "AI qualification calls, the tech behind this demo" },
-  { n: "Sunria · FinTech", t: "SHIPPED", d: "Farm management · accounts automation, −30% errors" },
 ];
 
 function FileSection({
@@ -103,10 +102,10 @@ function LeadFile({
               <div>
                 <div className="text-[14px] font-bold">Hemendra Tripathi</div>
                 <div className="text-[11.5px] text-steel">
-                  Technical Lead · AI Engineer · AI Voice Engineer
+                  AI Voice Engineer · Technical Lead
                 </div>
                 <div className="flex flex-wrap items-center gap-x-[0.4em] font-mono text-[9.5px] uppercase tracking-wide text-steel">
-                  Udaipur, IN <BharatMark /> · US/EU timezones
+                  Udaipur, IN <BharatMark /> · Fully remote
                 </div>
               </div>
             </div>
@@ -118,7 +117,7 @@ function LeadFile({
             {[
               ["Product", "Callin.io: AI voice SaaS"],
               ["Role", "Technical Lead · AI Engineer"],
-              ["Team", "Hired & led engineering"],
+              ["Team", "Callin.io engineering"],
               ["Owns", "Architecture · spend · roadmap"],
               ["Suite", "+ CondoMail · + Realead"],
             ].map(([k, v]) => (
@@ -157,9 +156,9 @@ function LeadFile({
             <div className="flex flex-wrap gap-1.5">
               {[
                 "Multi-LLM orchestration",
-                "RAG · Pinecone",
-                "ElevenLabs · Cartesia",
-                "Twilio · Telnyx · SIP",
+                "Self-hosted LLM analytics",
+                "SIP · WebRTC",
+                "STT · TTS",
                 "React / Next.js",
                 "Node / NestJS",
                 "Stripe billing",
@@ -198,9 +197,9 @@ function LeadFile({
         {has("note") && (
           <FileSection title="Agent's note">
             <p className="border-l-2 border-org pl-3 text-[11.5px] leading-relaxed">
-              Rare profile: a technical lead and AI engineer who also owns billing, vendor
-              costs, hiring, and customers. Ships revenue, not just code.
-              Recommend contact before competitors.
+              Rare profile: an AI Voice Engineer and Technical Lead who owns the
+              architecture and the infrastructure bill. Ships systems that hold
+              up on real calls.
             </p>
           </FileSection>
         )}

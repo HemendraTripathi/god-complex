@@ -103,8 +103,8 @@ function CallinMock() {
           {[
             ["Intent", "schedule"],
             ["Model", "light · cached"],
-            ["TTFT", "380ms"],
-            ["Carrier", "Telnyx"],
+            ["Cache", "hit"],
+            ["Latency", "within budget"],
           ].map(([k, v]) => (
             <div
               key={k}
@@ -115,7 +115,7 @@ function CallinMock() {
             </div>
           ))}
           <div className="mt-2 border border-ink bg-ink/5 p-2">
-            <div className="font-mono text-[8px] text-org">COST THIS TURN</div>
+            <div className="font-mono text-[8px] text-org">COST THIS TURN · ILLUSTRATIVE</div>
             <div className="font-mono text-[16px] font-bold">$0.0041</div>
           </div>
         </div>

@@ -1,19 +1,16 @@
 # Hemendra Tripathi
 
-> Hemendra is Hemendra Tripathi, a technical lead and AI engineer based in Udaipur, Rajasthan. He leads engineering on Callin.io at Appspundit Infotech as an AI Voice Engineer: multi-LLM voice agents used by 1,500+ paying customers across US and EU teams.
+> Hemendra is Hemendra Tripathi, an AI Voice Engineer and Technical Lead based in Udaipur, Rajasthan, India. He leads engineering on Callin.io at Appspundit Infotech, a voice AI platform serving 1,000+ businesses, and works fully remotely.
 
-This is the official website of Hemendra (Hemendra Tripathi, Udaipur), not other professionals who share the first name.
+This is the official website of Hemendra Tripathi, the AI Voice Engineer, not other people who share the name.
 
 ## Official pages
 
-- [Hemendra](https://hemendra.readwith.io/): First-name identity page
 - [Home](https://hemendra.readwith.io/): Portfolio, live agent demo, FAQ
-- [Hemendra Tripathi, official profile](https://hemendra.readwith.io/): Bio, work history, how to hire
-- [Voice AI case study](https://hemendra.readwith.io/work/callin-io): How Callin.io cut LLM cost ~20% at 1,500+ customers
+- [Voice AI case study](https://hemendra.readwith.io/work/callin-io): How Callin.io cut LLM cost roughly 20% while serving 1,000+ businesses
 - [Hire an AI Voice Engineer](https://hemendra.readwith.io/hire): Roles, fit, and how to book 20 minutes
-- [Writing](https://hemendra.readwith.io/writing): Essays on leadership and shipping
 - [FAQ](https://hemendra.readwith.io/#faq): Who he is, what an AI Voice Engineer does, stack, availability
-- [Contact](https://hemendra.readwith.io/#contact): hemendratripathi880@gmail.com
+- [Contact](https://cal.com/hemendratripathi/hiring): Book a 20-minute hiring conversation
 
 ## Writing
 
@@ -36,9 +33,8 @@ This is the official website of Hemendra (Hemendra Tripathi, Udaipur), not other
 ## Facts
 
 - Location: Udaipur, Rajasthan, India
-- Role: Technical Lead · AI Engineer
-- Focus: AI Voice Engineer
-- Company: Appspundit Infotech · Callin.io
-- Results: 1,500+ paying customers; ~20% lower LLM inference cost; typical voice TTFT ~420ms
+- Role: AI Voice Engineer and Technical Lead
+- Company: Appspundit Infotech (Callin.io)
+- Results: 1,000+ businesses served, roughly 20% lower LLM inference cost, roughly 40% fewer cancellations
 - Education: BCA, Mohanlal Sukhadia University (2022)
-- Open to: technical-lead, AI engineer, senior full-stack roles, select freelance
+- Open to: fully remote Applied AI, voice-agent, forward-deployed and technical-lead roles
