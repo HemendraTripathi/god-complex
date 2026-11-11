@@ -27,10 +27,10 @@ export const TICKER = [
   "REAL-TIME VOICE AI",
   "MULTI-LLM ORCHESTRATION",
   "USAGE-BASED BILLING",
-  "TWILIO / TELNYX / SIP",
-  "RAG · PINECONE · SUPABASE VECTOR",
-  "US / EU STAKEHOLDERS",
-  "ENTERPRISE HEALTHCARE · REAL ESTATE",
+  "SIP · WEBRTC · STT/TTS",
+  "SELF-HOSTED LLM ANALYTICS",
+  "HEALTHCARE · REAL ESTATE",
+  "FULLY REMOTE FROM INDIA",
 ];
 
 export type WorkItem = {
@@ -68,16 +68,6 @@ export const WORK: WorkItem[] = [
     visual: "realead",
     href: "#agent",
   },
-  {
-    idx: "03",
-    name: "Sunria & FinTech Accounts",
-    role: "Freelance, end-to-end delivery",
-    desc: "Pan-India farm management with field-to-warehouse sync, plus a financial dashboard with automated reconciliation: 30% fewer accounting errors, 15+ staff-hours saved weekly.",
-    stack: "Laravel / Flutter / MERN / CI-CD",
-    status: "Shipped",
-    img: "/images/work-sunria.png",
-    visual: "sunria",
-  },
 ];
 
 export const CASE = {
@@ -110,10 +100,9 @@ export const CASE = {
     },
   ],
   metrics: [
-    { to: 1500, suffix: "+", separator: ",", label: "Paying customers" },
-    { to: 20, prefix: "−", suffix: "%", label: "LLM inference cost" },
-    { to: 420, prefix: "~", suffix: "ms", label: "Voice TTFT (typical)" },
-    { to: 0, prefix: "~", label: "Billing disputes since launch" },
+    { to: 1000, suffix: "+", separator: ",", label: "businesses served" },
+    { to: 20, prefix: "~", suffix: "%", label: "lower LLM inference cost" },
+    { to: 40, prefix: "~", suffix: "%", label: "fewer cancellations" },
   ] satisfies {
     to: number;
     label: string;
@@ -199,70 +188,49 @@ export const PRINCIPLES = [
   {
     n: "04",
     title: "Own the stack's P&L",
-    body: "Architecture without vendor spend ownership is theater. I hire, I ship, and I know what the infra bill was last Tuesday.",
-  },
-];
-
-/** Attribution optional — leave name/org empty until you have written approval. */
-export const SIGNALS = [
-  {
-    text: "We evaluated three voice vendors. Callin's agents were the only ones our clinic staff didn't hang up on, and the only ones whose invoices we didn't audit line by line.",
-    name: "",
-    org: "",
-  },
-  {
-    text: "He hired half my eng team, set the roadmap, and still jumped on customer calls. That's not a contractor. That's an owner.",
-    name: "",
-    org: "",
-  },
-  {
-    text: "Curriculum he redesigned moved our placement rate up over 40%. Students left knowing how to ship, not just pass exams.",
-    name: "",
-    org: "",
+    body: "Architecture without vendor spend ownership is theater. I ship the system, and I know what the infra bill was last Tuesday.",
   },
 ];
 
 export const EXPERIENCE = [
   {
-    period: "OCT 2024 to PRESENT",
-    title: "Technical Lead / AI Engineer / Full-Stack",
+    period: "FEB 2026 to PRESENT",
+    title: "Technical Lead, AI Voice Platform",
     org: "Appspundit Infotech · Callin.io",
     points: [
-      "Technical Lead: architecture, vendor and infrastructure spend, hiring, product roadmaps, reporting directly to the founder.",
-      "Scaled the platform to 1,500+ paying customers; expanded into CondoMail and Realead on a shared multi-LLM architecture.",
-      "Cut LLM inference costs 20%; personally converted 30+ prospects into long-term paying accounts across healthcare and real estate.",
+      "Own the call path, multi-LLM routing, self-hosted Qwen for post-call analytics, and the AI-agent ticket pipeline.",
+      "Own architecture decisions and infrastructure spend for a platform serving 1,000+ businesses across healthcare and real estate.",
+      "Cut LLM inference cost roughly 20% by routing each request by complexity.",
     ],
   },
   {
-    period: "2022 to 2024",
-    title: "Freelance Full-Stack Developer",
-    org: "Remote · fintech, retail, logistics",
+    period: "OCT 2024 to JAN 2026",
+    title: "Software Engineer, AI Voice Platform",
+    org: "Appspundit Infotech · Callin.io",
     points: [
-      "Delivered 10+ end-to-end applications across MERN, Django, Flask, and Laravel.",
-      "Built a fintech accounts system for an MCA-registered firm, with automated reconciliation saving 15+ staff-hours per week.",
-      "Improved API performance 25% and implemented zero-downtime CI/CD pipelines.",
+      "Built Callin.io from the ground up: voice agents, carrier integrations, multi-tenant architecture and Stripe usage-based billing.",
+      "Extended the shared multi-LLM architecture into CondoMail and Realead.",
     ],
   },
   {
-    period: "2021 to 2023",
-    title: "Technical Instructor",
-    org: "Aimers Institute & VT College",
+    period: "2021 to 2024",
+    title: "Earlier: engineering and teaching",
+    org: "Freelance and Aimers Institute",
     points: [
-      "Mentored 150+ students in Python, Django, MERN, and Flutter through project-based learning.",
-      "Redesigned the curriculum to industry needs. Student placements rose 42%.",
-      "Supervised 30+ capstone projects: version control, API design, UI craft.",
+      "Built 10+ web applications across MERN, Django, Flask and Laravel.",
+      "Taught 150+ students Python, Django, MERN and Flutter through project-based learning.",
     ],
   },
 ];
 
 export const CAPABILITIES = [
   {
-    title: "AI & Voice Systems",
+    title: "Voice AI Systems",
     items: [
-      "Multi-LLM orchestration: routing by complexity and cost",
-      "RAG pipelines: Pinecone, Supabase Vector",
-      "Voice cloning: ElevenLabs, Cartesia",
-      "Real-time telephony: Twilio, Telnyx, SIP",
+      "Real-time telephony: SIP/VoIP and WebRTC",
+      "STT/TTS selection, streaming and latency budgets",
+      "Multi-LLM routing by complexity and cost",
+      "Self-hosted Qwen for post-call analytics",
     ],
   },
   {
@@ -275,21 +243,21 @@ export const CAPABILITIES = [
     ],
   },
   {
-    title: "Full-Stack Engineering",
+    title: "Engineering",
     items: [
       "React, Next.js, React Native",
-      "Node.js, Express, NestJS, Laravel, Python",
+      "Node.js, NestJS, Python",
       "PostgreSQL (Supabase), Redis",
-      "Event-driven systems, REST, microservices",
+      "Event-driven systems and REST APIs",
     ],
   },
   {
     title: "Cloud & Leadership",
     items: [
       "Docker, AWS, CI/CD pipelines",
-      "System design & architecture decisions",
-      "Team leadership: hiring and mentorship",
-      "US/EU stakeholder coordination",
+      "System design and architecture decisions",
+      "Technical leadership and mentorship",
+      "Remote, cross-timezone collaboration",
     ],
   },
 ];

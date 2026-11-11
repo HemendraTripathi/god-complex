@@ -24,7 +24,6 @@ import {
   FAQS,
   LINKS,
   PRINCIPLES,
-  SIGNALS,
   TICKER,
   WORK,
 } from "@/lib/content";
@@ -96,15 +95,16 @@ export default function Home() {
         <div className="mt-4 grid gap-6 border-t-2 border-ink pt-4 sm:mt-6 sm:gap-8 sm:pt-6 md:grid-cols-[1.15fr_0.85fr] md:gap-12 lg:gap-16">
           <div>
             <p className="max-w-2xl text-[clamp(18px,2.4vw,26px)] font-medium leading-snug tracking-tight">
-              Hemendra Tripathi is a technical lead and AI engineer in Udaipur.
-              He ships as an AI Voice Engineer, plus broader AI product work. He
-              takes products from first commit to paying customers:{" "}
+              I build real-time voice AI that works on actual phone calls. I
+              lead engineering for Callin.io, a voice platform serving 1,000+
+              businesses across healthcare and real estate,{" "}
               <span className="text-org">
-                architecture, billing, teams, and the revenue they produce.
+                and I own everything from the call path to the infrastructure
+                bill.
               </span>
             </p>
             <p className="mt-4 flex flex-wrap items-center gap-x-[0.4em] font-mono text-[11px] uppercase tracking-wider text-steel">
-              Udaipur, IN <BharatMark /> · US / EU teams · Callin.io Tech Lead
+              Udaipur, IN <BharatMark /> · Fully remote · APAC, US and EU overlap · Callin.io Tech Lead
             </p>
           </div>
           <HeroMetrics />
@@ -307,46 +307,10 @@ export default function Home() {
       </section>
       </FadeIn>
 
-      {/* signals */}
-      <FadeIn>
-      <section
-        id="signal"
-        className="mx-auto max-w-7xl scroll-mt-20 px-5 pt-24 sm:px-8"
-      >
-        <SectionHead idx="06" title="Signal" right="What people say" />
-        <div className="grid gap-0 border-2 border-t-0 border-ink md:grid-cols-3">
-          {SIGNALS.map((s, i) => (
-            <figure
-              key={s.text.slice(0, 32)}
-              className={`border-hair p-6 sm:p-7 ${i > 0 ? "md:border-l max-md:border-t" : ""}`}
-            >
-              <blockquote className="text-[14px] leading-relaxed text-ink/85">
-                “{s.text}”
-              </blockquote>
-              {(s.name || s.org) && (
-                <figcaption className="mt-5 border-t border-hair pt-4">
-                  {s.name && (
-                    <div className="text-[13px] font-bold tracking-tight">
-                      {s.name}
-                    </div>
-                  )}
-                  {s.org && (
-                    <div className="mt-0.5 font-mono text-[10px] uppercase tracking-wider text-steel">
-                      {s.org}
-                    </div>
-                  )}
-                </figcaption>
-              )}
-            </figure>
-          ))}
-        </div>
-      </section>
-      </FadeIn>
-
       {/* capabilities */}
       <section className="mx-auto max-w-7xl px-5 pt-24 sm:px-8">
         <SectionHead
-          idx="07"
+          idx="06"
           title="AI & Engineering Capabilities"
           right="Full surface area, one person"
         />
@@ -377,27 +341,26 @@ export default function Home() {
 
       {/* about */}
       <section className="mx-auto max-w-7xl px-5 pt-24 sm:px-8">
-        <SectionHead idx="08" title="Off the Record" />
+        <SectionHead idx="07" title="Off the Record" />
         <div className="grid gap-10 py-10 md:grid-cols-[240px_1fr] md:items-center">
           <SpotlightPortrait
             srcA={PORTRAIT_PATH}
             srcB={PORTRAIT_BATMAN_PATH}
-            alt="Hemendra Tripathi, technical lead and AI engineer"
+            alt="Hemendra Tripathi, AI Voice Engineer and Technical Lead"
             altB="Hemendra Tripathi in a playful Batman portrait"
             width={960}
             height={960}
           />
           <div>
             <p className="max-w-2xl text-[clamp(17px,2vw,22px)] font-medium leading-normal tracking-tight">
-              Based in Udaipur, shipping for the US and Europe. I got here by
-              teaching <span className="text-org">150+ students</span> to
-              code, freelancing across four frameworks, and rebuilding a
-              voice-AI platform until{" "}
-              <span className="text-org">1,500 companies</span> paid for it. I
-              like systems that are boring, fast, and profitable, and teams
-              that own what they build.
-              <br />
-              I&rsquo;m Batman.
+              Based in Udaipur, working remotely with teams across APAC, the US
+              and Europe. I got here by teaching{" "}
+              <span className="text-org">150+ students</span> to code and
+              rebuilding a voice AI platform until{" "}
+              <span className="text-org">1,000+ businesses</span> relied on it.
+              I like systems that are fast, boring and profitable, and I&rsquo;m
+              drawn to how people think and decide, which shapes how I design
+              agents that talk to them.
             </p>
             <div className="mt-6 flex flex-wrap gap-6 font-mono text-[11px] font-bold uppercase tracking-[0.18em]">
               <SocialLink network="github" className="text-[16px] text-ink hover:text-org" />
@@ -424,7 +387,7 @@ export default function Home() {
         className="mx-auto max-w-7xl scroll-mt-20 px-5 pt-24 sm:px-8"
       >
         <SectionHead
-          idx="09"
+          idx="08"
           title="FAQ"
           right="Hire a technical lead · AI engineer"
         />
@@ -459,14 +422,12 @@ export default function Home() {
       {/* contact */}
       <section id="contact" className="plate-laid mt-24 scroll-mt-20 border-t-2 border-ink">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
-          <div className="eyebrow mb-6">(10) Contact</div>
+          <div className="eyebrow mb-6">(09) Contact</div>
           <ContactTitle />
           <p className="mt-6 max-w-lg text-[15px] leading-relaxed text-ink/75">
-            Looking for a technical lead and AI engineer who has already shipped
-            voice AI into revenue, and can stretch into other AI product work.
-            Open to technical-lead / AI engineer / senior full-stack roles and
-            select freelance. Pick a 20-minute slot (timezone is converted for
-            you), or email if you prefer. Replies within 24 hours.
+            Open to fully remote AI Voice Engineer, applied AI and
+            technical-lead roles. Pick a 20-minute slot (timezone is converted
+            for you), or email if you prefer. Replies within 24 hours.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <ContactMagnet>
@@ -487,7 +448,7 @@ export default function Home() {
             </a>
           </div>
           <p className="mt-4 font-mono text-[10px] uppercase tracking-wider text-steel">
-            US / EU-friendly hours · timezone handled
+            Fully remote · APAC, US and EU overlap
           </p>
           <div className="mt-10 flex flex-wrap gap-8 font-mono text-[10.5px] font-bold uppercase tracking-[0.2em] text-steel">
             <SocialLink network="github" className="text-[14px] transition-colors hover:text-org" />
