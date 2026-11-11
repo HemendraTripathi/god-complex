@@ -27,7 +27,7 @@ const fmt = (s: number) =>
 
 /* ---------------- lead file (right column) ---------------- */
 const METRICS = [
-  { to: 1000, suffix: "+", label: "businesses served" },
+  { to: 500, suffix: "+", label: "businesses served" },
   { to: 20, prefix: "~", suffix: "%", label: "lower LLM inference cost" },
   { to: 40, prefix: "~", suffix: "%", label: "fewer cancellations" },
   { to: 150, suffix: "+", label: "students taught" },

@@ -9,7 +9,7 @@ export const CASE_STUDY_STACK = [
 ] as const;
 
 export const CALLIN_CASE = {
-  lede: "Callin.io is a voice AI platform. I started as a Software Engineer building it from the ground up and now lead its engineering as Technical Lead. This page covers the problem, how I approached it, and what changed.",
+  lede: "Callin.io is a voice AI platform. Callin.io is pre-incubated by I3P, the incubator of Politecnico di Torino. I started as a Software Engineer building it from the ground up and now lead its engineering as Technical Lead. This page covers the problem, how I approached it, and what changed.",
 
   demoKicker: "One live turn, with the intent, model and cost for that turn.",
 
@@ -60,7 +60,7 @@ export const CALLIN_CASE = {
 
   results: [
     "Three numbers, because this page is supposed to earn them.",
-    "1,000+ businesses served, roughly 20% lower inference cost, and roughly 40% fewer cancellations.",
+    "500+ businesses served, roughly 20% lower inference cost, and roughly 40% fewer cancellations.",
   ],
 
   next: "Next I want tighter per-turn latency visibility, so a slow path cannot hide behind a good average.",

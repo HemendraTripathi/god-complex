@@ -73,7 +73,7 @@ export const CASE = {
   eyebrow: "Featured voice AI case study",
   title: "Callin.io: building a voice AI platform that holds up on real calls",
   summary:
-    "How I helped take Callin.io from first commit to a platform serving 1,000+ businesses across healthcare and real estate, with lower cost per call and fewer cancellations.",
+    "How I helped take Callin.io from first commit to a platform serving 500+ businesses across healthcare and real estate, with lower cost per call and fewer cancellations.",
   problem: [
     "Every turn of a voice call is a race. If the agent takes too long to answer, the caller hangs up.",
     "Using one large model for everything burned margin on simple turns like greetings and confirmations.",
@@ -98,7 +98,7 @@ export const CASE = {
     },
   ],
   metrics: [
-    { to: 1000, suffix: "+", separator: ",", label: "businesses served" },
+    { to: 500, suffix: "+", separator: ",", label: "businesses served" },
     { to: 20, prefix: "~", suffix: "%", label: "lower LLM inference cost" },
     { to: 40, prefix: "~", suffix: "%", label: "fewer cancellations" },
   ] satisfies {
@@ -185,7 +185,7 @@ export const EXPERIENCE = [
     org: "Appspundit Infotech · Callin.io",
     points: [
       "Own the call path, multi-LLM routing, self-hosted Qwen for post-call analytics, and the AI-agent ticket pipeline.",
-      "Own architecture decisions and infrastructure spend for a platform serving 1,000+ businesses across healthcare and real estate.",
+      "Own architecture decisions and infrastructure spend for a platform serving 500+ businesses across healthcare and real estate.",
       "Cut LLM inference cost roughly 20% by routing each request by complexity.",
     ],
   },
@@ -253,7 +253,7 @@ export const FAQS = [
   {
     question: "Who is Hemendra?",
     answer:
-      "Hemendra is Hemendra Tripathi, an AI Voice Engineer and Technical Lead based in Udaipur, India. He leads engineering on Callin.io, a voice AI platform serving 1,000+ businesses, and works fully remotely.",
+      "Hemendra is Hemendra Tripathi, an AI Voice Engineer and Technical Lead based in Udaipur, India. He leads engineering on Callin.io, a voice AI platform serving 500+ businesses, and works fully remotely.",
   },
   {
     question: "Who is Hemendra Tripathi?",
@@ -288,7 +288,7 @@ export const FAQS = [
   {
     question: "What results did the Callin.io voice AI platform achieve?",
     answer:
-      "Callin.io serves 1,000+ businesses across healthcare and real estate. Complexity-aware routing cut LLM inference cost by roughly 20%, and cancellations fell by roughly 40%. The case study explains how.",
+      "Callin.io serves 500+ businesses across healthcare and real estate. Complexity-aware routing cut LLM inference cost by roughly 20%, and cancellations fell by roughly 40%. The case study explains how.",
   },
   {
     question: "What roles is Hemendra open to?",

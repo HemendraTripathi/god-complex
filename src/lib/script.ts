@@ -10,7 +10,7 @@ export type CrmSection =
 
 export const INTRO: string[] = [
   "Thanks for picking up. I know answering an unknown caller is a leap of faith.",
-  "I'm an <b>AI voice agent</b>. My day job is making real qualification calls for <b>Callin.io</b>, a voice AI platform serving <b>1,000+ businesses</b>.",
+  "I'm an <b>AI voice agent</b>. My day job is making real qualification calls for <b>Callin.io</b>, a voice AI platform serving <b>500+ businesses</b>.",
   "This call is different. I'm qualifying a hiring lead for <span class='hl'>Hemendra Tripathi</span>, the engineer who built me. That lead is you.",
   "Who am I speaking with?",
 ];
@@ -47,7 +47,7 @@ export const TOPICS: Record<
     crm: "metrics",
     lines: [
       "Pulling the file. Here's what I'd flag to any hiring committee:",
-      "<b>1,000+ businesses</b> served by a platform he helped build from the first commit, across healthcare and real estate.",
+      "<b>500+ businesses</b> served by a platform he helped build from the first commit, across healthcare and real estate.",
       "<b>Roughly 20% lower LLM inference cost</b> by routing each turn to the right-sized model: large models for hard reasoning, light models for routine turns.",
       "<b>Roughly 40% fewer cancellations</b> after the platform work he led.",
     ],
@@ -96,7 +96,7 @@ export const DECLINE_LINES: string[] = [
 
 export const MARQUEE_ITEMS: string[] = [
   "REAL-TIME VOICE AI",
-  "1,000+ BUSINESSES",
+  "500+ BUSINESSES",
   "~20% LOWER LLM COST",
   "MULTI-LLM ORCHESTRATION",
   "SIP · WEBRTC · STT/TTS",

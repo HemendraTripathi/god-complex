@@ -96,12 +96,13 @@ export default function Home() {
           <div>
             <p className="max-w-2xl text-[clamp(18px,2.4vw,26px)] font-medium leading-snug tracking-tight">
               I build real-time voice AI that works on actual phone calls. I
-              lead engineering for Callin.io, a voice platform serving 1,000+
+              lead engineering for Callin.io, a voice platform serving 500+
               businesses across healthcare and real estate,{" "}
               <span className="text-org">
                 and I own everything from the call path to the infrastructure
                 bill.
-              </span>
+              </span>{" "}
+              Callin.io is pre-incubated by I3P, the incubator of Politecnico di Torino.
             </p>
             <p className="mt-4 flex flex-wrap items-center gap-x-[0.4em] font-mono text-[11px] uppercase tracking-wider text-steel">
               Udaipur, IN <BharatMark /> · Fully remote · APAC, US and EU overlap · Callin.io Tech Lead
@@ -357,7 +358,7 @@ export default function Home() {
               and Europe. I got here by teaching{" "}
               <span className="text-org">150+ students</span> to code and
               rebuilding a voice AI platform until{" "}
-              <span className="text-org">1,000+ businesses</span> relied on it.
+              <span className="text-org">500+ businesses</span> relied on it.
               I like systems that are fast, boring and profitable, and I&rsquo;m
               drawn to how people think and decide, which shapes how I design
               agents that talk to them.

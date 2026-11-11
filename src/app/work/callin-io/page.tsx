@@ -91,7 +91,7 @@ export default function CallinCaseStudyPage() {
             <span className="mt-1 block text-org">voice AI case study</span>
           </h1>
           <p className="mt-8 max-w-2xl text-[clamp(18px,2.4vw,24px)] font-medium leading-snug tracking-tight">
-            {SITE.caseDescription}
+            {SITE.caseDescription} 9M+ conversation minutes processed (per Callin.io).
           </p>
           <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-ink/75">
             This is the canonical write-up of the work: routing each turn by

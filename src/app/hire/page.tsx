@@ -129,7 +129,7 @@ export default function HirePage() {
             Proof, not a deck
           </h2>
           <p className="mt-8 max-w-2xl text-[15px] leading-relaxed text-ink/80">
-            The Callin.io case study is the résumé: a platform serving 1,000+
+            The Callin.io case study is the résumé: a platform serving 500+
             businesses, roughly 20% lower LLM inference cost and roughly 40%
             fewer cancellations. Read it, or call the live agent on the home
             page, before we talk.
